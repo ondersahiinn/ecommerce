@@ -15,7 +15,7 @@ export const Cards: React.FC = () => {
             <p className="m-0">{plugin.description}</p>
           </div>
         ))}
-      </div>
+      </div> 
     </div>
   );
 };

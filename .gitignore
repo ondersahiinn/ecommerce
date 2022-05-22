@@ -3,8 +3,7 @@ node_modules
 # next.js build files
 .next
 # environment variables
-.env
-.env.*
+
 !.env.example
 
 yarn.lock*

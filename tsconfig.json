@@ -50,7 +50,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "pages/api/categories.js"  ],
   "exclude": [
     "node_modules"
   ]
