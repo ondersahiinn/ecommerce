@@ -29,7 +29,7 @@ async function getPosts(req, res) {
     try {
         let { db } = await connectToDatabase();
         let posts = await db
-            .collection('posts')
+            .collection('categories')
             .find({})
             .sort({ published: -1 })
             .toArray();
@@ -49,7 +49,7 @@ async function getPosts(req, res) {
 async function addPost(req, res) {
     try {
         let { db } = await connectToDatabase();
-        await db.collection('posts').insertOne(JSON.parse(req.body));
+        await db.collection('categories').insertOne((req.body));
         return res.json({
             message: 'Post added successfully',
             success: true,
