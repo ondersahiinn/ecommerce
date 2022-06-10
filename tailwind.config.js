@@ -1,50 +1,42 @@
-/** @type {import('tailwindcss').Config} */
 module.exports = {
   purge: ['./pages/**/*.tsx', './src/**/*.tsx'],
   darkMode: 'class', // or 'media' or 'class'
   theme: {
     // Responsive kırılma noktaları
     screens: {
-      sm: '640px',
-      // => @media (min-width: 640px) { ... }
+      sm: '576px',
+      // => @media (min-width: 576px) { ... }
 
       md: '768px',
       // => @media (min-width: 768px) { ... }
 
-      lg: '1024px',
-      // => @media (min-width: 1024px) { ... }
+      lg: '992px',
+      // => @media (min-width: 992px) { ... }
 
-      xl: '1280px',
-      // => @media (min-width: 1280px) { ... }
+      xl: '1200px',
+      // => @media (min-width: 1200px) { ... }
 
-      '2xl': '1536px',
-      // => @media (min-width: 1536px) { ... }
+      '2xl': '1400px',
+      // => @media (min-width: 1400px) { ... }
     },
-    // Temanın genel font büyüklükleri
-    fontSize: {
-      sm: '0.813rem',
-      md: '1rem',
-    },
+
     extend: {
       colors: {
         // Örnek renkler
         primary: {
-          base: '#1C9BEF',
-          darken: '#188CD8',
-          lighten: 'hsl(203, 89%, 96%)',
+          base: '#ff6000',
+          darken: '#cf4f00',
+          lighten: '#ff8438',
         },
         secondary: {
-          black: '#14171A',
-          darkGray: '#657786',
-          lightGray: '#AAB8C2',
-          extraLightGray: '#E7E7E8',
+          black: '#0a0a0a',
+          darkGray: '#484848',
+          lightGray: '#7B7B7B',
+          switchGray: '#646464',
+          extraLightGray: '#EEEEEE',
           lightestGray: '#eff3f4',
-          hoverGray: '#F7F7F7',
-          trendsColor: '#f7f9f9',
+          buttonGray: '#919191',
         },
-      },
-      boxShadow: {
-        sm: '0 2px 4px 0 rgb(0 0 0 / 20%)',
       },
     },
   },
