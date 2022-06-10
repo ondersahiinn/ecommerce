@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button, Checkbox, Form, Input } from 'antd';
-export const Login = () => {
+
+export const Login:React.FC = () => {
 
     const onFinish = (values: any) => {
         console.log('Success:', values);
