@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+// @layer components{
+//     .ant-btn:hover, .ant-btn:focus, .ant-btn:active{
+//         @apply bg-[#ff6000] 
+//     }
+// }
+.ant-btn:hover, .ant-btn:focus, .ant-btn:active{
+    background: #ff6000;
+    text-decoration: none;
+    color: #fff;
+    border-color: #fff;
+
+}

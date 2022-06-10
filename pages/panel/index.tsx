@@ -1,6 +1,6 @@
-import 'antd/dist/antd.css';
 import { Layout,  Breadcrumb } from 'antd';
 import { useState } from 'react';
+import { Login } from '@components';
 
 const Panel = () => {
     const { Content, Footer, Sider } = Layout;
@@ -46,21 +46,9 @@ const Panel = () => {
                             margin: '0 16px',
                         }}
                     >
-                        <Breadcrumb
-                            style={{
-                                margin: '16px 0',
-                            }}
-                        >
-                            <Breadcrumb.Item>Panel</Breadcrumb.Item>
-                        </Breadcrumb>
-                        <div
-                            className="site-layout-background"
-                            style={{
-                                padding: 24,
-                                minHeight: 360,
-                            }}
-                        >
-                            
+                        
+                        <div className="site-layout-background p-[24px] min-h-[360px]">
+                            <Login />
                         </div>
                     </Content>
                     <Footer
