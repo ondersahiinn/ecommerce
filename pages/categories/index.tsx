@@ -1,18 +1,28 @@
+import { addProduct } from "@redux/slices/product"
 import { useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
 
 
 const Categories = () => {
 
+    const productList = useSelector((state: any) => state.product.productList)
+    const dispatch = useDispatch()
+
     useEffect(() => {
-        fetch('http://localhost:3000/api/categories')
-        .then(res => res.json())
-        .then(data => console.log(data))
-    })
+        if (productList.length === 0) {
+            fetch('http://localhost:3000/api/categories')
+                .then(res => res.json())
+                .then(data => dispatch(addProduct(data)))
+        }
+
+    }, [productList])
+
+    console.log('global', productList)
 
     return (
-    <>
-    <h1> Girdib</h1>
-    </>
+        <>
+            <h1> Girdib</h1>
+        </>
     )
 }
 
