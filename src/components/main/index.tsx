@@ -24,7 +24,7 @@ export const Main: React.FC = () => {
         <div className="container mx-auto dark:bg-red-500">
           <h1 className="text-white text-8xl mb-2">Önder</h1>
           <p className="text-lg text-white mb-3 bg-primary-darken dark:bg-slate-400">
-            The frontend boilerplate with superpowers!
+            kolpacı önder{' '}
           </p>
 
           <Button
