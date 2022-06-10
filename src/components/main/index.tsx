@@ -7,7 +7,7 @@ export const Main: React.FC = () => {
     <div className="text-center font-light py-5 bg-gray-700">
       <div className="container mx-auto">
         <h1 className="text-white text-8xl mb-2">Önder</h1>
-        <p className="text-lg text-white mb-3">
+        <p className="text-lg text-white mb-3 w-[calc(100%-32px)]">
           The frontend boilerplate with superpowers!
         </p>
         <Button type="button">
