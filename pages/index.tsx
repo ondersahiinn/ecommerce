@@ -1,14 +1,12 @@
-import React from "react";
+import React from 'react';
 
-import { Container, Header, Main, Footer, Cards } from "@components";
+import { Container, Footer, Header, Main } from '@components';
 
 const Home: React.FC = () => {
   return (
-    <Container>
-      
+    <Container className="flex flex-col h-screen">
       <Header />
       <Main />
-      <Cards />
       <Footer />
     </Container>
   );

@@ -1,8 +1,18 @@
-import React from "react";
-import Image from "next/image";
-
-export const Logo: React.FC = () => {
+import React from 'react';
+import Image from 'next/image';
+interface Props {
+  className?: string;
+}
+export const Logo: React.FC<Props> = (props) => {
   return (
-    <Image src="/icons/nextjs-icon.svg" alt="nextjs" width="96" height="58" />
+    <div {...props}>
+      <Image
+        src="/icons/logo.svg"
+        alt="Hepsiburada"
+        width="191"
+        height="34"
+        className="max-w-full"
+      />
+    </div>
   );
 };

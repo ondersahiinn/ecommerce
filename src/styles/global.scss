@@ -20,6 +20,9 @@ $baseColor:#ff6000;
 }
 .login-input-password>input{
   background: #eeeeee;
+html,
+body {
+  height: 100vh;
 }
 body {
   font-family: 'Roboto', sans-serif;
