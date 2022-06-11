@@ -22,7 +22,6 @@ const productSlice = createSlice({
     rawSetTheme: (state, action) => {
       const root = window.document.documentElement;
       const isDark = action.payload === 'dark';
-
       root.classList.remove(isDark ? 'light' : 'dark');
       root.classList.add(action.payload);
 

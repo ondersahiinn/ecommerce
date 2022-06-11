@@ -19,7 +19,6 @@ module.exports = {
       '2xl': '1400px',
       // => @media (min-width: 1400px) { ... }
     },
-
     extend: {
       colors: {
         // Örnek renkler
