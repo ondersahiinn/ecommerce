@@ -2,6 +2,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+$baseColor:#ff6000;
+
+
+.ant-btn:hover, .ant-btn:focus, .ant-btn:active{
+    background: $baseColor;
+    text-decoration: none;
+    color: #fff;
+    border-color: #fff;
+}
+.ant-tabs-ink-bar{
+  background: $baseColor;
+}
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn{
+  color:$baseColor;
+}
+.login-input-password>input{
+  background: #eeeeee;
 html,
 body {
   height: 100vh;
