@@ -1,48 +1,13 @@
-import { MongoClient } from 'mongodb';
+import mongoose from 'mongoose';
 
-debugger
-const MONGODB_URI = process.env.MONGODB_URI;
-const MONGODB_DB = process.env.DB_NAME;
+const connectDB = handler => async (req, res) => {
+  if (mongoose.connections[0].readyState) {
+    // Use current db connection
+    return handler(req, res);
+  }
+  // Use new db connection
+  await mongoose.connect(process.env.mongodburl);
+  return handler(req, res);
+};
 
-// check the MongoDB URI
-if (!MONGODB_URI) {
-    throw new Error('Define the MONGODB_URI environmental variable');
-}
-
-// check the MongoDB DB
-if (!MONGODB_DB) {
-    throw new Error('Define the MONGODB_DB environmental variable');
-}
-
-let cachedClient = null;
-let cachedDb = null;
-
-export async function connectToDatabase() {
-    // check the cached.
-    if (cachedClient && cachedDb) {
-        // load from cache
-        return {
-            client: cachedClient,
-            db: cachedDb,
-        };
-    }
-
-    // set the connection options
-    const opts = {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    };
-
-    // Connect to cluster
-    let client = new MongoClient(MONGODB_URI, opts);
-    await client.connect();
-    let db = client.db(MONGODB_DB);
-
-    // set cache
-    cachedClient = client;
-    cachedDb = db;
-    return {
-        client: cachedClient,
-        db: cachedDb,
-    };
-}
+export default connectDB;
