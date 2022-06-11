@@ -5,6 +5,7 @@ export { MidBar } from './header/midBar';
 export { Menu } from './header/menu';
 export { Logo } from './logo';
 export { SearchInput } from './search';
+export { ShoppingLocation } from './shoppingLocation';
 //#endregion
 
 export { Main } from './main';

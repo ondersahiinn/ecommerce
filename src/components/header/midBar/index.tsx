@@ -4,7 +4,7 @@ import 'antd/dist/antd.css';
 export const MidBar: FC = () => {
   return (
     <div className="flex items-center">
-      <Logo className="w-auto h-auto mr-10" />
+      <Logo className="w-64" />
       <SearchInput />
     </div>
   );

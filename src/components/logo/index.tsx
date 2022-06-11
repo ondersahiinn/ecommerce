@@ -9,9 +9,9 @@ export const Logo: React.FC<Props> = (props) => {
       <Image
         src="/icons/logo.svg"
         alt="Hepsiburada"
-        width="192"
+        width="191"
         height="34"
-        className="w-full"
+        className="max-w-full"
       />
     </div>
   );
