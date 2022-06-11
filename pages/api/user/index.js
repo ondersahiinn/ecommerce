@@ -5,7 +5,6 @@ const handler = async (req, res) => {
   if (req.method === 'POST') {
     // Check if name, email or password is provided
     const { name, email, password } = req.body;
-    console.log(req.body);
     if (name && email && password) {
         try {
           // Hash password to store it in DB

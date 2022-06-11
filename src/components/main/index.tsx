@@ -16,10 +16,6 @@ export const Main: React.FC = () => {
   }, [theme]);
   return (
     <div className="flex-grow flex-shrink basis-auto">
-      <Head>
-        <title>Main</title>
-        <Html className="onder" />
-      </Head>
       <div className="text-center font-light py-5 dark:text-white bg-gray-700">
         <div className="container mx-auto dark:bg-red-500">
           <h1 className="text-white text-8xl mb-2">Önder</h1>
