@@ -19,7 +19,6 @@ module.exports = {
       '2xl': '1400px',
       // => @media (min-width: 1400px) { ... }
     },
-
     extend: {
       colors: {
         // Örnek renkler
@@ -31,9 +30,9 @@ module.exports = {
         secondary: {
           black: '#0a0a0a',
           darkGray: '#484848',
-          lightGray: '#7B7B7B',
-          switchGray: '#646464',
-          extraLightGray: '#EEEEEE',
+          lightDarkGray: '#7B7B7B',
+          extraLightGray: '#ccc',
+          extraExtraLightGray: '#EEEEEE',
           lightestGray: '#eff3f4',
           buttonGray: '#919191',
         },

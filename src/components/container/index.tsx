@@ -1,3 +1,10 @@
-export const Container = ({ children }) => {
-  return <div className="min-h-screen flex flex-col">{children}</div>;
+import { FC } from 'react';
+interface Props {
+  children: React.ReactNode;
+  props?: Props;
+  className?: string;
+}
+export const Container: FC<Props> = (props) => {
+  console.log(props);
+  return <div {...props}>{props.children}</div>;
 };

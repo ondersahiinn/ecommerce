@@ -15,7 +15,7 @@ export const Main: React.FC = () => {
     dispatch(rawSetTheme(theme));
   }, [theme]);
   return (
-    <>
+    <div className="flex-grow flex-shrink basis-auto">
       <Head>
         <title>Main</title>
         <Html className="onder" />
@@ -38,6 +38,6 @@ export const Main: React.FC = () => {
           </Button>
         </div>
       </div>
-    </>
+    </div>
   );
 };
