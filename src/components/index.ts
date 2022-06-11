@@ -6,6 +6,7 @@ export { Menu } from './header/menu';
 export { Logo } from './logo';
 export { SearchInput } from './search';
 export { ShoppingLocation } from './shoppingLocation';
+export { AddressRadioGroup } from './addressRadioGroup';
 //#endregion
 
 export { Main } from './main';

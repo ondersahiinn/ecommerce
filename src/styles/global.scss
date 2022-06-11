@@ -7,5 +7,28 @@ body {
   height: 100vh;
 }
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Arial, Roboto, Oxygen, Ubuntu,
+    Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif !important;
+}
+@layer base {
+  details {
+    summary {
+      @apply z-20;
+    }
+    & > summary,
+    & > div {
+      @apply z-20;
+    }
+    &[open] > summary::before {
+      @apply fixed inset-0 z-10 block cursor-default content-[''];
+    }
+  }
+}
+
+@layer components {
+  .addressRadio {
+    .ant-radio-button-wrapper {
+      @apply w-full border-4 border-primary-blue border-r-primary-blue;
+    }
+  }
 }

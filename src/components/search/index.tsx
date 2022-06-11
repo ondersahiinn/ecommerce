@@ -14,9 +14,8 @@ export const SearchInput: React.FC<Props> = (props) => {
   };
   return (
     <div className="flex flex-1 group items-center justify-center border-2 border-secondary-buttonGray focus-within:border-primary-base rounded-md overflow-hidden">
-      <SearchOutlined
-        style={{ color: '#ccc', fontSize: '1.4rem', paddingLeft: '16px' }}
-      />
+      <SearchOutlined className="!text-secondary-extraLightGray text-2xl pl-4" />
+
       <input
         type="text"
         placeholder="Ürün veya kategori ara"

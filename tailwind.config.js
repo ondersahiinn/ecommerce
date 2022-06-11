@@ -26,6 +26,7 @@ module.exports = {
           base: '#ff6000',
           darken: '#cf4f00',
           lighten: '#ff8438',
+          blue: '#6c84fa',
         },
         secondary: {
           black: '#0a0a0a',
