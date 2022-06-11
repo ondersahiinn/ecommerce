@@ -12,18 +12,21 @@ $baseColor:#ff6000;
     color: #fff;
     border-color: #fff;
 }
+
 .ant-tabs-ink-bar{
   background: $baseColor;
 }
+
 .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn{
   color:$baseColor;
 }
+
 .login-input-password>input{
   background: #eeeeee;
+}
+
 html,
 body {
   height: 100vh;
-}
-body {
   font-family: 'Roboto', sans-serif;
 }
