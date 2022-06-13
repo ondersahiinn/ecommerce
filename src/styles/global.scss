@@ -10,6 +10,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, Arial, Roboto, Oxygen, Ubuntu,
     Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif !important;
 }
+
 @layer base {
   details {
     summary {
@@ -25,10 +26,45 @@ body {
   }
 }
 
-@layer components {
-  .addressRadio {
-    .ant-radio-button-wrapper {
-      @apply w-full border-4 border-primary-blue border-r-primary-blue;
+.addressRadio {
+  .ant-radio-button-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 142px;
+    width: 100%;
+    border: 1px solid #e5e5e5 !important;
+    border-radius: 8px !important;
+    padding: 40px 24px 20px;
+    color: #646464 !important;
+    .thick {
+      display: none;
+    }
+    &.ant-radio-button-wrapper-checked {
+      border: 4px solid #6c84fa !important;
+      padding: 37px 21px 17px;
+      .thick {
+        display: inline-block;
+      }
     }
   }
+}
+
+.searchSelect {
+  font-size: 16px !important;
+  .ant-select-selector {
+    background-color: #eeeeee !important;
+    border: 2px solid rgb(238, 238, 238) !important;
+    height: auto !important;
+    border-radius: 8px !important;
+    color: #9b9b9b;
+    padding: 10px 14px !important;
+    outline: 0;
+    box-shadow: none !important;
+  }
+}
+.ant-select-single:not(.ant-select-customize-input)
+  .ant-select-selector
+  .ant-select-selection-search-input {
+  height: 100% !important;
 }

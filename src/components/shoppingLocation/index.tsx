@@ -1,6 +1,6 @@
 import React from 'react';
 import { EnvironmentOutlined, DownOutlined } from '@ant-design/icons';
-import { AddressRadioGroup } from '..';
+import { AddressRadioGroup, AddressSelect } from '@components';
 export const ShoppingLocation: React.FC = () => {
   return (
     <details className="relative group w-full h-full max-w-xs">
@@ -23,6 +23,7 @@ export const ShoppingLocation: React.FC = () => {
             Adresinizi veya konum bilgilerinizi seçerek özel hizmetleri
             görebilirsiniz.
           </div>
+          <AddressSelect />
           <button className="bg-primary-base hover:bg-primary-darken font-semibold text-sm p-2 text-white outline-0 h-10 rounded-lg transform transition-colors">
             Yeni Konum Seç
           </button>
