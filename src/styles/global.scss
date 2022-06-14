@@ -18,6 +18,17 @@ $baseColor:#ff6000;
 .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn{
   color:$baseColor;
 }
+/*Bu Kısım düzeltilmeli input spasific renk vermek gerekirse kullanılmalı.*/
+.ant-input-status-error:not(.ant-input-disabled):not(.ant-input-borderless).ant-input, .ant-input-status-error:not(.ant-input-disabled):not(.ant-input-borderless).ant-input:hover{
+  background: #eeeeee;
+  text-decoration: none;
+  color: #fff;
+}
+.ant-input-affix-wrapper-status-error:not(.ant-input-affix-wrapper-disabled):not(.ant-input-affix-wrapper-borderless).ant-input-affix-wrapper, .ant-input-affix-wrapper-status-error:not(.ant-input-affix-wrapper-disabled):not(.ant-input-affix-wrapper-borderless).ant-input-affix-wrapper:hover{
+  background: #eeeeee;
+  text-decoration: none;
+  color: #fff;
+}
 .login-input-password>input{
   background: #eeeeee;
 html,
@@ -26,4 +37,4 @@ body {
 }
 body {
   font-family: 'Roboto', sans-serif;
-}
+}}
