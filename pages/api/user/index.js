@@ -14,8 +14,14 @@ const handler = async (req, res) => {
             password,
           });
           // Create new user
+          // let { db } = await connectToDatabase();
+          // await connectDB.collection('user').insertOne((user));
           var usercreated = await user.save();
           return res.status(200).send(usercreated);
+        //   return res.json({
+        //     message: 'Post added successfully',
+        //     success: true,
+        // });
         } catch (error) {
           return res.status(500).send(error.message);
         }

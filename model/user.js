@@ -18,7 +18,7 @@ var user = new Schema({
     type: Date,
     default: Date.now
   }
-});
+},{collation:'ecommerce'});
 
 mongoose.models = {};
 

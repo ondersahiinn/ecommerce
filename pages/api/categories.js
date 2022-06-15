@@ -29,7 +29,7 @@ async function getPosts(req, res) {
     try {
         let { db } = await connectToDatabase();
         let posts = await db
-            .collection('categories')
+            .collection('user')
             .find({})
             .sort({ published: -1 })
             .toArray();
