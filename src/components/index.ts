@@ -6,6 +6,9 @@ export { Menu } from './header/menu';
 export { Logo } from './logo';
 export { SearchInput } from './search';
 export { ShoppingLocation } from './shoppingLocation';
+export { AddressRadioGroup } from './addressRadioGroup';
+export { Thick } from './shoppingLocation/Thick';
+export { AddressSelect } from './addressSelect';
 //#endregion
 
 export { Main } from './main';
@@ -13,4 +16,3 @@ export { Button } from './button';
 export { Cards } from './cards';
 export { Footer } from './footer';
 export { Container } from './container';
-export { Login } from "./login";

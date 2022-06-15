@@ -3,23 +3,30 @@
 @tailwind components;
 @tailwind utilities;
 
-$baseColor: #ff6000;
+// Variables
+$primary-orange-base: #ff6000;
+$primary-orange-darken: #cf4f00;
+$primary-orange-lighten: #ff8438;
+$primary-blue: #6c84fa;
 
+$secondary-darkGray: #484848;
+$secondary-borderColor: #e5e5e5;
+$secondary-extraExtraLightGray: #eee;
 .ant-btn:hover,
 .ant-btn:focus,
 .ant-btn:active {
-  background: $baseColor;
+  background: $primary-orange-base;
   text-decoration: none;
   color: #fff;
   border-color: #fff;
 }
 
 .ant-tabs-ink-bar {
-  background: $baseColor;
+  background: $primary-orange-base;
 }
 
 .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
-  color: $baseColor;
+  color: $primary-orange-base;
 }
 
 .login-input-password > input {

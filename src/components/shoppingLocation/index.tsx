@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-import React from 'react';
-
-export const ShoppingLocation: React.FC = () => {
-  return <div>ShoppingLocation</div>;
-=======
 import React, { useState } from 'react';
 import { EnvironmentOutlined, DownOutlined } from '@ant-design/icons';
 import { AddressRadioGroup, AddressSelect } from '@components';
@@ -63,5 +57,4 @@ export const ShoppingLocation: React.FC = () => {
       </div>
     </details>
   );
->>>>>>> fdb3e0b (Location component done)
 };
