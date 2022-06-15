@@ -3,30 +3,131 @@
 @tailwind components;
 @tailwind utilities;
 
-$baseColor:#ff6000;
+$baseColor: #ff6000;
 
-
-.ant-btn:hover, .ant-btn:focus, .ant-btn:active{
-    background: $baseColor;
-    text-decoration: none;
-    color: #fff;
-    border-color: #fff;
+.ant-btn:hover,
+.ant-btn:focus,
+.ant-btn:active {
+  background: $baseColor;
+  text-decoration: none;
+  color: #fff;
+  border-color: #fff;
 }
 
-.ant-tabs-ink-bar{
+.ant-tabs-ink-bar {
   background: $baseColor;
 }
 
-.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn{
-  color:$baseColor;
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: $baseColor;
 }
 
-.login-input-password>input{
+.login-input-password > input {
   background: #eeeeee;
 }
 
 html,
 body {
   height: 100vh;
-  font-family: 'Roboto', sans-serif;
+}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, Arial, Roboto, Oxygen, Ubuntu,
+    Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif !important;
+}
+
+@layer base {
+  details {
+    summary {
+      @apply z-20;
+    }
+    & > summary,
+    & > div {
+      @apply z-20;
+    }
+    &[open] > summary::before {
+      @apply fixed inset-0 z-10 block cursor-default content-[''];
+    }
+  }
+}
+@layer components {
+  .ant-btn.primary-button,
+  .primary-button {
+    @apply w-full bg-primary-base hover:bg-primary-darken font-semibold  text-sm  p-2 text-white hover:text-white outline-0 h-10 rounded-lg transform transition-colors border-0 duration-300;
+  }
+}
+
+.addressRadio {
+  .ant-radio-button-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 142px;
+    width: 100%;
+    border: 1px solid $secondary-borderColor !important;
+    border-radius: 8px !important;
+    padding: 40px 24px 20px;
+    color: #646464 !important;
+    .thick {
+      display: none;
+    }
+    &.ant-radio-button-wrapper-checked {
+      border: 4px solid $primary-blue !important;
+      padding: 37px 21px 17px;
+      .thick {
+        display: inline-block;
+      }
+    }
+  }
+}
+.ant-row.ant-form-item {
+  &:last-child {
+    margin-bottom: 0;
+  }
+  .searchSelect {
+    font-size: 16px !important;
+    &.ant-select-status-success {
+      .ant-select-selector {
+        background-color: #fff !important;
+        border-color: rgb(221, 221, 221) !important;
+        color: $secondary-darkGray;
+      }
+    }
+    .ant-select-selector {
+      background-color: $secondary-extraExtraLightGray !important;
+      border: 2px solid $secondary-extraExtraLightGray !important;
+      height: auto !important;
+      border-radius: 8px !important;
+      color: #9b9b9b;
+      padding: 10px 14px !important;
+      outline: 0;
+      box-shadow: none !important;
+    }
+  }
+}
+
+.ant-select-single:not(.ant-select-customize-input)
+  .ant-select-selector
+  .ant-select-selection-search-input {
+  height: 100% !important;
+}
+.ant-select-dropdown.ant-select-dropdown-placement-bottomLeft {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  box-shadow: rgb(0 0 0 / 16%) 0px 4px 8px 0px;
+  padding: 8px;
+  .ant-select-item {
+    font-size: 16px;
+    font-weight: 500;
+    color: $secondary-darkGray !important;
+    padding: 12px 16px;
+    &.ant-select-item-option-active {
+      border-radius: 4px;
+      background-color: transparent;
+    }
+    &.ant-select-item-option-selected {
+      background-color: $primary-orange-lighten !important;
+      border-radius: 4px;
+      color: #fff !important;
+    }
+  }
 }
