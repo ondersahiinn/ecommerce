@@ -1,8 +1,13 @@
 import { Button, Form, Input, Select } from 'antd';
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { Thick } from '..';
 
 const { Option } = Select;
-export const AddressSelect = () => {
+interface IAddressSelectProps {
+  isLogin: boolean;
+}
+export const AddressSelect: React.FC<IAddressSelectProps> = ({ isLogin }) => {
   const onFinish = (values: any) => {
     console.log(values);
   };
@@ -84,11 +89,8 @@ export const AddressSelect = () => {
         </Select>
       </Form.Item>
       <Form.Item>
-        <Button
-          htmlType="submit"
-          className="w-full !bg-primary-base !hover:bg-primary-darken !font-semibold  !text-sm  !p-2 !text-white !outline-0 !h-10 !rounded-lg !transform !transition-colors"
-        >
-          Submit
+        <Button htmlType="submit" className="primary-button">
+          Kaydet
         </Button>
       </Form.Item>
     </Form>

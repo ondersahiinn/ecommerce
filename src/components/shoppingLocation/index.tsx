@@ -1,7 +1,11 @@
 import React from 'react';
 import { EnvironmentOutlined, DownOutlined } from '@ant-design/icons';
 import { AddressRadioGroup, AddressSelect } from '@components';
+import { useSelector } from 'react-redux';
+import { RootState } from '@redux/reducers';
+
 export const ShoppingLocation: React.FC = () => {
+  const isLogin = useSelector((state: RootState) => state.login.isLogin);
   return (
     <details className="relative group w-full h-full max-w-xs">
       <summary className="py-1 px-4 h-full flex items-center group-open:bg-secondary-lightestGray list-none rounded-md cursor-pointer">
@@ -23,7 +27,7 @@ export const ShoppingLocation: React.FC = () => {
             Adresinizi veya konum bilgilerinizi seçerek özel hizmetleri
             görebilirsiniz.
           </div>
-          <AddressSelect />
+          <AddressSelect isLogin={isLogin} />
           <button className="bg-primary-base hover:bg-primary-darken font-semibold text-sm p-2 text-white outline-0 h-10 rounded-lg transform transition-colors">
             Yeni Konum Seç
           </button>
