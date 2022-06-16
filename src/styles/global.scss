@@ -51,7 +51,7 @@ body {
     & > div {
       @apply z-20;
     }
-    &[open] > summary::before {
+    &[open] > summary::after {
       @apply fixed inset-0 z-10 block cursor-default content-[''];
     }
   }

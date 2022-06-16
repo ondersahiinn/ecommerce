@@ -68,7 +68,7 @@ export const AddressRadioGroup: React.FC = () => {
               value={adres.id}
               className="overflow-hidden !transition-none"
             >
-              <div className="thick p-2 bg-primary-blue inline-block absolute top-0 left-0 rounded-br-lg ">
+              <div className="thick p-2 bg-primary-blue inline-block absolute top-0 left-0 rounded-br-lg">
                 <Thick />
               </div>
               <div className="mb-1 text-base font-semibold line-clamp-1">
