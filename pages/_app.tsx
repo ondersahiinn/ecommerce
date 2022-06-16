@@ -8,9 +8,12 @@ import store from '@redux/store';
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (
-    <Provider store={store}>
-      <Component {...pageProps} />
-    </Provider>
+    <React.StrictMode>
+      <Provider store={store}>
+        <Component {...pageProps} />
+      </Provider>
+    </React.StrictMode>
+
   );
 }
 

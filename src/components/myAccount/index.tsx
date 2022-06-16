@@ -1,5 +1,5 @@
 import React from 'react';
 
 export const MyAccount: React.FC = () => {
-  return <div>MyAccount</div>;
+  return <div>MyAccount deneme</div>;
 };
