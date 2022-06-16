@@ -7,7 +7,7 @@ export { Logo } from './logo';
 export { SearchInput } from './search';
 export { ShoppingLocation } from './shoppingLocation';
 export { AddressRadioGroup } from './addressRadioGroup';
-export { Thick } from './shoppingLocation/Thick';
+export { ThickIcon } from './shoppingLocation/ThickIcon';
 export { AddressSelect } from './addressSelect';
 //#endregion
 

@@ -2,7 +2,7 @@ import React from 'react';
 import type { RadioChangeEvent } from 'antd';
 import { Radio, Space } from 'antd';
 import Image from 'next/image';
-import { Thick } from '@components';
+import { ThickIcon } from '@components';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@redux/reducers';
 import { changeSelectedLocation } from '@redux/slices/user';
@@ -68,17 +68,15 @@ export const AddressRadioGroup: React.FC = () => {
               value={adres.id}
               className="overflow-hidden !transition-none"
             >
-              {/* <div className="thick p-2 bg-primary-blue inline-block absolute top-0 left-0 rounded-br-lg">
-                <Thick />
+              <div className="thick p-2 bg-primary-blue inline-block absolute top-0 left-0 rounded-br-lg">
+                <ThickIcon />
               </div>
               <div className="mb-1 text-base font-semibold line-clamp-1">
                 {adres.baslik}
               </div>
               <div className="text-xs line-clamp-2">{adres.adres}</div>
-              <div className="text-xs mt-2">{`${adres.ilce.toLocaleUpperCase()} / ${
-                adres.il
-              }`}</div> */}
-              Test
+              <div className="text-xs mt-2">{`${adres.ilce.toLocaleUpperCase()} / ${adres.il
+                }`}</div>
             </Radio.Button>
           ))}
         </Space>

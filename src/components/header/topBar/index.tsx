@@ -33,7 +33,7 @@ export const TopBar: FC = () => {
         {topMenu.map((item) => (
           <li key={item.name}>
             <Link href={item.href}>
-              <a className="text-xs text-secondary-lightGray font-semibold">
+              <a className="text-xs text-secondary-lightDarkGray font-semibold hover:text-secondary-lightDarkGray">
                 {item.name}
               </a>
             </Link>

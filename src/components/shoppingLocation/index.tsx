@@ -13,7 +13,7 @@ export const ShoppingLocation: React.FC = () => {
     (state: RootState) => state.SelectedLocation.isSelectedLocation
   );
   return (
-    <details className="relative group w-full h-full max-w-xs">
+    <details className="relative group w-40 h-full max-w-xs">
       <summary className="py-1 px-4 h-full flex items-center group-open:bg-secondary-lightestGray list-none rounded-md cursor-pointer">
         <EnvironmentOutlined className="!text-primary-base text-2xl" />
         <div className="ml-3 flex flex-col items-start flex-1">
