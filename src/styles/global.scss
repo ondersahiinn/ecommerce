@@ -15,9 +15,9 @@ $secondary-extraExtraLightGray: #eee;
 .ant-btn:hover,
 .ant-btn:focus,
 .ant-btn:active {
-  background: $primary-orange-base;
+  background: #fff;
   text-decoration: none;
-  color: #fff;
+  color: #000;
   border-color: #fff;
 }
 
@@ -51,16 +51,33 @@ body {
     & > div {
       @apply z-20;
     }
-    &[open] > summary::after {
+    &[open] > summary::before {
       @apply fixed inset-0 z-10 block cursor-default content-[''];
     }
+    &[open] .bgcover{
+      @apply bg-black opacity-40 fixed inset-0 z-10 block cursor-default content-[''] w-full h-full;
+    }
   }
+ 
 }
 @layer components {
   .ant-btn.primary-button,
   .primary-button {
     @apply w-full bg-primary-base hover:bg-primary-darken font-semibold  text-sm  p-2 text-white hover:text-white outline-0 h-10 rounded-lg transform transition-colors border-0 duration-300;
   }
+
+ .ant-btn.my-account{
+  @apply w-40 h-full px-3 py-2 flex items-center gap-3 border-2 border-secondary-buttonGray  bg-white  rounded-md cursor-pointer
+ }
+ .ant-btn.my-account:hover, .ant-btn.my-account:focus, .ant-btn.my-account:active{
+  @apply border-secondary-buttonGray bg-white
+}
+
+span.ant-popover-open .bgcover{
+  @apply bg-black opacity-40 fixed inset-0 z-10 block cursor-default content-[''] w-full h-full;
+}  
+
+
 }
 
 .addressRadio {

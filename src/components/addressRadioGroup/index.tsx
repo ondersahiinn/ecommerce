@@ -1,8 +1,7 @@
 import React from 'react';
 import type { RadioChangeEvent } from 'antd';
 import { Radio, Space } from 'antd';
-import Image from 'next/image';
-import { ThickIcon } from '@components';
+import { ThickIcon } from '../icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@redux/reducers';
 import { changeSelectedLocation } from '@redux/slices/user';
@@ -69,7 +68,7 @@ export const AddressRadioGroup: React.FC = () => {
               className="overflow-hidden !transition-none"
             >
               <div className="thick p-2 bg-primary-blue inline-block absolute top-0 left-0 rounded-br-lg">
-                <ThickIcon />
+                <ThickIcon className={"w-3 h-3"} />
               </div>
               <div className="mb-1 text-base font-semibold line-clamp-1">
                 {adres.baslik}
