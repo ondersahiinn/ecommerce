@@ -1,16 +1,111 @@
 import React, { useState } from 'react';
 import { ArrowIcon, UserIcon } from '../icons'
-import { Button, Popover } from 'antd';
+import { Button, Dropdown, Menu } from 'antd';
 export const MyAccount: React.FC = () => {
-
-  const content = (
-    <div>
-      <p>Content</p>
-      <p>Content</p>
-    </div>
+  const hoverButton = (e: Boolean) => {
+    if (e) {
+      document.body.classList.add('modal-open');
+    } else {
+      document.body.classList.remove('modal-open');
+    }
+  }
+  const menu = (
+    <Menu className='my-account-list px-0 pt-4 pb-6 bg-white rounded w-52'
+      items={[
+        {
+          key: '1',
+          label: (
+            <a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
+              Giriş Yap
+            </a>
+          ),
+        },
+        {
+          key: '2',
+          label: (
+            <a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com" className='border-b border-[#e5e5e5] mb-4'>
+              Üye Ol
+            </a>
+          ),
+        },
+        {
+          key: '3',
+          label: (
+            <a target="_blank" rel="noopener noreferrer" href="https://www.luohanacademy.com">
+              Siparişlerim
+            </a>
+          ),
+        },
+        {
+          key: '4',
+          label: (
+            <a target="_blank" rel="noopener noreferrer" href="https://www.luohanacademy.com">
+              Sana Özel
+            </a>
+          ),
+        },
+        {
+          key: '5',
+          label: (
+            <a target="_blank" rel="noopener noreferrer" href="https://www.luohanacademy.com">
+              Hepsipay Cüzdanım
+            </a>
+          ),
+        },
+        {
+          key: '6',
+          label: (
+            <a target="_blank" rel="noopener noreferrer" href="https://www.luohanacademy.com">
+              Kullanıcı Bilgilerim
+            </a>
+          ),
+        },
+        {
+          key: '7',
+          label: (
+            <a target="_blank" rel="noopener noreferrer" href="https://www.luohanacademy.com" className='border-b border-[#e5e5e5] mb-4'>
+              Değerlendirmelerim
+            </a>
+          ),
+        },
+        {
+          key: '8',
+          label: (
+            <a target="_blank" rel="noopener noreferrer" href="https://www.luohanacademy.com">
+              Beğendiklerim
+            </a>
+          ),
+        },
+        {
+          key: '9',
+          label: (
+            <a target="_blank" rel="noopener noreferrer" href="https://www.luohanacademy.com" className='border-b border-[#e5e5e5] mb-4'>
+              Tüm Listelerim
+            </a>
+          ),
+        },
+        {
+          key: '10',
+          label: (
+            <a target="_blank" rel="noopener noreferrer" href="https://www.luohanacademy.com" className='border-b border-[#e5e5e5] mb-4'>
+              Kuponlarım
+            </a>
+          ),
+        },
+        {
+          key: '5',
+          label: (
+            <a target="_blank" rel="noopener noreferrer" href="https://www.luohanacademy.com">
+              Destek Taleplerim
+            </a>
+          ),
+        },
+      ]}
+    />
   );
   return <div>
-    <Popover content={content} trigger="hover" placement='bottom' getPopupContainer={() => document.body} zIndex={999}>
+
+    <Dropdown overlay={menu} placement="bottom" arrow onVisibleChange={hoverButton} trigger={['click']}>
       <Button className='my-account z-50'>
         <UserIcon className="w-5 h-5 fill-secondary-buttonGray" />
         <div className='flex flex-col flex-start'>
@@ -19,11 +114,10 @@ export const MyAccount: React.FC = () => {
         </div>
         <ArrowIcon className="w-4 h-2 fill-secondary-buttonGray" />
       </Button>
-      <div className='bgcover'></div>
+    </Dropdown>
 
-    </Popover>
-    {/* <details className='group h-full w-40 relative'>
-      <summary className='flex items-center gap-3 border-2 border-secondary-buttonGray bg-white px-3 py-2 rounded-md cursor-pointer z-50'>
+    {/* <details className='group h-full w-40 relative' onClick={() => document.body.classList.add('modal-open')}>
+      <summary className='my-account flex items-center gap-3 border-2 border-secondary-buttonGray bg-white px-3 py-2 rounded-md cursor-pointer z-50' onMouseLeave={() => console.log("s3x on the beach")}>
         <UserIcon className="w-5 h-5 fill-secondary-buttonGray" />
         <div className='flex flex-col flex-start'>
           <div className='text-secondary-darkGray font-bold text-sm leading-none'>Hesabım</div>
@@ -41,11 +135,8 @@ export const MyAccount: React.FC = () => {
             Adresinizi veya konum bilgilerinizi seçerek özel hizmetleri
             görebilirsiniz.
           </div>
-
         </div>
-
       </div>
-      <div className='bgcover'></div>
     </details> */}
 
   </div>

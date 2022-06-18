@@ -54,28 +54,41 @@ body {
     &[open] > summary::before {
       @apply fixed inset-0 z-10 block cursor-default content-[''];
     }
-    &[open] .bgcover{
-      @apply bg-black opacity-40 fixed inset-0 z-10 block cursor-default content-[''] w-full h-full;
-    }
   }
- 
 }
 @layer components {
+  body.modal-open::after{
+    @apply bg-black opacity-40 absolute inset-0 z-10 block cursor-default content-[''] w-full h-full;
+  }
   .ant-btn.primary-button,
   .primary-button {
     @apply w-full bg-primary-base hover:bg-primary-darken font-semibold  text-sm  p-2 text-white hover:text-white outline-0 h-10 rounded-lg transform transition-colors border-0 duration-300;
   }
+  .ant-btn.my-account{
+    @apply w-40 h-full px-3 py-2 flex items-center gap-3 border-2 border-secondary-buttonGray bg-white rounded-md pointer-events-auto cursor-default
+  }
+  .ant-btn.my-account:hover, .ant-btn.my-account:focus, .ant-btn.my-account:active{
+    @apply border-secondary-buttonGray bg-white
+  }
+  .ant-dropdown-menu.my-account-list li:hover{
+  @apply bg-transparent
+  }
+  .ant-dropdown-menu.my-account-list li{
+  @apply p-0 text-sm text-secondary-darkGray leading-none
+  }
+  .ant-dropdown-menu.my-account-list li a{
+  @apply  font-semibold block w-full pl-8 pr-4 pb-4 pt-0
+  }
+  .ant-dropdown-menu.my-account-list li:last-child a{
+    @apply pb-0
+  }
 
- .ant-btn.my-account{
-  @apply w-40 h-full px-3 py-2 flex items-center gap-3 border-2 border-secondary-buttonGray  bg-white  rounded-md cursor-pointer
- }
- .ant-btn.my-account:hover, .ant-btn.my-account:focus, .ant-btn.my-account:active{
-  @apply border-secondary-buttonGray bg-white
-}
+  .ant-dropdown-menu.my-account-list li a:hover{
+    @apply text-secondary-buttonGray
+  }
 
-span.ant-popover-open .bgcover{
-  @apply bg-black opacity-40 fixed inset-0 z-10 block cursor-default content-[''] w-full h-full;
-}  
+
+
 
 
 }
