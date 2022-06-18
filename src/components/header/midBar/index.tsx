@@ -1,7 +1,6 @@
-import { Logo, SearchInput, ShoppingLocation } from '@components';
+import { Logo, SearchInput, ShoppingLocation, MyAccount, Cart } from '@components';
 import React, { FC } from 'react';
 import 'antd/dist/antd.css';
-import { MyAccount } from '@components/myAccount';
 export const MidBar: FC = () => {
   return (
     <div className="flex items-stretch">
@@ -10,6 +9,7 @@ export const MidBar: FC = () => {
       <div className="ml-4 flex items-center gap-3">
         <ShoppingLocation />
         <MyAccount />
+        <Cart />
       </div>
     </div>
   );

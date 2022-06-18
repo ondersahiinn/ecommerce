@@ -41,3 +41,10 @@ export const ArrowIcon: React.FC<IconsProps> = (props) => {
         </Svg>
     );
 };
+export const CartIcon: React.FC<IconsProps> = (props) => {
+    return (
+        <Svg {...props}>
+            <path id='basket_icon' data-name='basket icon' strokeWidth="2px" fillRule='evenodd' d='M1222,54c0.03-.719-0.31-2.031-1.44-2h-10.84l-0.81-2.806A1.6,1.6,0,0,0,1207.48,48h-2.47a0.879,0.879,0,0,0-1.01.981v0.193a0.956,0.956,0,0,0,1.19.887l0.89,0,1.76,6.276A2.174,2.174,0,0,0,1210,58h9a2.155,2.155,0,0,0,2-1Zm-12.99,10.5a1.5,1.5,0,1,0,1.5-1.5A1.5,1.5,0,0,0,1209.01,64.5Zm7,0a1.49,1.49,0,1,0,1.49-1.5A1.5,1.5,0,0,0,1216.01,64.5Z' transform='translate(-1203 -47)' />
+        </Svg>
+    );
+};

@@ -44,15 +44,12 @@ body {
 
 @layer base {
   details {
-    summary {
-      @apply z-20;
-    }
     & > summary,
     & > div {
-      @apply z-20;
+      @apply z-50;
     }
     &[open] > summary::before {
-      @apply fixed inset-0 z-10 block cursor-default content-[''];
+      @apply fixed inset-0 z-40 block cursor-default content-[''];
     }
   }
 }

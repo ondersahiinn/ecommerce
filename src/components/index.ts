@@ -8,6 +8,9 @@ export { SearchInput } from './search';
 export { ShoppingLocation } from './shoppingLocation';
 export { AddressRadioGroup } from './addressRadioGroup';
 export { AddressSelect } from './addressSelect';
+export { MyAccount } from './myAccount';
+export { Cart } from './cart';
+export { RainbowLine } from './rainbowLine';
 //#endregion
 
 export { Main } from './main';
