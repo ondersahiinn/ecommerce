@@ -105,7 +105,7 @@ export const MyAccount: React.FC = () => {
   );
   return <div>
 
-    <Dropdown overlay={menu} placement="bottom" arrow onVisibleChange={hoverButton} trigger={['click']}>
+    <Dropdown overlay={menu} placement="bottom" arrow onVisibleChange={hoverButton}>
       <Button className='my-account z-50'>
         <UserIcon className="w-5 h-5 fill-secondary-buttonGray" />
         <div className='flex flex-col flex-start'>
