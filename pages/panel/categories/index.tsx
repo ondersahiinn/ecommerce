@@ -1,5 +1,6 @@
 import PanelLayout from "@components/layout";
 import Categories from "@components/panel/categories";
+import CategoryTable from "@components/panel/categories/table";
 
 
 const CategoriesPage = () => {
@@ -7,7 +8,7 @@ const CategoriesPage = () => {
     return(
         <>
             <PanelLayout>
-                <Categories />
+                <CategoryTable />
             </PanelLayout>
         </>
     )
