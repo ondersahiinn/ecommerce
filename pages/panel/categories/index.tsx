@@ -1,15 +1,16 @@
 import PanelLayout from "@components/layout";
+import Categories from "@components/panel/categories";
 
 
-const Categories = () => {
+const CategoriesPage = () => {
 
     return(
         <>
             <PanelLayout>
-                asdf
+                <Categories />
             </PanelLayout>
         </>
     )
 }
 
-export default Categories;
+export default CategoriesPage;

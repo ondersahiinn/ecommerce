@@ -1,8 +1,8 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-const { connectToDatabase } = require('../../db/mongodb');
-const ObjectId = require('mongodb').ObjectId;
+import connectDB from '../../../db/mongodb';
+import Categories from '../../../model/categories';
 
-export default async function handler(req, res) {
+async function handler(req, res) {
     // switch the methods
     switch (req.method) {
         case 'GET': {
@@ -22,21 +22,19 @@ export default async function handler(req, res) {
         }
     }
 }
+export default connectDB(handler)
 
 // Getting all posts.
 async function getPosts(req, res) {
-    debugger
     try {
-        let { db } = await connectToDatabase();
-        let posts = await db
-            .collection('user')
-            .find({})
-            .sort({ published: -1 })
-            .toArray();
-        return res.json({
-            message: JSON.parse(JSON.stringify(posts)),
-            success: true,
-        });
+        Categories.find().lean().exec(function (err, categories) {
+            return res.end({
+                message: categories,
+                success: true,
+                err,
+            })
+        })
+        
     } catch (error) {
         return res.json({
             message: new Error(error).message,
@@ -48,12 +46,13 @@ async function getPosts(req, res) {
 // Adding a new post
 async function addPost(req, res) {
     try {
-        let { db } = await connectToDatabase();
-        await db.collection('categories').insertOne((req.body));
-        return res.json({
+        var categry = new Categories(req.body);
+        var categoryCreated = await categry.save();
+        return res.status(200).send({
             message: 'Post added successfully',
             success: true,
-        });
+            categoryCreated
+        })
     } catch (error) {
         return res.json({
             message: new Error(error).message,
