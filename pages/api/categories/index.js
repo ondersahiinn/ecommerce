@@ -1,6 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import connectDB from '../../../db/mongodb';
 import Categories from '../../../model/categories';
+var mongoose = require('mongoose');
 
 async function handler(req, res) {
     // switch the methods
@@ -27,14 +28,14 @@ export default connectDB(handler)
 // Getting all posts.
 async function getPosts(req, res) {
     try {
-        Categories.find().lean().exec(function (err, categories) {
-            return res.end({
-                message: categories,
-                success: true,
-                err,
-            })
-        })
-        
+        var questions = mongoose.model('Categories');
+        let posts = await questions.find({}).sort({ createDateTime: -1 })
+        return res.json({
+            message: JSON.parse(JSON.stringify(posts)),
+            success: true,
+            data: posts
+        });
+
     } catch (error) {
         return res.json({
             message: new Error(error).message,

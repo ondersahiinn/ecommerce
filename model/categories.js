@@ -33,7 +33,7 @@ var categories = new Schema({
         type: Date,
         default: Date.now
     }
-}, { collation: 'ecommerce' });
+}, { collection: 'categories' });
 
 mongoose.models = {};
 
