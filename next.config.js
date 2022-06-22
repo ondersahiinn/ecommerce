@@ -5,4 +5,7 @@ module.exports = {
     env: {
         mongodburl: 'mongodb+srv://ondersahin:Onder358.@ecommerce.j0k0n.mongodb.net/?retryWrites=true&w=majority',
     },
+    images: {
+        domains: ['cdn.dsmcdn.com'],
+    },
   }
