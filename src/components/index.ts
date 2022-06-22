@@ -2,7 +2,7 @@
 export { Header } from './header';
 export { TopBar } from './header/topBar';
 export { MidBar } from './header/midBar';
-export { Menu } from './header/menu';
+export { Navbar } from './header/navbar';
 export { Logo } from './logo';
 export { SearchInput } from './search';
 export { ShoppingLocation } from './shoppingLocation';

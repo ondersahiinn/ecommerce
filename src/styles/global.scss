@@ -20,7 +20,9 @@ $secondary-extraExtraLightGray: #eee;
   color: #000;
   border-color: #fff;
 }
-
+.ant-menu-vertical{
+  border-right: none;
+}
 .ant-tabs-ink-bar {
   background: $primary-orange-base;
 }
@@ -84,7 +86,15 @@ body {
     @apply text-secondary-buttonGray
   }
 
-
+  .ant-menu.header-menu li {
+    @apply shrink-0 grow hover:shadow-[inset_0_-2px_0_0_#f27a1a]
+  }
+  .ant-menu.header-menu li.ant-menu-item-selected{
+    @apply bg-transparent
+  }
+  .ant-menu.header-menu li a{
+    @apply text-secondary-darkGray text-sm uppercase block font-semibold leading-9 text-center  tracking-tight hover:text-primary-base
+  }
 
 
 

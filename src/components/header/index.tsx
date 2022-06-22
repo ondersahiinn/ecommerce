@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { TopBar, MidBar, Menu, RainbowLine } from '@components';
+import { TopBar, MidBar, Navbar, RainbowLine } from '@components';
 
 export const Header: FC = () => {
   return (
@@ -8,8 +8,8 @@ export const Header: FC = () => {
         <TopBar />
         <MidBar />
       </div>
-      <RainbowLine />
-      <Menu />
+      {/* <RainbowLine /> */}
+      <Navbar />
     </div>
   );
 };
