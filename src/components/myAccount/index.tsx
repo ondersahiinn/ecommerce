@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { ArrowIcon, UserIcon } from '../icons'
 import { Button, Dropdown, Menu } from 'antd';
 export const MyAccount: React.FC = () => {
+  const [active, setActive] = useState(false);
   const hoverButton = (e: Boolean) => {
     if (e) {
-      document.body.classList.add('modal-open');
+      setActive(true);
     } else {
-      document.body.classList.remove('modal-open');
+      setActive(false);
     }
   }
   const menu = (
@@ -115,5 +116,7 @@ export const MyAccount: React.FC = () => {
         <ArrowIcon className="w-4 h-2 fill-secondary-buttonGray" />
       </Button>
     </Dropdown>
+    <div className={`overlay fixed inset-0 z-20 w-full h-full bg-black opacity-40 ${active ? 'visible' : 'invisible'}`}></div>
+
   </div>
 };
