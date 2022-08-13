@@ -28,7 +28,7 @@ export default connectDB(handler)
 // Getting all posts.
 async function getPosts(req, res) {
     try {
-        var questions = mongoose.model('Categories');
+        var questions = mongoose.model('Users');
         let posts = await questions.find({}).sort({ createDateTime: -1 })
         return res.json({
             message: JSON.parse(JSON.stringify(posts)),

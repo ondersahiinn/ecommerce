@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 var Schema = mongoose.Schema;
 
-var user = new Schema({
+export var users = new Schema({
   name: {
     type: String,
     required: true
@@ -18,10 +18,10 @@ var user = new Schema({
     type: Date,
     default: Date.now
   }
-},{collation:'ecommerce'});
+}, { collection: 'users' });
 
 mongoose.models = {};
 
-var User = mongoose.model('User', user);
+var Users = mongoose.model('users', users);
 
-export default User;
+export default Users;
