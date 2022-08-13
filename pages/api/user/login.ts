@@ -36,6 +36,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
                 jwtKey,
                 { expiresIn: "2h" }
             )
+            req.session.set('token', { ...user, token })
+            await req.session.save();
+        
             return res.json({
                 message: "token created expiresIn 2h",
                 status: 200,
