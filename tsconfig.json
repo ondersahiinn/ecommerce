@@ -26,6 +26,7 @@
       "@db/*":[ "db/*"],
       "@db":[ "db"],
       "@utils/*": ["utils/*"],
+      "@model/*":[ "model/*"],
     },
     "incremental": true
   },

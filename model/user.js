@@ -1,14 +1,15 @@
 import mongoose from 'mongoose';
 var Schema = mongoose.Schema;
 
-export var users = new Schema({
+export var UserSchema = new Schema({
   name: {
     type: String,
     required: true
   },
   email: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   password: {
     type: String,
@@ -26,6 +27,6 @@ export var users = new Schema({
 
 mongoose.models = {};
 
-var Users = mongoose.model('users', users);
+var Users = mongoose.model('users', UserSchema);
 
 export default Users;

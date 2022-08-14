@@ -1,10 +1,10 @@
-import mongoose from 'mongoose';
 import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
 import connectDB from '@db/mongodb';
 import jwt from 'jsonwebtoken';
 import { IUser, ISession } from 'interfaces/user';
 import { withIronSessionApiRoute } from "iron-session/next";
 import { sessionOptions } from "@utils/session";
+import UserShema from '@model/user'
 const bcrypt = require("bcryptjs");
 
 interface IBodyType {
@@ -19,8 +19,7 @@ const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse
     const { email, password }: IBodyType = req.body;
 
     if (email && password) {
-        var questions = mongoose.model('users');
-        let user: IUser | null = await questions.findOne({ email: email });
+        let user: IUser | null = await UserShema.findOne({ email: email });
         const jwtKey: string = process.env.JWT_SCREET_KEY as string
 
         if (user === null) {
