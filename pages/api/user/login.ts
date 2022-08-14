@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
 import connectDB from '../../../db/mongodb';
 import jwt from 'jsonwebtoken';
-import { IUser } from 'interfaces/user';
+import { IUser, ISession } from 'interfaces/user';
 import { withIronSessionApiRoute } from "iron-session/next";
 import { sessionOptions } from "../../../utils/session";
 const bcrypt = require("bcryptjs");
@@ -12,26 +12,16 @@ interface IBodyType {
     email: string;
     password: string;
 }
-interface ISession {
-    isLoggedIn: boolean;
-    token: string;
-    name: string,
-    email: string,
-    password: string,
-    since: Date,
-    _id: mongoose.ObjectId,
-    admin: boolean,
-
-}
 
 
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+
+const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse) => {
     const { email, password }: IBodyType = req.body;
 
     if (email && password) {
         var questions = mongoose.model('users');
         let user: IUser | null = await questions.findOne({ email: email });
-        const jwtKey: string = process.env.JWT_SCREET_KEY || "jwtKey";
+        const jwtKey: string = process.env.JWT_SCREET_KEY as string
 
         if (user === null) {
             return res.status(404).send({
@@ -51,7 +41,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
                 jwtKey,
                 { expiresIn: "2h" }
             )
-            
+
             const userSesion = { isLoggedIn: true, token, ...user } as ISession;
             req.session.user = userSesion;
             await req.session.save();

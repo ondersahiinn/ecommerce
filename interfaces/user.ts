@@ -8,3 +8,15 @@ export interface IUser {
     _id: mongoose.ObjectId,
     admin: boolean,
 }
+
+export interface ISession {
+    isLoggedIn: boolean;
+    token: string;
+    name: string,
+    email: string,
+    password: string,
+    since: Date,
+    _id: mongoose.ObjectId,
+    admin: boolean,
+
+}

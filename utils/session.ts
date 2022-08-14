@@ -1,9 +1,9 @@
-import { IUser } from "interfaces/user";
+import { ISession } from "interfaces/user";
 import type { IronSessionOptions } from "iron-session";
 
 export const sessionOptions: IronSessionOptions = {
   password: process.env.SECRET_COOKIE_PASSWORD as string,
-  cookieName: "iron-session/examples/next.js",
+  cookieName: "user",
   cookieOptions: {
     secure: process.env.NODE_ENV === "production",
   },
@@ -12,6 +12,6 @@ export const sessionOptions: IronSessionOptions = {
 // This is where we specify the typings of req.session.*
 declare module "iron-session" {
   interface IronSessionData {
-    user?: IUser;
+    user?: ISession;
   }
 }

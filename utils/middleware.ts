@@ -1,21 +1,60 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextResponse } from 'next/server'
 import jwt from 'jsonwebtoken';
+import { NextApiRequest, NextApiResponse } from 'next';
 
 
-export function middleware(req: NextRequest) {
-    const basicAuth = req.headers.get('authorization')
+export function middleware(req: NextApiRequest, res: NextApiResponse) {
+    const basicAuth = req.headers.authorization
     if (basicAuth) {
         const auth = basicAuth.split(' ')[1]
-        const decodedToken = jwt.verify(auth, 'secret_key');
+        const decodedToken = jwt.verify(auth, "onder", (error, decoded) => {
+            if (error) {
+                return res.status(401).json({
+                    data: null,
+                    status: 401,
+                    message: 'User authentication failed. Unauthorized',
+                    color: 'danger',
+                })
+            }
+            return decoded
+        })
         console.log('decodedToken', decodedToken)
         return NextResponse.next()
 
     }
-    return new Response('Auth required', {
-        status: 401,
-        headers: {
-            'WWW-Authenticate': 'Ecommerce realm="Secure Area"',
-        },
-        statusText: 'Unauthorized',
-    })
+    
 }
+
+// export const checkAuth = ({
+//     redirectTo = "/login",
+// }: {
+//     redirectTo?: string;
+// }) =>
+//     withSession(
+//         async ({ req }) => {
+//             try {
+//                 const user = req.session.get(COOKIES.serverToken);
+
+//                 if (!user) throw new Error('unauthorized');
+
+//                 return {
+//                     props: {
+//                         user,
+//                     },
+//                 };
+//             } catch (err) {
+//                 if (redirectTo) {
+//                     return {
+//                         redirect: {
+//                             permanent: false,
+//                             destination: redirectTo,
+//                         },
+//                     };
+//                 } else {
+//                     return {
+//                         props: {},
+//                     };
+//                 }
+//             }
+//         },
+//     );
