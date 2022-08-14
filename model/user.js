@@ -14,6 +14,10 @@ export var users = new Schema({
     type: String,
     required: true
   },
+  admin: {
+    type: Boolean,
+    default: false
+  },
   since: {
     type: Date,
     default: Date.now

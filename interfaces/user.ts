@@ -1,10 +1,10 @@
-const ObjectID = require("mongodb").ObjectID;
-type ObjectID= typeof import("mongodb").ObjectID;
+import mongoose from 'mongoose';
 
 export interface IUser {
     name: string,
     email: string,
     password: string,
     since: Date,
-    _id: ObjectID,
+    _id: mongoose.ObjectId,
+    admin: boolean,
 }
