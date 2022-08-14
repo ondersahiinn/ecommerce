@@ -4,7 +4,7 @@ import { AddressRadioGroup, AddressSelect } from '@components';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@redux/reducers';
 import { changeSelectedLocation } from '@redux/slices/user';
-
+import { Button } from '../button'
 export const ShoppingLocation: React.FC = () => {
   const dispatch = useDispatch();
 
@@ -39,14 +39,12 @@ export const ShoppingLocation: React.FC = () => {
               <div className="flex items-center basis-full text-xs text-secondary-lightDarkGray before:content-[''] before:grow before:h-px before:bg-secondary-extraLightGray before:mx-2 after:content-[''] after:grow after:h-px after:bg-secondary-extraLightGray after:mx-2 ">
                 ya da adreslerimden seç
               </div>
-              <button
-                className="primary-button bg-white hover:bg-white text-secondary-darkGray hover:text-primary-base border-2 border-secondary-extraLightGray "
+              <Button className='bg-white hover:bg-white text-secondary-darkGray hover:text-primary-base border-2 border-secondary-extraLightGray'
                 onClick={() =>
                   dispatch(changeSelectedLocation(!selectedLocation))
-                }
-              >
+                }>
                 Adres Seç
-              </button>
+              </Button>
             </React.Fragment>
           ) : (
             <React.Fragment></React.Fragment>

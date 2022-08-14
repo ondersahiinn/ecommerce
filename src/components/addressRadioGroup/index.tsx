@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import type { RadioChangeEvent } from 'antd';
 import { Radio, Space } from 'antd';
 import { ThickIcon } from '../icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@redux/reducers';
 import { changeSelectedLocation } from '@redux/slices/user';
-
+import { Button } from '../button'
+import styles from './style.module.scss';
 export const AddressRadioGroup: React.FC = () => {
+  const [checkedAddress, setCheckedAddress] = useState(1)
   const dispatch = useDispatch();
   const selectedLocation = useSelector(
     (state: RootState) => state.SelectedLocation.isSelectedLocation
@@ -46,26 +48,25 @@ export const AddressRadioGroup: React.FC = () => {
   };
   return (
     <>
-      <button
-        className="primary-button"
-        onClick={() => dispatch(changeSelectedLocation(!selectedLocation))}
-      >
+      <Button onClick={() => dispatch(changeSelectedLocation(!selectedLocation))}>
         Yeni Konum Seç
-      </button>
+      </Button>
+
       <div className="flex items-center basis-full text-xs text-secondary-lightDarkGray before:content-[''] before:grow before:h-px before:bg-secondary-extraLightGray before:mx-2 after:content-[''] after:grow after:h-px after:bg-secondary-extraLightGray after:mx-2 ">
         ya da adreslerimden seç
       </div>
       <Radio.Group
         onChange={onChange}
         defaultValue={1}
-        className="addressRadio overflow-auto max-h-64"
+        className="overflow-auto max-h-64"
       >
         <Space direction="vertical" className="w-full">
           {adressList.map((adres) => (
             <Radio.Button
               key={adres.id}
               value={adres.id}
-              className="overflow-hidden !transition-none"
+              className={`${styles.addressRadioButtons} ${adres.id === checkedAddress ? styles.checkedAddress : ''}`}
+              onChange={(e) => setCheckedAddress(e.target.value)}
             >
               <div className="thick p-2 bg-primary-blue inline-block absolute top-0 left-0 rounded-br-lg">
                 <ThickIcon className={"w-3 h-3"} />
