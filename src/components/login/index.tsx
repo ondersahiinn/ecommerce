@@ -1,10 +1,11 @@
 import React from 'react'
 import { Button, Checkbox, Form, Input, Tabs } from 'antd';
-
 const { TabPane } = Tabs;
 export const Login: React.FC = () => {
 
     const onFinish = (values: any) => {
+        delete values.confirm;
+        
         console.log('Success:', values);
     };
 
@@ -63,7 +64,7 @@ export const Login: React.FC = () => {
                     autoComplete="off"
                 >
                     <Form.Item
-                        name="fullname"
+                        name="name"
                         rules={[{ required: true, message: 'Please input your fullname!' }]}
                     >
                         <Input placeholder="Fullname" className='p-3 rounded-lg text-md bg-[#eeeeee]' />

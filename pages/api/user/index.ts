@@ -1,25 +1,29 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import connectDB from '../../../db/mongodb';
 import User from '../../../model/user';
+const bcrypt = require("bcryptjs");
 
 interface IBodyType {
   name: string;
   email: string;
-  password: string ;
+  password: string;
 }
 
 
-const handler = async (req: NextApiRequest, res: NextApiResponse ) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'POST') {
     // Check if name, email or password is provided
     const { name, email, password }: IBodyType = req.body;
+
     if (name && email && password) {
+      const passwordHash = bcrypt.hashSync(password, 10);
+
       try {
         // Hash password to store it in DB
         var user = new User({
           name,
           email,
-          password,
+          password: passwordHash,
         });
         // Create new user
         // let { db } = await connectToDatabase();
