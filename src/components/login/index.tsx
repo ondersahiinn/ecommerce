@@ -1,11 +1,14 @@
 import React from 'react'
 import { Button, Checkbox, Form, Input, Tabs } from 'antd';
+import axios from 'axios';
 const { TabPane } = Tabs;
 export const Login: React.FC = () => {
 
     const onFinish = (values: any) => {
-        delete values.confirm;
-        
+        axios.post('/api/user/login', values).then(res => {
+            console.log('Success:', res);
+        })
+            
         console.log('Success:', values);
     };
 
@@ -29,10 +32,10 @@ export const Login: React.FC = () => {
                     autoComplete="off"
                 >
                     <Form.Item
-                        name="name"
-                        rules={[{ required: true, message: 'Please input your username!' }]}
+                        name="email"
+                        rules={[{ required: true, message: 'Please input your email!' }]}
                     >
-                        <Input placeholder="Username" className='p-3 rounded-lg text-md bg-[#eeeeee]' />
+                        <Input placeholder="Email" className='p-3 rounded-lg text-md bg-[#eeeeee]' />
                     </Form.Item>
                     <Form.Item
                         name="password"
@@ -41,9 +44,9 @@ export const Login: React.FC = () => {
                         <Input.Password placeholder="Password" className='login-input-password p-3 rounded-lg text-md bg-[#eeeeee]' />
                     </Form.Item>
 
-                    <Form.Item name="remember" valuePropName="checked" >
+                    {/* <Form.Item name="remember" valuePropName="checked" >
                         <Checkbox>Remember me</Checkbox>
-                    </Form.Item>
+                    </Form.Item> */}
                     <Form.Item
                     // name="Login_Button"
                     // rules={[{ required: true, message: 'Please input your password!' }]}

@@ -1,10 +1,10 @@
 import mongoose from 'mongoose';
 import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
-import connectDB from '../../../db/mongodb';
+import connectDB from '@db/mongodb';
 import jwt from 'jsonwebtoken';
 import { IUser, ISession } from 'interfaces/user';
 import { withIronSessionApiRoute } from "iron-session/next";
-import { sessionOptions } from "../../../utils/session";
+import { sessionOptions } from "@utils/session";
 const bcrypt = require("bcryptjs");
 
 interface IBodyType {

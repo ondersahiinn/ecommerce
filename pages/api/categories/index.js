@@ -1,7 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import connectDB from '../../../db/mongodb';
 import Categories from '../../../model/categories';
-import { middleware } from '../../../utils/middleware';
 var mongoose = require('mongoose');
 
 async function handler(req, res) {
@@ -28,7 +27,7 @@ async function handler(req, res) {
 export default connectDB(handler)
 
 // Getting all posts.
-middleware(async function getPosts(req, res) {
+async function getPosts(req, res) {
     try {
         var questions = mongoose.model('Categories');
         let posts = await questions.find({}).sort({ createDateTime: -1 })
@@ -44,7 +43,7 @@ middleware(async function getPosts(req, res) {
             success: false,
         });
     }
-})
+}
 
 // Adding a new post
 async function addPost(req, res) {
