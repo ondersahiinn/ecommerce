@@ -11,6 +11,10 @@ export var UserSchema = new Schema({
     required: true,
     unique: true
   },
+  phone: {
+    type: String,
+    maxLength: 10
+  },
   password: {
     type: String,
     required: true
@@ -24,8 +28,6 @@ export var UserSchema = new Schema({
     default: Date.now
   }
 }, { collection: 'users' });
-
-mongoose.models = {};
 
 var Users = mongoose.model('users', UserSchema);
 
