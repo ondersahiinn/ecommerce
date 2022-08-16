@@ -23,6 +23,10 @@ export var UserSchema = new Schema({
     type: Boolean,
     default: false
   },
+  address: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'address'
+  },
   since: {
     type: Date,
     default: Date.now
