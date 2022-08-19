@@ -2,7 +2,7 @@
 import mongoose from 'mongoose';
 var Schema = mongoose.Schema;
 
-export var AddressSchema = new Schema({
+export var districtsSchema = new Schema({
     code: {
         type: Number,
         required: true,
@@ -11,14 +11,18 @@ export var AddressSchema = new Schema({
         type: String,
         required: true,
     },
-    city: {
+    cityId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'cities',
         required: true,
     },
+    city: {
+        type: Number,
+        required: true,
+    },
 
-}, { collection: 'address' });
+}, { collection: 'districts' });
 
-var Address = mongoose.model('address', AddressSchema);
+var Districts = mongoose.model('districts', districtsSchema);
 
-export default Address;
+export default Districts;

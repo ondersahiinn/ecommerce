@@ -35,7 +35,6 @@ var categories = new Schema({
     }
 }, { collection: 'categories' });
 
-mongoose.models = {};
 
 var Categories = mongoose.model('Categories', categories);
 

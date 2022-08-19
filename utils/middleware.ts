@@ -1,12 +1,14 @@
 import jwt from 'jsonwebtoken';
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
+import { NextResponse } from 'next/server';
 
 
-export function middleware(req: NextApiRequest, res: NextApiResponse) {
+export const middleware = (handler: NextApiHandler) => async (req: NextApiRequest, res: NextApiResponse) => {
+    const jwtKey: string = process.env.JWT_SCREET_KEY as string
     const basicAuth = req.headers?.authorization
     if (basicAuth) {
         const auth = basicAuth.split(' ')[1]
-        jwt.verify(auth, "onder", (error, decoded) => {
+        jwt.verify(auth, jwtKey, (error, decoded) => {
             if (error) {
                 return res.status(401).json({
                     data: null,
@@ -15,7 +17,7 @@ export function middleware(req: NextApiRequest, res: NextApiResponse) {
                     color: 'danger',
                 })
             }
-            return decoded
+            return handler(req, res)
         })
     }
 

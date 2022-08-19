@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import connectDB from '../../../db/mongodb';
-import User from '../../../model/user';
+import User from '@model/user';
 const bcrypt = require("bcryptjs");
 
 interface IBodyType {
