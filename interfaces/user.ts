@@ -20,3 +20,10 @@ export interface ISession {
     admin: boolean,
 
 }
+
+export interface IJwt {
+    email: string,
+    password: string,
+    id: mongoose.ObjectId,
+    admin: boolean,
+}

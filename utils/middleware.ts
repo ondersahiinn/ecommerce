@@ -1,6 +1,5 @@
 import jwt from 'jsonwebtoken';
 import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
-import { NextResponse } from 'next/server';
 
 
 export const middleware = (handler: NextApiHandler) => async (req: NextApiRequest, res: NextApiResponse) => {
