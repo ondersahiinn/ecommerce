@@ -31,5 +31,13 @@ export const middlewareAdmin = (handler: NextApiHandler) => async (req: NextApiR
             }
         })
     }
+    else {
+        return res.status(401).json({
+            data: null,
+            status: 401,
+            message: 'User authentication failed. Unauthorized',
+            color: 'danger',
+        })
+    }
 
 }

@@ -1,7 +1,8 @@
-import mongoose from 'mongoose';
-var Schema = mongoose.Schema;
+import { IUser } from 'interfaces/user';
+import { Schema, model, models } from 'mongoose';
 
-export var UserSchema = new Schema({
+
+export var UserSchema = new Schema<IUser>({
   name: {
     type: String,
     required: true
@@ -24,15 +25,16 @@ export var UserSchema = new Schema({
     default: false
   },
   address: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'address'
   },
   since: {
     type: Date,
     default: Date.now
   }
-}, { collection: 'users' });
+});
 
-var Users = mongoose.model('users', UserSchema);
+
+const Users = models.Users || model<IUser>('Users', UserSchema);
 
 export default Users;

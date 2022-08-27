@@ -5,7 +5,9 @@ export interface IUser {
     email: string,
     password: string,
     since: Date,
+    phone: string,
     _id: mongoose.ObjectId,
+    address: mongoose.ObjectId,
     admin: boolean,
 }
 
