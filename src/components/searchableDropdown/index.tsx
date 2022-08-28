@@ -38,10 +38,6 @@ const SearchableDropdown: React.FC<dropdownProps> = ({ searchable = false, class
         }
     }, [dropdownOpen])
 
-    // useEffect(() => {
-    //     selectedItem = selection
-    // }, [selection])
-
 
     const handleMenuOpen = () => {
         setDropdownOpen((prevState) => !prevState);
@@ -54,23 +50,20 @@ const SearchableDropdown: React.FC<dropdownProps> = ({ searchable = false, class
                 selectedItem([{ name: name, id, label, value }]);
             } else {
                 for (const obj of prevItems) {
-                    console.log(obj ? "var" : "yok")
+
                     if (!!obj && obj.name === name) {
-                        console.log("girdi")
+
                         obj.id = id;
                         obj.label = label;
                         obj.value = value;
                         selectedItem([...prevItems]);
                         break;
                     } else {
-                        console.log("farklı")
+
                         selectedItem([...prevItems, { name: name, id, label, value }]);
                     }
                 }
             }
-
-            // const sameItem = prevItems.some((item: any) => item.name === name);
-            // !sameItem && selectedItem([...prevItems, { name: name, id, label, value }]);
         }
 
         setDropdownOpen(false);
@@ -85,7 +78,7 @@ const SearchableDropdown: React.FC<dropdownProps> = ({ searchable = false, class
 
         const renderOption = (id: number, label: string, value: string | number) => {
             const isSelected = selection.id === id
-            return <div key={id} className={`${styles.dropdownItem} ${isSelected ? styles.selected : ''}`} onClick={() => handleClose(id, label, value)}>{label} {isSelected && <ThickIcon className="w-4 h-3 fill-primary-base" />} </div>
+            return <div key={id} className={`${styles.dropdownItem} ${isSelected ? styles.selected : ''}`} onClick={() => handleClose(id, label, value)}>{label} {isSelected && <ThickIcon className="w-4 h-3" />} </div>
         }
         return (
             <>
