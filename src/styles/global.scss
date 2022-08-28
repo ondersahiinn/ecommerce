@@ -77,10 +77,7 @@ body {
   }
 }
 
-.ant-row.ant-form-item {
-  &:last-child {
-    margin-bottom: 0;
-  }
+.ant-form-item {
   .searchSelect {
     font-size: 16px !important;
     &.ant-select-status-success {

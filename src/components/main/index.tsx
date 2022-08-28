@@ -5,6 +5,7 @@ import Head from 'next/head';
 import { Html } from 'next/document';
 import { useDispatch } from 'react-redux';
 import { rawSetTheme } from '@redux/slices/product';
+import SearchableDropdown from '@components/searchableDropdown';
 
 export const Main: React.FC = () => {
   const dispatch = useDispatch();

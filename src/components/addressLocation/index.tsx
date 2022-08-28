@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@redux/reducers';
 import { changeSelectedLocation } from '@redux/slices/user';
 import { Button } from '../button'
-export const ShoppingLocation: React.FC = () => {
+export const AddressLocation: React.FC = () => {
   const dispatch = useDispatch();
 
   const isLogin = useSelector((state: RootState) => state.login.isLogin);

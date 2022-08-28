@@ -23,14 +23,7 @@ export const UserIcon: React.FC<IconsProps> = (props) => {
 export const ThickIcon: React.FC<IconsProps> = (props) => {
     return (
         <Svg {...props}>
-            <defs>
-                <path id="a" d="M0 0h10v10H0z" />
-            </defs>
-            <g fill="#fff" fillRule="evenodd">
-                <g mask="url(#b)">
-                    <path d="M8.238.892l-5.03 7.186a.108.108 0 01-.177.004L1.75 6.375a.625.625 0 10-1 .75l1.28 1.706a1.358 1.358 0 002.202-.038l5.03-7.185A.625.625 0 108.238.892z" />
-                </g>
-            </g>
+            <path fill="currentColor" fillRule="nonzero" d="M13.927 2.2l-6.845 9.289a1.011 1.011 0 0 1-1.43.188L.764 7.769a1 1 0 0 1 1.25-1.562L6.09 9.468l6.227-8.451a1 1 0 1 1 1.61 1.183z"></path>
         </Svg>
     );
 };
@@ -45,6 +38,27 @@ export const CartIcon: React.FC<IconsProps> = (props) => {
     return (
         <Svg {...props}>
             <path id='basket_icon' data-name='basket icon' strokeWidth="2px" fillRule='evenodd' d='M1222,54c0.03-.719-0.31-2.031-1.44-2h-10.84l-0.81-2.806A1.6,1.6,0,0,0,1207.48,48h-2.47a0.879,0.879,0,0,0-1.01.981v0.193a0.956,0.956,0,0,0,1.19.887l0.89,0,1.76,6.276A2.174,2.174,0,0,0,1210,58h9a2.155,2.155,0,0,0,2-1Zm-12.99,10.5a1.5,1.5,0,1,0,1.5-1.5A1.5,1.5,0,0,0,1209.01,64.5Zm7,0a1.49,1.49,0,1,0,1.49-1.5A1.5,1.5,0,0,0,1216.01,64.5Z' transform='translate(-1203 -47)' />
+        </Svg>
+    );
+};
+export const DropdownIcon: React.FC<IconsProps> = (props) => {
+    return (
+        <Svg {...props}>
+            <g fill="none" fillRule="evenodd"><path d="M0 0H20V20H0z" transform="translate(.262)"></path><path fill="#484848" d="M8.09 8.333c-.617 0-1.01.082-1.18.244-.254.244-.325.853 0 1.179l2.5 2.5c.326.325.854.325 1.18 0l2.5-2.5c.325-.326.259-.935 0-1.179-.174-.162-.567-.244-1.18-.244H8.09z" transform="translate(.262)"></path></g>
+        </Svg>
+    );
+};
+export const SearchIcon: React.FC<IconsProps> = (props) => {
+    return (
+        <Svg {...props}>
+            <path fillRule="nonzero" d="M14.653 13.165l5.039 5.038a1.053 1.053 0 1 1-1.489 1.489l-5.038-5.038a8.12 8.12 0 1 1 1.488-1.489zm-4.086.585A6.014 6.014 0 1 0 5.863 2.68a6.014 6.014 0 0 0 4.704 11.07z"></path>
+        </Svg>
+    );
+};
+export const CloseIcon: React.FC<IconsProps> = (props) => {
+    return (
+        <Svg {...props}>
+            <path fillRule="evenodd" d="M6.864 5.846a.12.12 0 0 1 0-.17L11.31 1.23A.72.72 0 1 0 10.29.212L5.846 4.656a.12.12 0 0 1-.17 0L1.229.212A.72.72 0 1 0 .211 1.23l4.445 4.446a.12.12 0 0 1 0 .17L.211 10.292a.72.72 0 1 0 1.018 1.018l4.446-4.446a.12.12 0 0 1 .17 0l4.446 4.446a.72.72 0 0 0 1.018-1.018L6.864 5.846z"></path>
         </Svg>
     );
 };
