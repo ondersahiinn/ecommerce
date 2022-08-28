@@ -6,10 +6,13 @@ import styles from './style.module.scss';
 import axios from 'axios';
 import { RootState } from '@redux/reducers';
 import { fetchCities } from '@redux/slices/cities';
+import { FormatterData } from 'contants';
+import { INeighbour } from 'interfaces/cities';
 const { Option } = Select;
 
 export const AddressSelect: React.FC = () => {
   const [address, setAddress] = useState([])
+  const [ilce, setIlce] = useState<INeighbour[]>([])
   const onFinish = (values: any) => {
     console.log(values);
   };
@@ -44,24 +47,8 @@ export const AddressSelect: React.FC = () => {
     }
   }, [dispatch, citiesStatus])
 
-  console.log(cities)
-  const ilce = [
-    {
-      id: 1,
-      value: "Kadıköy",
-      label: "Kadıköy",
-    },
-    {
-      id: 2,
-      value: "Osmangazi",
-      label: "Osmangazi",
-    },
-    {
-      id: 3,
-      value: "Osmanpaşa",
-      label: "Osmanpaşa",
-    }
-  ]
+  console.log(FormatterData(cities))
+
   const mahalle = [
     {
       id: 1,
@@ -79,12 +66,17 @@ export const AddressSelect: React.FC = () => {
       label: "Veri 3",
     }
   ]
-
+  const selectedCity = async (city: any) => {
+    const cityFind = city.find((item: any) => item.name === "il")
+    const res = await axios.get('/api/districts/byid?cityId=' + cityFind.value)
+    setIlce(res.data.data)
+    console.log("ilçeler", res.data.data)
+  }
   console.log("address", address)
   return (
     <form className='flex flex-col gap-4'>
-      <SearchableDropdown searchable selectedItem={setAddress} prevItems={address} name="il" options={il} />
-      <SearchableDropdown selectedItem={setAddress} prevItems={address} name="ilce" options={ilce} />
+      <SearchableDropdown searchable selectedItem={selectedCity} prevItems={address} name="il" options={FormatterData(cities)} />
+      <SearchableDropdown selectedItem={setAddress} prevItems={address} name="ilce" options={FormatterData(ilce)} />
       <SearchableDropdown selectedItem={setAddress} prevItems={address} name="mahalle" options={mahalle} />
     </form>
     // <Form name="control-hooks" onFinish={onFinish}>

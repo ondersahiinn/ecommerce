@@ -8,7 +8,7 @@ const handler = connectDB(async (req: NextApiRequest, res: NextApiResponse) => {
 
     if (!!cityId && typeof cityId === 'string') {
         try {
-            const districts = await Districts.findOne({ city: parseInt(cityId) })
+            const districts = await Districts.find({ city: parseInt(cityId) })
             return res.status(200).json({
                 message: "token created expiresIn 2h",
                 status: 200,
