@@ -1,8 +1,8 @@
 
-import mongoose from 'mongoose';
-var Schema = mongoose.Schema;
+import { Schema, model, models } from 'mongoose';
 
-export var districtsSchema = new Schema({
+
+export const districtsSchema = new Schema({
     code: {
         type: Number,
         required: true,
@@ -12,7 +12,7 @@ export var districtsSchema = new Schema({
         required: true,
     },
     cityId: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'cities',
         required: true,
     },
@@ -21,8 +21,8 @@ export var districtsSchema = new Schema({
         required: true,
     },
 
-}, { collection: 'districts' });
+});
 
-var Districts = mongoose.model('districts', districtsSchema);
+const Districts = models.districts || model('districts', districtsSchema);
 
 export default Districts;

@@ -1,6 +1,6 @@
 
-import mongoose from 'mongoose';
-var Schema = mongoose.Schema;
+import { ICities } from 'interfaces/cities';
+import { Schema, model, models } from 'mongoose';
 
 export var citiesSchema = new Schema({
     code: {
@@ -11,9 +11,10 @@ export var citiesSchema = new Schema({
         type: String,
         required: true,
     },
- 
-}, { collection: 'cities' });
 
-var Cities = mongoose.model('cities', citiesSchema);
+});
+
+
+const Cities = models.cities || model<ICities>('cities', citiesSchema);
 
 export default Cities;

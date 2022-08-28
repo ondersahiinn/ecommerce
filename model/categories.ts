@@ -1,5 +1,5 @@
-import mongoose from 'mongoose';
-var Schema = mongoose.Schema;
+import { Schema, model, models } from 'mongoose';
+
 
 var categories = new Schema({
     name: {
@@ -11,7 +11,7 @@ var categories = new Schema({
         required: true
     },
     children: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: "categories",
     },
     image: {
@@ -33,9 +33,9 @@ var categories = new Schema({
         type: Date,
         default: Date.now
     }
-}, { collection: 'categories' });
+});
 
 
-var Categories = mongoose.model('Categories', categories);
+const Categories = models.Categories || model('Categories', categories);
 
 export default Categories;
