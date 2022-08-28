@@ -68,8 +68,8 @@ export const AddressRadioGroup: React.FC = () => {
               className={`${styles.addressRadioButtons} ${adres.id === checkedAddress ? styles.addressChecked : ''}`}
               onChange={(e) => setCheckedAddress(e.target.value)}
             >
-              <div className={`${styles.thick} p-2 bg-primary-blue inline-block absolute top-0 left-0 rounded-br-lg`}>
-                <ThickIcon className={"w-3 h-3 fill-white"} />
+              <div className={`${styles.thick} p-2 bg-primary-blue inline-block absolute top-0 left-0 rounded-br-lg text-white`}>
+                <ThickIcon className={"w-4 h-3"} />
               </div>
               <div className="mb-1 text-base font-semibold line-clamp-1">
                 {adres.baslik}

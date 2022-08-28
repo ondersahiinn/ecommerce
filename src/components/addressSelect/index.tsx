@@ -1,9 +1,11 @@
 import SearchableDropdown from '@components/searchableDropdown';
 import { Button, Form, Input, Select } from 'antd';
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './style.module.scss';
-
+import axios from 'axios';
+import { RootState } from '@redux/reducers';
+import { fetchCities } from '@redux/slices/cities';
 const { Option } = Select;
 
 export const AddressSelect: React.FC = () => {
@@ -33,6 +35,16 @@ export const AddressSelect: React.FC = () => {
       label: "Berkin",
     }
   ]
+  const citiesStatus = useSelector((state: RootState) => state.cities.status);
+  const cities = useSelector((state: RootState) => state.cities.cities);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (citiesStatus === 'idle') {
+      dispatch(fetchCities())
+    }
+  }, [dispatch, citiesStatus])
+
+  console.log(cities)
   const ilce = [
     {
       id: 1,
