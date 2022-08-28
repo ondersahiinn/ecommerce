@@ -1,7 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import connectDB from '../../../db/mongodb';
 import Districts from '@model/districts';
-import { useRouter } from 'next/router';
 
 
 const handler = connectDB(async (req: NextApiRequest, res: NextApiResponse) => {
@@ -9,10 +8,20 @@ const handler = connectDB(async (req: NextApiRequest, res: NextApiResponse) => {
 
     if (!!cityId && typeof cityId === 'string') {
         try {
-            const categories = await Districts.findOne({ city: parseInt(cityId) })
-            return res.status(200).json(categories);
+            const districts = await Districts.findOne({ city: parseInt(cityId) })
+            return res.status(200).json({
+                message: "token created expiresIn 2h",
+                status: 200,
+                data: districts,
+                color: 'success',
+            });
         } catch (error) {
-            return res.status(400).json(error);
+            return res.status(400).json({
+                message: "token created expiresIn 2h",
+                status: 400,
+                data: [],
+                color: 'success',
+            });
         }
     }
     else {
