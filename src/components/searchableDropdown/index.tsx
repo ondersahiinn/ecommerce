@@ -43,6 +43,7 @@ const SearchableDropdown: React.FC<dropdownProps> = ({ searchable = false, class
         setDropdownOpen((prevState) => !prevState);
     }
 
+
     const handleClose = (id: number, label: string, value: string | number) => {
         if (id !== selection.id) {
             setSelection({ ...selection, id: id, label: label, value: value });
@@ -50,9 +51,7 @@ const SearchableDropdown: React.FC<dropdownProps> = ({ searchable = false, class
                 selectedItem([{ name: name, id, label, value }]);
             } else {
                 for (const obj of prevItems) {
-
                     if (!!obj && obj.name === name) {
-
                         obj.id = id;
                         obj.label = label;
                         obj.value = value;
@@ -86,7 +85,7 @@ const SearchableDropdown: React.FC<dropdownProps> = ({ searchable = false, class
                     {searchable && <div className="flex items-center">
                         <SearchIcon className="w-5 h-5 fill-[#9b9b9b]" />
                         <input type="text" className={styles.searchInput} placeholder="Filtrele" value={searchText} onChange={(e) => handleSearchChange(e)} />
-                        <CloseIcon className="w-3 h-3 fill-[#9b9b9b] cursor-pointer" />
+                        <CloseIcon className="w-3 h-3 fill-[#9b9b9b] cursor-pointer" onClick={() => setSearchText('')} />
                     </div>}
 
 

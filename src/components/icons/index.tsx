@@ -2,11 +2,13 @@ import React from 'react';
 
 interface IconsProps {
     className?: any;
+    onClick?: (e: React.MouseEvent<HTMLOrSVGElement>) => void;
     children?: React.ReactNode;
 }
 const Svg: React.FC<IconsProps> = (props) => {
+    const { className, onClick, children } = props;
     return (
-        <svg xmlns='http://www.w3.org/2000/svg' stroke='none' className={`fill-current ${props.className}`}>
+        <svg xmlns='http://www.w3.org/2000/svg' stroke='none' className={`fill-current ${props.className}`} onClick={props.onClick} >
             {props.children}
         </svg>
     );

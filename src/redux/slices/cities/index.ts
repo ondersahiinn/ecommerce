@@ -22,7 +22,6 @@ const citiesSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(fetchCities.fulfilled, (state, action) => {
-        debugger;
         state.status = 'succeeded';
         state.cities = action.payload;
       })
@@ -35,14 +34,8 @@ const citiesSlice = createSlice({
 export const fetchCities: any = createAsyncThunk(
   '/api/cities',
   async (queryParam: any) => {
-    axios
-      .get('/api/cities')
-      .then((res) => {
-        return res.data;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    const res = await axios.get('/api/cities');
+    return res.data.data;
   }
 );
 

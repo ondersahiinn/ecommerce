@@ -1,5 +1,6 @@
 import { AppstoreOutlined, TagOutlined, SettingOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
+import { ICities, INeighbour } from 'interfaces/cities';
 import Link from 'next/link'
 
 type MenuItem = Required<MenuProps>['items'][number];
@@ -27,3 +28,13 @@ export const items: MenuProps['items'] = [
   ]),
 
 ];
+
+export const FormatterData = (data: ICities[] | INeighbour[]) => {
+  return data.map((item: ICities | INeighbour) => {
+    const newObj: any = {}
+    newObj.id = item._id;
+    newObj.label = item.name;
+    newObj.value = item.code;
+    return newObj;
+  })
+}
