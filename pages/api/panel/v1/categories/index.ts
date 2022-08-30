@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import connectDB from '@db/mongodb';
 import Categories from '@model/categories';
+import { middlewareAdmin } from '@utils/adminmiddleware';
 
 
 const handler = connectDB(async (req: NextApiRequest, res: NextApiResponse) => {
@@ -15,4 +16,4 @@ const handler = connectDB(async (req: NextApiRequest, res: NextApiResponse) => {
 })
 
 
-export default handler;
+export default middlewareAdmin(handler);
