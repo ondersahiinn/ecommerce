@@ -1,0 +1,87 @@
+@use '../../styles/colors';
+
+.locationSelect {
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 1.5;
+  color: colors.$secondary-darkGray;
+
+  &:not(.ant-select-customize-input) {
+    :global {
+      .ant-select-selector {
+        height: auto;
+        padding: 0;
+        outline: 0;
+        box-shadow: none;
+        &::after {
+          line-height: inherit;
+        }
+        .ant-select-selection-search {
+          display: none;
+        }
+        .ant-select-selection-placeholder,
+        .ant-select-selection-item {
+          padding: 10px 14px;
+          border-radius: 8px;
+          line-height: inherit;
+        }
+        .ant-select-selection-placeholder {
+          color: colors.$select-placeholder;
+          background-color: colors.$secondary-extraExtraLightGray;
+          border: 2px solid colors.$secondary-extraExtraLightGray;
+        }
+        .ant-select-selection-item {
+          color: colors.$secondary-darkGray;
+          background-color: #fff;
+          border: 2px solid colors.$select-activeBorder;
+        }
+      }
+    }
+  }
+}
+.locationDropdown {
+  color: colors.$secondary-darkGray;
+  line-height: 1.5;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  box-shadow: rgb(0 0 0 / 16%) 0px 4px 8px 0px;
+  .searchContainer {
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    .searchInput {
+      border: none;
+      outline: none;
+      color: #9b9b9b;
+      height: 24px;
+      font-size: 0.875rem;
+      margin: 0 8px;
+      padding: 0;
+      box-shadow: none;
+    }
+  }
+  :global {
+    .ant-space,
+    .ant-space-item {
+      width: 100%;
+    }
+    .ant-select-item {
+      color: colors.$secondary-darkGray;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: inherit;
+      padding: 12px 16px;
+      min-height: unset;
+      align-items: center;
+      &.ant-select-item-option-selected {
+        color: colors.$primary-orange-base;
+        background-color: transparent;
+        pointer-events: none;
+      }
+      .ant-select-item-option-state {
+        color: inherit;
+      }
+    }
+  }
+}

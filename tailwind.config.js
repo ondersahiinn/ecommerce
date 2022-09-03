@@ -38,6 +38,9 @@ module.exports = {
           buttonGray: '#919191',
           borderColor: '#e5e5e5',
         },
+        select: {
+          placeholder: '#9b9b9b'
+        }
       },
     },
   },
