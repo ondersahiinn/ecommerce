@@ -6,6 +6,7 @@ import { Html } from 'next/document';
 import { useDispatch } from 'react-redux';
 import { rawSetTheme } from '@redux/slices/product';
 import SearchableDropdown from '@components/searchableDropdown';
+import ImageSlider from '@components/antSlider';
 
 export const Main: React.FC = () => {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ export const Main: React.FC = () => {
   }, [theme]);
   return (
     <div className="flex-grow flex-shrink basis-auto">
-      Main
+      <ImageSlider />
     </div>
   );
 };
