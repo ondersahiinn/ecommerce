@@ -1,7 +1,8 @@
-import mongoose from 'mongoose';
+import { ICategories } from 'interfaces/categories';
+import mongoose, { model, models } from 'mongoose';
 var Schema = mongoose.Schema;
 
-var categories = new Schema({
+var categories = new Schema<ICategories>({
     name: {
         type: String,
         required: true
@@ -10,10 +11,10 @@ var categories = new Schema({
         type: String,
         required: true
     },
-    children: {
+    children: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "categories",
-    },
+    }],
     image: {
         type: String,
     },
@@ -33,10 +34,8 @@ var categories = new Schema({
         type: Date,
         default: Date.now
     }
-}, { collection: 'categories' });
+});
 
-mongoose.models = {};
-
-var Categories = mongoose.model('Categories', categories);
+const Categories = models.Categories || model<ICategories>('Categories', categories);
 
 export default Categories;
