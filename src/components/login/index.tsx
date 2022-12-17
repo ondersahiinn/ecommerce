@@ -1,12 +1,16 @@
 import React from 'react'
 import { Button, Checkbox, Form, Input, Tabs } from 'antd';
 import axios from 'axios';
+import { useRouter } from 'next/router';
 const { TabPane } = Tabs;
 export const Login: React.FC = () => {
+
+    const router = useRouter()
 
     const onFinish = (values: any) => {
         axios.post('/api/user/login', values).then(res => {
             console.log('Success:', res);
+            router.push('/panel')
         })
             
         console.log('Success:', values);

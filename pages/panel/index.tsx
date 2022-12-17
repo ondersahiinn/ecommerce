@@ -1,7 +1,7 @@
-import { NextApiRequest } from "next";
+import { adminCheckAuth } from "@utils/session";
 
-export const Panel: React.FC = () => {
-
+export const Panel: React.FC = (props:any) => {
+    console.log('props',props)
     return (
         <>
             <div>
@@ -12,24 +12,4 @@ export const Panel: React.FC = () => {
 }
 Panel.displayName = 'PanelPage'
 export default Panel;
-
-export async function getServerSideProps(req: NextApiRequest) {
-    const user = req.session?.user;
-    if (!!user && user.admin) {
-        return {
-            props: {
-                user
-            }
-        }
-    }
-
-    else {
-        return {
-            redirect: {
-                permanent: false,
-                destination: "/",
-            },
-            props: {},
-        }
-    }
-}
+export const getServerSideProps = adminCheckAuth({});
