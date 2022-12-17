@@ -1,27 +1,16 @@
-import { Layout, Menu } from 'antd';
-import { useState } from 'react';
-import { Login } from '@components';
-import { items } from 'contants';
-import PanelLayout from '@components/layout';
-import { NextApiRequest } from 'next';
+import { NextApiRequest } from "next";
 
 export const Panel: React.FC = () => {
-    const { Content, Footer, Sider } = Layout;
-    const [collapsed, setCollapsed] = useState(false);
-    const onCollapse = (collapsed: any) => {
-        setCollapsed(collapsed);
-    };
 
     return (
         <>
-            <PanelLayout>
-                <Login />
-            </PanelLayout>
-
+            <div>
+                Panel
+            </div>
         </>
     )
 }
-
+Panel.displayName = 'PanelPage'
 export default Panel;
 
 export async function getServerSideProps(req: NextApiRequest) {
