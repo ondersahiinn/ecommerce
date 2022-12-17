@@ -1,0 +1,35 @@
+.sliderItem {
+  @apply flex items-center justify-center;
+  .sliderMain {
+    @apply border-2 border-secondary-buttonGray rounded-md flex;
+
+    .leftSide {
+      @apply py-14 px-12 flex flex-col items-start;
+
+      .contentBox {
+        @apply flex flex-col items-start gap-2 min-h-[152px] justify-center;
+
+        .text {
+          @apply text-2xl max-h-24 line-clamp-2;
+
+          &.bold {
+            @apply text-3xl font-semibold;
+          }
+        }
+      }
+      .button {
+        @apply rounded-full mt-6 bg-primary-base hover:bg-primary-darken min-w-[50px] flex items-center justify-center;
+
+        .buttonText {
+          @apply text-sm font-semibold text-white py-3 px-6 whitespace-nowrap max-w-xs text-ellipsis overflow-hidden;
+        }
+      }
+    }
+    .rightSide {
+      @apply w-[680px] min-w-[680px] p-1;
+      .imageContainer {
+        @apply block relative w-full min-h-[378px] rounded-md overflow-hidden;
+      }
+    }
+  }
+}

@@ -23,8 +23,9 @@
       "@styles": ["src/styles"],
       "@redux/*": ["src/redux/*"],
       "@redux": ["src/redux"],
-      "@db/*":["db/*"],
-      "@models/*":["models/*"]
+      "@db/*":[ "db/*"],
+      "@utils/*": ["utils/*"],
+      "@model/*":[ "model/*"],
     },
     "incremental": true
   },

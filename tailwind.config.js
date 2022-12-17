@@ -36,7 +36,11 @@ module.exports = {
           extraExtraLightGray: '#EEEEEE',
           lightestGray: '#eff3f4',
           buttonGray: '#919191',
+          borderColor: '#e5e5e5',
         },
+        select: {
+          placeholder: '#9b9b9b'
+        }
       },
     },
   },

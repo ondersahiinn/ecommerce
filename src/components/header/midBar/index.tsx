@@ -1,4 +1,4 @@
-import { Logo, SearchInput, ShoppingLocation, MyAccount, Cart } from '@components';
+import { Logo, SearchInput, AddressLocation, MyAccount, Cart } from '@components';
 import React, { FC } from 'react';
 import 'antd/dist/antd.css';
 export const MidBar: FC = () => {
@@ -7,7 +7,7 @@ export const MidBar: FC = () => {
       <Logo className="w-64 flex items-center" />
       <SearchInput />
       <div className="ml-4 flex items-center gap-3">
-        <ShoppingLocation />
+        <AddressLocation />
         <MyAccount />
         <Cart />
       </div>

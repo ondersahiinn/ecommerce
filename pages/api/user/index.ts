@@ -1,27 +1,29 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import connectDB from '@db/mongoose';
-import User from '@models/user';
+import connectDB from '../../../db/mongodb';
+import User from '@model/user';
 const bcrypt = require("bcryptjs");
 
 interface IBodyType {
-  username: string;
+  name: string;
   email: string;
   password: string;
+  phone?: string;
 }
 
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'POST') {
-    const { username, email, password }: IBodyType = req.body;
-    if (username && email && password) {
+    const { name, email, password, phone }: IBodyType = req.body;
+    if (name && email && password) {
       const passwordHash = bcrypt.hashSync(password, 10);
       try {
-        let user = new User({
-          username,
+        var user = new User({
+          name,
           email,
           password: passwordHash,
+          phone,
         });
-        let usercreated = await user.save();
+        var usercreated = await user.save();
         const status: number = 201;
         return res.status(status).send(usercreated);
       } catch (error) {

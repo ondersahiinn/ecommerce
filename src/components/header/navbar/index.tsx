@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { Menu } from 'antd';
 import Image from 'next/image';
+import styles from './style.module.scss';
 
 export const Navbar: FC = () => {
 
@@ -19,10 +20,10 @@ export const Navbar: FC = () => {
     <nav className='max-w-7xl w-full h-full mx-auto block relative'>
       {/* <Menu items={menuItems} className="header-menu flex items-center h-full" /> */}
 
-      <ul className='header-menu flex items-center h-full'>
+      <ul className={`${styles.headerMenu} flex items-center h-full`}>
         <li className='group' onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
           <a href="#">Kadın</a>
-          <div className='nav-submenu  absolute w-full left-0 h-auto min-h-[18rem] bg-white shadow-[inset_0_0_1px_1px_#ebebeb] rounded-b-md overflow-hidden hidden group-hover:block'>
+          <div className='nav-submenu absolute w-full left-0 h-auto min-h-[18rem] bg-white shadow-[inset_0_0_1px_1px_#ebebeb] rounded-b-md overflow-hidden hidden group-hover:block'>
             <div className='p-6 w-full overflow-hidden'>
               <div className='flex justify-between overflow-hidden'>
                 <div className='w-auto h-full pr-6 overflow-hidden'>

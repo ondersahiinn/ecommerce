@@ -5,7 +5,7 @@ export { MidBar } from './header/midBar';
 export { Navbar } from './header/navbar';
 export { Logo } from './logo';
 export { SearchInput } from './search';
-export { ShoppingLocation } from './shoppingLocation';
+export { AddressLocation } from './addressLocation';
 export { AddressRadioGroup } from './addressRadioGroup';
 export { AddressSelect } from './addressSelect';
 export { MyAccount } from './myAccount';

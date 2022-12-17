@@ -1,0 +1,26 @@
+@use '../../styles/colors';
+
+.addressRadioButtons {
+  display: flex !important;
+  align-items: center;
+  justify-content: flex-start;
+  height: 142px;
+  width: 100%;
+  border: 1px solid colors.$secondary-borderColor !important;
+  border-radius: 8px !important;
+  padding: 40px 24px 20px;
+  color: #646464 !important;
+  transition: none !important;
+  box-shadow: none !important;
+  &.addressChecked {
+    border: 4px solid colors.$primary-blue !important;
+    padding: 37px 21px 17px;
+
+    .thick {
+      display: inline-block;
+    }
+  }
+  .thick {
+    display: none;
+  }
+}

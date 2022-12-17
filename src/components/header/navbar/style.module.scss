@@ -1,0 +1,10 @@
+@tailwind components;
+
+@layer components {
+  .headerMenu > li {
+    @apply shrink-0 grow hover:shadow-[inset_0_-2px_0_0_#f27a1a];
+  }
+  .headerMenu > li > a {
+    @apply text-secondary-darkGray text-sm uppercase block font-semibold leading-9 text-center tracking-tight hover:text-primary-base;
+  }
+}
