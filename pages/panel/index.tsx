@@ -1,7 +1,7 @@
 import { adminCheckAuth } from "@utils/session";
 
 export const Panel: React.FC = (props:any) => {
-    console.log('props',props)
+
     return (
         <>
             <div>

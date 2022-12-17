@@ -15,8 +15,6 @@ const productSlice = createSlice({
   initialState,
   reducers: {
     addProduct: (state, action) => {
-      debugger;
-      console.log('Function');
       state.productList = action.payload;
     },
     rawSetTheme: (state, action) => {

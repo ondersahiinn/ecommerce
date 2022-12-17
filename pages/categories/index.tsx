@@ -8,7 +8,6 @@ const Categories = (props: any) => {
     const productList = useSelector((state: any) => state.product.productList)
     const dispatch = useDispatch()
 
-    console.log('productList', props)
     useEffect(() => {
         if (productList.length === 0) {
             fetch('http://localhost:3000/api/categories')
@@ -17,8 +16,6 @@ const Categories = (props: any) => {
         }
 
     }, [productList])
-
-    console.log('global', productList)
 
     return (
         <>
