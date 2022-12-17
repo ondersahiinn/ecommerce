@@ -1,17 +1,15 @@
-import PanelLayout from "@components/layout";
-import Categories from "@components/panel/categories";
 import CategoryTable from "@components/panel/categories/table";
+import { adminCheckAuth } from "@utils/session";
 
 
-const CategoriesPage = () => {
+ const CategoriesPage: React.FC  = () => {
 
-    return(
+    return (
         <>
-            <PanelLayout>
-                <CategoryTable />
-            </PanelLayout>
+            <CategoryTable />
         </>
     )
 }
-
+CategoriesPage.displayName = "PanelPage"
 export default CategoriesPage;
+export const getServerSideProps = adminCheckAuth({});
