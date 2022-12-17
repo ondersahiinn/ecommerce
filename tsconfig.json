@@ -22,7 +22,9 @@
       "@styles/*": ["src/styles/*"],
       "@styles": ["src/styles"],
       "@redux/*": ["src/redux/*"],
-      "@redux": ["src/redux"]
+      "@redux": ["src/redux"],
+      "@db/*":["db/*"],
+      "@models/*":["models/*"]
     },
     "incremental": true
   },
