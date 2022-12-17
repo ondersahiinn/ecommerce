@@ -5,7 +5,6 @@ node_modules
 # environment variables
 
 !.env.example
-.env
 
 yarn.lock*
 yarn-error.log*

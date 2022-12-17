@@ -24,6 +24,7 @@
       "@redux/*": ["src/redux/*"],
       "@redux": ["src/redux"],
       "@db/*":[ "db/*"],
+      "@db":[ "db"],
       "@utils/*": ["utils/*"],
       "@model/*":[ "model/*"],
     },
