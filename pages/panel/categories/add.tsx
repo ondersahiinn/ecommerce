@@ -9,6 +9,7 @@ import { useState } from "react";
 import { InboxOutlined } from '@ant-design/icons';
 import type { UploadProps } from 'antd';
 import { message, Upload } from 'antd';
+import SeoVisualization from "@components/panel/seoVisualization";
 
 const { Dragger } = Upload;
 
@@ -40,10 +41,11 @@ const CategoryAdd: React.FC = () => {
     };
     return (
         <>
-            <div className="bg-white h-screen p-5">
-                <PanelHeader title="Kategori Ekle" >
-                    <Button>Kaydet</Button>
-                </PanelHeader>
+            <PanelHeader title="Kategori Ekle" >
+                <Button>Kaydet</Button>
+            </PanelHeader>
+            <div className="bg-white p-5">
+
                 <CategoriesForm />
                 <span className="pb-2">Açıklama</span>
                 <RinchTextEditor type='categories' value={value} setValue={setValue} />
@@ -58,6 +60,9 @@ const CategoryAdd: React.FC = () => {
                         </p>
                     </Dragger>
                 </div>
+            </div>
+            <div className="bg-white p-5 mt-10">
+                <SeoVisualization />
             </div>
         </>
     )
