@@ -5,6 +5,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.ql-editor {
+  min-height: 400px;
+}
+
 .ant-btn:hover,
 .ant-btn:focus,
 .ant-btn:active {

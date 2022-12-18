@@ -21,7 +21,7 @@ const RinchTextEditor = ({ value, setValue, type }: any) => {
         input.onchange = async () => {
             const file = input.files[0];
             console.log('file', file)
-            const uniqueImageName = file.name.split('.')[0] + uuidv4().slice(0,10)
+            const uniqueImageName = file.name.split('.')[0] + uuidv4().slice(0, 10)
             const imageRef = ref(storage, `${type}/${uniqueImageName}`);
             const uploadImage = uploadBytesResumable(imageRef, file);
             uploadImage.on(
@@ -64,8 +64,16 @@ const RinchTextEditor = ({ value, setValue, type }: any) => {
                     container: [
                         ['bold', 'italic', 'underline', 'strike', 'blockquote', 'code-block'],
                         [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                        [{ color: [] }, { background: [] }],
                         [{ 'script': 'sub' }, { 'script': 'super' }],
-                        ['link', 'image']
+                        [
+                            { list: "ordered" },
+                            { list: "bullet" },
+                            { indent: "-1" },
+                            { indent: "+1" },
+                        ],
+                        ['link', 'image'],
+                        ["clean"],
                     ],
                     handlers: {
                         image: imageHandler
