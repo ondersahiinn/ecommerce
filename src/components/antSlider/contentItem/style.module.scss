@@ -1,10 +1,9 @@
 .sliderItem {
-  @apply flex items-center justify-center;
   .sliderMain {
     @apply border-2 border-secondary-buttonGray rounded-md flex;
 
     .leftSide {
-      @apply py-14 px-12 flex flex-col items-start;
+      @apply py-14 px-12  flex-col items-start flex-1 hidden md:flex;
 
       .contentBox {
         @apply flex flex-col items-start gap-2 min-h-[152px] justify-center;
@@ -26,7 +25,7 @@
       }
     }
     .rightSide {
-      @apply w-[680px] min-w-[680px] p-1;
+      @apply w-full max-w-3xl min-w-[448px] p-1;
       .imageContainer {
         @apply block relative w-full min-h-[378px] rounded-md overflow-hidden;
       }
