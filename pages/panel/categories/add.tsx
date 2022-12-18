@@ -9,16 +9,18 @@ import { useState } from "react";
 import { InboxOutlined } from '@ant-design/icons';
 import type { UploadProps } from 'antd';
 import { message, Upload } from 'antd';
-import SeoVisualization from "@components/panel/seoVisualization";
 
 const { Dragger } = Upload;
-
+var RinchTextEditor = dynamic(() => import("@components/rinchTextEditor"), {
+    ssr: false, loading: () => <p>Loading ...</p>
+})
+var SeoVisualization = dynamic(() => import("@components/panel/seoVisualization"), {
+    ssr: false, loading: () => <p>Loading ...</p>
+})
 const CategoryAdd: React.FC = () => {
     const [value, setValue] = useState('')
 
-    var RinchTextEditor = dynamic(() => import("@components/rinchTextEditor"), {
-        ssr: false, loading: () => <p>Loading ...</p>
-    })
+
     const props: UploadProps = {
         name: 'file',
         multiple: true,
@@ -48,7 +50,7 @@ const CategoryAdd: React.FC = () => {
 
                 <CategoriesForm />
                 <span className="pb-2">Açıklama</span>
-                <RinchTextEditor type='categories' value={value} setValue={setValue} />
+                <RinchTextEditor type='categories' />
                 <div className="mt-10">
                     <Dragger {...props}>
                         <p className="ant-upload-drag-icon">

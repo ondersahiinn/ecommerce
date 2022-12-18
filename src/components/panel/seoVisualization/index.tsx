@@ -38,16 +38,15 @@ const SeoVisualization = () => {
                                 name="slug"
                                 rules={[{ required: false, message: 'Please input your username!' }]}
                             >
-                                <Input addonBefore="/" showCount />
+                                <Input addonBefore="/" showCount maxLength={75} />
                             </Form.Item>
 
                             <Form.Item
                                 label="Sayfa Başlığı"
                                 name="title"
-
                                 rules={[{ required: false, message: 'Please input your password!' }]}
                             >
-                                <Input showCount />
+                                <Input showCount maxLength={60}/>
                             </Form.Item>
                             <Form.Item
                                 label="Açıklama"
@@ -55,7 +54,7 @@ const SeoVisualization = () => {
                                 rules={[{ required: false, message: 'Please input your password!' }]}
                             >
                                 <TextArea showCount style={{ resize: 'none' }}
-                                    rows={3} placeholder="En fazla 220 karakter girebilirsin" maxLength={220} />
+                                    rows={3} placeholder="En fazla 220 karakter girebilirsin" maxLength={160} />
                             </Form.Item>
                         </Form>
                     </Col>

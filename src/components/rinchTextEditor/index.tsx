@@ -6,8 +6,16 @@ import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { v4 as uuidv4 } from 'uuid';
 
 import { storage } from '@utils/firebase';
-const RinchTextEditor = ({ value, setValue, type }: any) => {
+import { useSelector } from 'react-redux';
+import { RootState } from '@redux/reducers';
+import { changeCategoriesData, changeContent } from '@redux/slices/categories';
+const RinchTextEditor = ({ type }: any) => {
+
+    const content = useSelector((state: RootState) => state.categories.content)
     const quillRef: any = useRef(); // the solution
+
+    console.log('data', content)
+    const dispatch = useDispatch()
 
     const imageHandler = () => {
         // get editor
@@ -80,9 +88,10 @@ const RinchTextEditor = ({ value, setValue, type }: any) => {
                     }
                 }
             }}
-                value={value}
+                value={content}
                 onChange={(content, delta, source, editor) => {
-                    setValue(editor.getHTML())
+                    console.log('content, delta, source, editor', content, delta, source, editor)
+                    dispatch(changeContent(content))
                 }}
                 ref={quillRef}
                 theme="snow" className='text-black' defaultValue=''
