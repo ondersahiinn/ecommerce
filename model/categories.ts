@@ -10,24 +10,24 @@ var categories = new Schema({
         type: String,
         required: true
     },
-    children: {
+    children: [{
         type: Schema.Types.ObjectId,
         ref: "categories",
-    },
+    }],
     image: {
         type: String,
     },
     seoTitle: {
         type: String,
-        required: true
+        required: false
     },
     seoKeyword: {
         type: String,
-        required: true
+        required: false
     },
     seoDescription: {
         type: String,
-        required: true
+        required: false
     },
     createDateTime: {
         type: Date,

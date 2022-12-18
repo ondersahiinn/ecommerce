@@ -50,7 +50,7 @@ const CategoryAdd: React.FC = () => {
 
                 <CategoriesForm />
                 <span className="pb-2">Açıklama</span>
-                <RinchTextEditor type='categories' />
+                <RinchTextEditor type='categories' value={value} setValue={setValue} />
                 <div className="mt-10">
                     <Dragger {...props}>
                         <p className="ant-upload-drag-icon">

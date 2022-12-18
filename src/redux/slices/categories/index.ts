@@ -15,7 +15,7 @@ const initialState: ICategoriesSlice = {
     seoDescription: '',
     seoKeyword: '',
   },
-  content: 'onder'
+  content: ''
 };
 
 const counterSlice = createSlice({
