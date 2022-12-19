@@ -9,6 +9,8 @@ import { useState } from "react";
 import { InboxOutlined } from '@ant-design/icons';
 import type { UploadProps } from 'antd';
 import { message, Upload } from 'antd';
+import { useSelector } from "react-redux";
+import { RootState } from "@redux/reducers";
 
 const { Dragger } = Upload;
 var RinchTextEditor = dynamic(() => import("@components/rinchTextEditor"), {
@@ -19,7 +21,7 @@ var SeoVisualization = dynamic(() => import("@components/panel/seoVisualization"
 })
 const CategoryAdd: React.FC = () => {
     const [value, setValue] = useState('')
-
+    const data = useSelector((state: RootState) => state.categories.data)
 
     const props: UploadProps = {
         name: 'file',

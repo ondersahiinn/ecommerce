@@ -24,7 +24,7 @@ const counterSlice = createSlice({
   reducers: {
     changeCategoriesData: (state, data) => {
       console.log('{ ...data.payload }', { ...data.payload })
-      state.data = { ...data.payload };
+      state.data = { ...state.data, ...data.payload, };
     },
     changeContent(state, action) {
       state.content = action.payload

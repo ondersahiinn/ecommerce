@@ -8,7 +8,7 @@ var categories = new Schema({
     },
     description: {
         type: String,
-        required: true
+        required: false
     },
     children: [{
         type: Schema.Types.ObjectId,
@@ -16,6 +16,10 @@ var categories = new Schema({
     }],
     image: {
         type: String,
+    },
+    slug: {
+        type: String,
+        required: true
     },
     seoTitle: {
         type: String,

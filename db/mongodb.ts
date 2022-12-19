@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
 
 const connectDB = (handler: NextApiHandler) => async (req: NextApiRequest, res: NextApiResponse) => {
+  mongoose.set('strictQuery', false);
   if (mongoose.connection.readyState) {
     return handler(req, res);
   }
