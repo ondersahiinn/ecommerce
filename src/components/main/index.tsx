@@ -8,6 +8,8 @@ import { rawSetTheme } from '@redux/slices/product';
 import SearchableDropdown from '@components/searchableDropdown';
 import ImageSlider from '@components/antSlider';
 import ContentItem from '@components/antSlider/contentItem';
+import ProductItem from '@components/ProductCard';
+import HButton from '@components/HButton';
 
 export const Main: React.FC = () => {
   const dispatch = useDispatch();
@@ -26,6 +28,17 @@ export const Main: React.FC = () => {
         <ContentItem />
         <ContentItem />
       </ImageSlider>
+      <div className='max-w-7xl mx-auto my-12 px-3 grid grid-cols-4 gap-4'>
+        <ProductItem brand='Berkin' disabled={false} id={1} name="lorem ipsum" discount_percentage={24} image="https://productimages.hepsiburada.net/s/189/1100/110000155170656.jpg" price={22222} />
+        <ProductItem brand='Berkin' disabled={false} id={1} name="lorem ipsum" discount_percentage={24} image="https://productimages.hepsiburada.net/s/189/1100/110000155170656.jpg" price={22222} />
+        <ProductItem brand='Berkin' disabled={false} id={1} name="lorem ipsum" discount_percentage={24} image="https://productimages.hepsiburada.net/s/189/1100/110000155170656.jpg" price={22222} />
+        <ProductItem brand='Berkin' disabled={false} id={1} name="lorem ipsum" discount_percentage={24} image="https://productimages.hepsiburada.net/s/189/1100/110000155170656.jpg" price={22222} />
+        <ProductItem brand='Berkin' disabled={false} id={1} name="lorem ipsum" discount_percentage={24} image="https://productimages.hepsiburada.net/s/189/1100/110000155170656.jpg" price={22222} />
+        <ProductItem brand='Berkin' disabled={false} id={1} name="lorem ipsum" discount_percentage={24} image="https://productimages.hepsiburada.net/s/189/1100/110000155170656.jpg" price={22222} />
+        <ProductItem brand='Berkin' disabled={false} id={1} name="lorem ipsum" discount_percentage={24} image="https://productimages.hepsiburada.net/s/189/1100/110000155170656.jpg" price={22222} />
+        <ProductItem brand='Berkin' disabled={false} id={1} name="lorem ipsum" discount_percentage={24} image="https://productimages.hepsiburada.net/s/189/1100/110000155170656.jpg" price={22222} />
+      </div>
+
     </div>
   );
 };

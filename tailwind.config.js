@@ -1,6 +1,7 @@
 module.exports = {
   purge: ['./pages/**/*.tsx', './src/**/*.tsx'],
   darkMode: 'class', // or 'media' or 'class'
+  important: true,
   theme: {
     // Responsive kırılma noktaları
     screens: {
@@ -42,6 +43,10 @@ module.exports = {
           placeholder: '#9b9b9b'
         }
       },
+      boxShadow: {
+        buttonBorder: '0px 0px 0px 3px #6c84fa33',
+        productCard: 'rgb(0 0 0 / 8%) 0 8px 32px'
+      }
     },
   },
   variants: {
