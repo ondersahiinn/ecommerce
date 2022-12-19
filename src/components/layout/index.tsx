@@ -35,11 +35,11 @@ export const PanelLayout: React.FC<IProps> = (props: IProps) => {
                         bottom: 0,
                     }}
                 >
-                    <div className="flex items-center justify-center py-3">
+               {  /*   <div className="flex items-center justify-center py-3">
                         <Link href='/panel'>
-                            <img src={'https://ondersahin.com.tr//images/onderlogo.png?auto=format&fit=max&w=256'} alt="" className="max-w-full max-h-12" />
+                            <img src={'https://ondersahin¨.com.tr//images/onderlogo.png?auto=format&fit=max&w=256'} alt="" className="max-w-full max-h-12" />
                         </Link>
-                    </div>
+                    </div>*/}
                     <Menu
                         defaultSelectedKeys={['1']}
                         defaultOpenKeys={['sub1']}
