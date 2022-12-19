@@ -6,8 +6,8 @@ import classNames from 'classnames'
 
 const HButton: React.FC<ButtonProps> = (props) => {
     const {
+        children,
         type = 'button',
-        text = '',
         theme = 'Default',
         size = "Default",
         disabled = false,
@@ -45,7 +45,7 @@ const HButton: React.FC<ButtonProps> = (props) => {
             disabled={loading || disabled}
             onClick={onClick}>
             {iconPosition === 'left' && iconState}
-            {loading && !!text ? loadingText : text}
+            {loading && !!children ? loadingText : children}
             {iconPosition === 'right' && iconState}
         </button>
     )
