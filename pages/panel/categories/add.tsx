@@ -2,7 +2,7 @@ import CategoryTable from "@components/panel/categories/table";
 import CategoriesForm from "@components/panel/Forms/categoriesForm";
 import PanelHeader from "@components/panel/panelHeader";
 import { adminCheckAuth } from "@utils/session";
-import { Button, Modal } from "antd";
+import { Button } from "antd";
 import dynamic from "next/dynamic";
 import { useState } from "react";
 
@@ -11,7 +11,6 @@ import type { UploadProps } from 'antd';
 import { message, Upload } from 'antd';
 import { useSelector } from "react-redux";
 import { RootState } from "@redux/reducers";
-import HButton from "@components/HButton";
 
 const { Dragger } = Upload;
 var RinchTextEditor = dynamic(() => import("@components/rinchTextEditor"), {
@@ -66,17 +65,7 @@ const CategoryAdd: React.FC = () => {
                         </p>
                     </Dragger>
                 </div>
-                <span className="my-3 flex items-center justify-center text-sm  text-gray-300 before:content-[''] before:mr-2 before:flex-grow before:h-1 before:w-full before:bg-slate-300  after:content-[''] after:h-1 after:w-full after:bg-gray-300  after:flex-grow after:ml-3">
-                    veya
-                </span>
-                <div className="flex items-center justify-center">
-                    <HButton theme="Secondary" >Galeriden Seç</HButton>
-                    <Modal title="Basic Modal" open={true}>
-                        <p>Some contents...</p>
-                        <p>Some contents...</p>
-                        <p>Some contents...</p>
-                    </Modal>
-                </div>
+
             </div>
             <div className="bg-white p-5 mt-10">
                 <SeoVisualization />
