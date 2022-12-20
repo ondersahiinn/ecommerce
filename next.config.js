@@ -13,6 +13,6 @@ module.exports = {
         MEASUREMENT_ID: "G-XDQTX3VVGM",
     },
     images: {
-        domains: ['cdn.dsmcdn.com'],
+        domains: ['cdn.dsmcdn.com', 'picsum.photos'],
     },
 }

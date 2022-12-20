@@ -1,0 +1,12 @@
+@use '@styles/_colors';
+
+.customSegmented {
+  :global {
+    .ant-segmented-thumb {
+      @apply bg-[#ff6000];
+    }
+    .ant-segmented-item-selected {
+      @apply bg-[#ff6000] text-white;
+    }
+  }
+}
