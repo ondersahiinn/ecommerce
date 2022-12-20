@@ -6,4 +6,7 @@ export interface ICategories {
     seoTitle?: string
     seoKeyword?: string
     seoDescription?: string
+    images: string[]
+    slug: string
+    createDateTime?:Date
 }

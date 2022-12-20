@@ -1,5 +1,5 @@
 import { AppstoreOutlined, TagOutlined, SettingOutlined } from '@ant-design/icons';
-import type { MenuProps } from 'antd';
+import { MenuProps, message, UploadFile } from 'antd';
 import { ICities, INeighbour } from 'interfaces/cities';
 import Link from 'next/link'
 

@@ -1,7 +1,8 @@
+import { ICategories } from 'interfaces/categories';
 import { Schema, model, models } from 'mongoose';
 
 
-var categories = new Schema({
+var categories = new Schema<ICategories>({
     name: {
         type: String,
         required: true
@@ -14,9 +15,9 @@ var categories = new Schema({
         type: Schema.Types.ObjectId,
         ref: "categories",
     }],
-    image: {
+    images: [{
         type: String,
-    },
+    }],
     slug: {
         type: String,
         required: true
@@ -40,6 +41,6 @@ var categories = new Schema({
 });
 
 
-const Categories = models.Categories || model('Categories', categories);
+const Categories = models.Categories || model<ICategories>('Categories', categories);
 
 export default Categories;

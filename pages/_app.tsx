@@ -32,7 +32,7 @@ const Hydrated = ({ children }: { children?: any }) => {
       setHydration(true);
     }
   }, []);
-  return hydration ? children : null
+  return hydration ? children : <p>Loading..</p>
 
 };
 export default MyApp;

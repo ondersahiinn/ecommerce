@@ -2,62 +2,67 @@ import { useMemo, useRef, useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { useDispatch } from 'react-redux';
-import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
-import { v4 as uuidv4 } from 'uuid';
-import { storage } from '@utils/firebase';
 import { useSelector } from 'react-redux';
 import { RootState } from '@redux/reducers';
 import { changeContent } from '@redux/slices/categories';
-import { Button, Input } from 'antd';
+import { Button, Input, message, notification, Progress } from 'antd';
+import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+import { v4 as uuidv4 } from 'uuid';
+import { storage } from '@utils/firebase';
 
 const RinchTextEditor = ({ type }: any) => {
-
-    /*
-    file manager
-    file {id:2,name:'category'}
-    image {id:1, fileId:2, url:'asdasda'} */
     const [isText, setIsText] = useState(false);
+    const [api, contextHolder] = notification.useNotification();
 
+    const dispatch = useDispatch()
     const content = useSelector((state: RootState) => state.categories.content)
     const quillRef: any = useRef(); // the solution
 
-    const dispatch = useDispatch()
+    const openNotification = (percent: number) => {
+        api.open({
+            message: 'Image Yükleniyor',
+            description: <Progress percent={percent} size="small" />,
+            duration: 0,
+        });
+    };
 
     const imageHandler = () => {
+        debugger
         const editor = quillRef.current.getEditor();
         const input: any = document.createElement("input");
         input.setAttribute("type", "file");
         input.setAttribute("accept", "image/*");
         input.click();
-
         input.onchange = async () => {
             const file = input.files[0];
-            console.log('file', file)
             const uniqueImageName = file.name.split('.')[0] + uuidv4().slice(0, 10)
             const imageRef = ref(storage, `${type}/${uniqueImageName}`);
-            const uploadImage = uploadBytesResumable(imageRef, file);
+            const uploadImage = uploadBytesResumable(imageRef, file as Blob);
+
             uploadImage.on(
                 'state_changed',
                 (snapshot) => {
                     const progressPercent = Math.round(
                         (snapshot.bytesTransferred / snapshot.totalBytes) * 100
                     );
+                    openNotification(progressPercent)
                 },
                 (err) => {
-                    console.log(err);
+                    message.error('Resim yüklenemedi')
                 }, async () => {
                     await getDownloadURL(uploadImage.snapshot.ref)
                         .then((url) => {
                             try {
                                 editor.insertEmbed(editor.getSelection(), "image", url);
                             } catch (err) {
-                                console.log("upload err:", err);
+                                message.error('Resim yüklenemedi')
                             }
                         })
                         .catch((err) => {
-                            console.log(err);
+                            message.error('Resim yüklenemedi')
                         });
                 });
+
         };
     };
 
@@ -86,6 +91,7 @@ const RinchTextEditor = ({ type }: any) => {
 
     return (
         <>
+            {contextHolder}
             <Button className='float-right z-50' type='dashed' onClick={() => setIsText(true)}> Metin(HTML)</Button>
             <Button className='float-right z-50' type='dashed' onClick={() => setIsText(false)}> Editor</Button>
             {!isText ?
