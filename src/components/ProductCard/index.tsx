@@ -26,7 +26,7 @@ const ProductItem: React.FC<ProductItemProps> = (props) => {
             </div>
             <div className="hidden items-center justify-center pr-3 pb-3 pl-3 absolute bottom-0 left-0 w-full group-hover:flex">
 
-                <HButton theme="Primary" text={"Sepete Ekle"} size={"Small"} className={'w-full'} />
+                <HButton theme="Primary" size={"Small"} className={'w-full'}> Sepete Ekle</HButton>
 
             </div>
         </div>
