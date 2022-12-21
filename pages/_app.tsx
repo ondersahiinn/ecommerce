@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { AppProps } from 'next/app';
-import 'antd/dist/reset.css';
+import 'antd/dist/antd.css';
 import 'tailwindcss/tailwind.css';
 import '@styles/global.scss';
 import { Provider } from 'react-redux';

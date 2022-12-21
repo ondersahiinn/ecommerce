@@ -1,9 +1,13 @@
 @use '@styles/_colors';
 
 .customSegmented {
+  @apply rounded-md select-none;
   :global {
+    .ant-segmented-item {
+      @apply rounded-md;
+    }
     .ant-segmented-thumb {
-      @apply bg-[#ff6000];
+      @apply bg-[#ff6000] rounded-md;
     }
     .ant-segmented-item-selected {
       @apply bg-[#ff6000] text-white;

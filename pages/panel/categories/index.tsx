@@ -20,7 +20,7 @@ const CategoriesPage: React.FC = () => {
 
             <div className="flex items-center justify-center">
                 <HButton theme="Secondary" onClick={() => setOpenFileManager(true)}>Galeriden Seç</HButton>
-                <FileManager open={openFileManager} onCancel={() => setOpenFileManager(false)} />
+                <FileManager open={openFileManager} setOpen={setOpenFileManager} />
             </div>
         </>
     )

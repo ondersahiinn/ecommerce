@@ -26,7 +26,7 @@ const HButton: React.FC<ButtonProps> = (props) => {
         <button
             type={type}
             className={`${classNames({
-                'inline-flex items-center justify-center gap-2 font-semibold leading-6 pointer rounded-lg transition-all select-none disabled:opacity-30  disabled:pointer-events-none': true,
+                'inline-flex items-center justify-center gap-2 font-semibold leading-6 pointer rounded-lg transition-all select-none disabled:opacity-30 focus-visible:outline-none disabled:pointer-events-none': true,
                 'bg-[#ff6000] text-white hover:bg-[#bf4800] hover:text-white focus:shadow-buttonBorder active:bg-[#ff904c] active:text-white': theme === 'Primary',
                 'bg-[#ffefe5] text-[#ff6000] hover:bg-[#ffbf99] hover:text-[#ff6000] focus:shadow-buttonBorder active:bg-transparent active:text-[#ff6000] active:shadow-none': theme === 'Variant',
                 'bg-[#6b83fa] text-white hover:bg-[#5365bf] hover:text-white focus:shadow-buttonBorder active:bg-[#99aaff] active:text-white': theme === 'Secondary',
