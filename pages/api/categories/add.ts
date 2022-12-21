@@ -5,8 +5,9 @@ import { ICategories } from 'interfaces/categories';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.method === 'POST') {
-        const body: ICategories[] = req.body;
-        if (body.length > 0) {
+        const body: ICategories = req.body;
+
+        if (Object.keys(body).length > 0) {
             try {
                 const categories = new Categories({
                     ...body

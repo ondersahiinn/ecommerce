@@ -3,12 +3,16 @@ import PanelHeader from "@components/panel/panelHeader";
 import { adminCheckAuth } from "@utils/session";
 import dynamic from "next/dynamic";
 import { useState } from "react";
-import { InboxOutlined,  } from '@ant-design/icons';
+import { InboxOutlined, } from '@ant-design/icons';
 import type { UploadProps } from 'antd';
-import { message, Upload ,Button, Modal, UploadFile} from 'antd';
+import { message, Upload, Button, Modal, UploadFile } from 'antd';
 import { useSelector } from "react-redux";
 import { RootState } from "@redux/reducers";
 import HButton from "@components/HButton";
+import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+import { v4 as uuidv4 } from 'uuid';
+import { storage } from '@utils/firebase';
+import axios from "axios";
 
 const { Dragger } = Upload;
 var RinchTextEditor = dynamic(() => import("@components/rinchTextEditor"), {
@@ -68,15 +72,49 @@ const CategoryAdd: React.FC = () => {
         setPreviewTitle(file.name || file.url!.substring(file.url!.lastIndexOf('/') + 1));
     };
 
-    const onSaveCategory = () => {
-        console.log(data, fileList,content)
+    const onSaveCategory = async () => {
+        const tempData = { ...data }
+        tempData.description = content;
+        const images: string[] = []
+        fileList.forEach((file: UploadFile | File) => {
+            const uniqueImageName = file.name.split('.')[0] + uuidv4().slice(0, 10)
+            const imageRef = ref(storage, `${'categories'}/${uniqueImageName}`);
+            const uploadImage = uploadBytesResumable(imageRef, file as Blob);
+            uploadImage.on(
+                'state_changed',
+                (snapshot) => {
+                    const progressPercent = Math.round(
+                        (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                    );
+                },
+                (err) => {
+                    message.error('Resim yüklenemedi')
+                }, async () => {
+                    await getDownloadURL(uploadImage.snapshot.ref)
+                        .then((url) => {
+                            try {
+                                images.push(url)
+                            } catch (err) {
+                                message.error('Resim yüklenemedi')
+                            }
+                        })
+                        .catch((err) => {
+                            message.error('Resim yüklenemedi')
+                        });
+                });
+        })
+        tempData.seoKeyword = tempData.seoKeyword?.toString();
+        tempData.images = images;
+        console.log(tempData)
+        debugger
+        const res = await axios.post('/api/categories/add',tempData);
     }
 
 
     return (
         <>
             <PanelHeader title="Kategori Ekle" >
-            <HButton theme="Secondary" onClick={onSaveCategory}>Kaydet</HButton>
+                <HButton theme="Secondary" onClick={onSaveCategory}>Kaydet</HButton>
             </PanelHeader>
             <div className="bg-white p-5">
 

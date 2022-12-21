@@ -14,6 +14,7 @@ const initialState: ICategoriesSlice = {
     seoTitle: '',
     seoDescription: '',
     seoKeyword: '',
+    slug: ''
   },
   content: ''
 };
