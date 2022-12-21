@@ -10,13 +10,20 @@ import HButton from '@components/HButton';
 import FilesSide from './FilesSide';
 import OptionsSide from './OptionsSide';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
+import { RootState } from '@redux/reducers';
+import { useDispatch } from 'react-redux';
+import { fetchFiles } from '@redux/slices/fileManager';
 interface FileManagerProps {
     open: boolean,
     setOpen: any
 }
 const FileManager: React.FC<FileManagerProps> = ({ open, setOpen }) => {
-    const [imageArray, setImageArray] = useState([])
+    const dispatch = useDispatch();
+    const filesStatus = useSelector((state: RootState) => state.fileManager.status)
+    const files = useSelector((state: RootState) => state.fileManager.files)
 
+    const [imageArray, setImageArray] = useState([])
     const perPageItems = 50;
     const [currentPage, setCurrentPage] = useState(1);
     const [minShow, setMinShow] = useState(0);
@@ -29,11 +36,11 @@ const FileManager: React.FC<FileManagerProps> = ({ open, setOpen }) => {
     }
 
     useEffect(() => {
-        axios.get("https://picsum.photos/v2/list?page=2&limit=100").then(res => {
-            const justLinks = res.data.map((item: any) => item.download_url)
-            setImageArray(justLinks)
-        })
-    }, [])
+        if (filesStatus === "idle") {
+            dispatch(fetchFiles())
+        }
+    }, [dispatch, filesStatus])
+
     return (
         <>
             <Modal title="Dosya Yöneticisi" className='rounded-md' bodyStyle={{
@@ -48,8 +55,8 @@ const FileManager: React.FC<FileManagerProps> = ({ open, setOpen }) => {
                 </div>
                 <div className="flex items-stretch">
                     <div className="flex-1 py-2 border-r border-gray-[#e8e8e8]">
-                        <FilesSide imageList={imageArray} minShow={minShow} maxShow={maxShow} />
-                        <Pagination className="mt-4 peer/li:bg-red-300" defaultCurrent={1} total={imageArray.length} pageSize={perPageItems} onChange={paginationChange} showSizeChanger={false} />
+                        <FilesSide minShow={minShow} maxShow={maxShow} />
+                        <Pagination className="mt-4 peer/li:bg-red-300" defaultCurrent={1} total={files.length} pageSize={perPageItems} onChange={paginationChange} showSizeChanger={false} />
                     </div>
                     <div className="w-72 p-2">
                         <OptionsSide />

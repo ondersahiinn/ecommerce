@@ -41,7 +41,7 @@ const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse
                 { expiresIn: "2h" }
             )
 
-            const userSesion = { isLoggedIn: true, token, ...user } as ISession;
+            const userSesion = { isLoggedIn: true, token, ...user._doc } as ISession;
             req.session.user = userSesion;
             await req.session.save();
 

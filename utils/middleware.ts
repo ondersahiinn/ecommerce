@@ -1,5 +1,7 @@
+import { getIronSession } from 'iron-session';
 import jwt from 'jsonwebtoken';
 import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
+import { sessionOptions } from './session';
 
 
 export const middleware = (handler: NextApiHandler) => async (req: NextApiRequest, res: NextApiResponse) => {
@@ -17,6 +19,18 @@ export const middleware = (handler: NextApiHandler) => async (req: NextApiReques
                 })
             }
             return handler(req, res)
+        })
+    } else {
+        const session = await getIronSession(req, res, sessionOptions);
+        if (session.user === undefined || session.user.admin === true) {
+            return handler(req, res)
+        }
+
+        return res.status(401).json({
+            data: null,
+            status: 401,
+            message: 'User authentication failed. Unauthorized',
+            color: 'danger',
         })
     }
 

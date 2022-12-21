@@ -64,7 +64,7 @@ const EditImageData = () => {
 
 
             <Form.Item>
-                <HButton type='submit' theme='Primary' className="w-full">Resmi Ekle</HButton>
+                <HButton type='submit' theme='Success' className="w-full">Resmi Ekle</HButton>
             </Form.Item>
         </Form>
 

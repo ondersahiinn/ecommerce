@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 
 export interface IUser {
+    _doc?: any
     name: string,
     email: string,
     password: string,
@@ -14,6 +15,7 @@ export interface IUser {
 export interface ISession {
     isLoggedIn: boolean;
     token: string;
+    user: IUser
     name: string,
     email: string,
     password: string,
