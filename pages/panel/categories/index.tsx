@@ -10,10 +10,22 @@ import {
 import classNames from "classnames";
 import axios from "axios";
 import FileManager from "@components/fileManager";
+import { RootState } from "@redux/reducers"
+import { fetchCategories } from "@redux/slices/categories"
+import { addProduct } from "@redux/slices/product"
+import { useDispatch, useSelector } from "react-redux"
 
 const CategoriesPage: React.FC = () => {
     const [openFileManager, setOpenFileManager] = useState(false)
+    const status = useSelector((state: RootState) => state.categories.status)
+    const dispatch = useDispatch()
 
+
+    useEffect(() => {
+        if (status === 'idle') {
+            dispatch(fetchCategories())
+        }
+    }, [status, dispatch])
     return (
         <>
             <CategoryTable />

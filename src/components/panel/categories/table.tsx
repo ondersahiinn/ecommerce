@@ -1,64 +1,72 @@
-import { Table } from 'antd';
-const columns : any = [
+import { RootState } from '@redux/reducers';
+import { Space, Table } from 'antd';
+import { useSelector } from 'react-redux';
+const columns: any = [
+  {
+    title: <img width={32} height={32} src='https://www.ondersahin.com.tr/apple-touch-icon.png' />,
+    dataIndex: 'images',
+    render: (_: any, record: any) => (
+      <Space size="middle">
+        {record.images.length > 0 ? <img src={record.images[0]} /> :
+          <img width={32} height={32} src='https://www.ondersahin.com.tr/apple-touch-icon.png' />
+        }
+
+      </Space>
+    ),
+  },
   {
     title: 'Name',
     dataIndex: 'name',
-    sorter: (a:any, b :any) => a.name.length - b.name.length,
+    sorter: (a: any, b: any) => a.name - b.name,
+  },
+  {
+    title: 'Alt Kategoriler',
+    dataIndex: 'subCategory',
+    render: (_: any, record: any) => (
+      <Space size="middle">
+        {record.subCategory.map((e: any) => {
+          return e + ' > '
+        })}
+        {`onder > test`}
+
+      </Space>
+    ),
+  },
+  {
+    title: 'Link',
+    dataIndex: 'slug',
+    sorter: (a: any, b: any) => a.slug - b.slug,
     sortDirections: ['descend'],
   },
   {
-    title: 'Age',
-    dataIndex: 'age',
-    defaultSortOrder: 'descend',
-    sorter: (a:any, b:any) => a.age - b.age,
-  },
-  {
-    title: 'Address',
-    dataIndex: 'address',
-    filters: [
-      {
-        text: 'London',
-        value: 'London',
-      },
-      {
-        text: 'New York',
-        value: 'New York',
-      },
-    ],
-    onFilter: (value :any, record:any) => record.address.indexOf(value) === 0,
-  },
-];
-const data = [
-  {
-    key: '1',
-    name: 'John Brown',
-    age: 32,
-    address: 'New York No. 1 Lake Park',
-  },
-  {
-    key: '2',
-    name: 'Jim Green',
-    age: 42,
-    address: 'London No. 1 Lake Park',
-  },
-  {
-    key: '3',
-    name: 'Joe Black',
-    age: 32,
-    address: 'Sidney No. 1 Lake Park',
-  },
-  {
-    key: '4',
-    name: 'Jim Red',
-    age: 32,
-    address: 'London No. 2 Lake Park',
+    title: 'Toplam Ürün Sayısı',
+    dataIndex: 'productCount',
+
   },
 ];
 
-const onChange = (pagination : any, filters : any, sorter :any, extra :any) => {
-  console.log('params', pagination, filters, sorter, extra);
-};
 
-const CategoryTable = () => <Table columns={columns} dataSource={data} onChange={onChange} />;
+
+
+
+
+const CategoryTable = () => {
+  const categories = useSelector((state: RootState) => state.categories.categories)
+  const tableData: any = []
+  categories.forEach((e: any, index: number) => {
+    const newObj: any = { ...e }
+    newObj.key = e._id
+    newObj.productCount = 12 + index
+    newObj.subCategory = e.children
+    delete newObj.children
+    tableData.push(newObj)
+  })
+  const onChange = (pagination: any, filters: any, sorter: any, extra: any) => {
+    console.log('params', pagination, filters, sorter, extra);
+  };
+  return (
+    <Table columns={columns} dataSource={tableData} onChange={onChange} />
+  )
+}
 
 export default CategoryTable;

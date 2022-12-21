@@ -1,9 +1,12 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 import { ICategories } from "interfaces/categories";
 
 interface ICategoriesSlice {
   data: ICategories,
   content: string
+  status: 'loading' | 'succeeded' | 'failed' | 'idle',
+  categories: ICategories[],
 }
 
 const initialState: ICategoriesSlice = {
@@ -16,11 +19,13 @@ const initialState: ICategoriesSlice = {
     seoKeyword: '',
     slug: ''
   },
-  content: ''
+  content: '',
+  status: 'idle',
+  categories: []
 };
 
-const counterSlice = createSlice({
-  name: "counter",
+const CategorySlice = createSlice({
+  name: "Category",
   initialState,
   reducers: {
     changeCategoriesData: (state, data) => {
@@ -31,8 +36,28 @@ const counterSlice = createSlice({
       state.content = action.payload
     }
   },
+  extraReducers(builder) {
+    builder
+      .addCase(fetchCategories.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchCategories.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.categories = action.payload;
+      })
+      .addCase(fetchCategories.rejected, (state, action) => {
+        state.status = 'failed';
+      });
+  },
 });
 
-export const { changeCategoriesData, changeContent } = counterSlice.actions;
+export const fetchCategories: any = createAsyncThunk(
+  '/api/categories/allcategories',
+  async (queryParam: any) => {
+    const res = await axios.get('/api/categories/allcategories');
+    return res.data;
+  }
+);
+export const { changeCategoriesData, changeContent } = CategorySlice.actions;
 
-export default counterSlice.reducer;
+export default CategorySlice.reducer;
