@@ -12,13 +12,15 @@ import axios from "axios";
 import FileManager from "@components/fileManager";
 
 const CategoriesPage: React.FC = () => {
+    const [openFileManager, setOpenFileManager] = useState(false)
 
     return (
         <>
             <CategoryTable />
 
             <div className="flex items-center justify-center">
-                <FileManager />
+                <HButton theme="Secondary" onClick={() => setOpenFileManager(true)}>Galeriden Seç</HButton>
+                <FileManager open={openFileManager} setOpen={setOpenFileManager} />
             </div>
         </>
     )
