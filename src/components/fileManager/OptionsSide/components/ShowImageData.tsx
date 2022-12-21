@@ -1,14 +1,17 @@
 import HButton from '@components/HButton'
+import { RootState } from '@redux/reducers'
 import { Image, Modal } from 'antd'
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 
 const ShowImageData = () => {
+    const selectedImage = useSelector((state: RootState) => state.fileManager.selectedImage)
     const [visible, setVisible] = useState(false);
 
     return (
         <div className='flex flex-col gap-4'>
             <div className='w-full flex items-center justify-center overflow-hidden'>
-                <Image src={"https://picsum.photos/id/103/2592/1936"} className="rounded object-cover" width={150} height={150} loading='lazy' />
+                <Image src={selectedImage} className="rounded object-cover" width={150} height={150} loading='lazy' />
             </div>
             <div className='flex items-center justify-center flex-col'>
                 <div className="font-bold">lorem-ipsum-dolar.jpg</div>

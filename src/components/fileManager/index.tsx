@@ -49,7 +49,7 @@ const FileManager: React.FC<FileManagerProps> = ({ open, setOpen }) => {
                 <div className="flex items-stretch">
                     <div className="flex-1 py-2 border-r border-gray-[#e8e8e8]">
                         <FilesSide imageList={imageArray} minShow={minShow} maxShow={maxShow} />
-                        <Pagination className="mt-4" defaultCurrent={1} total={imageArray.length} pageSize={perPageItems} onChange={paginationChange} showSizeChanger={false} />
+                        <Pagination className="mt-4 peer/li:bg-red-300" defaultCurrent={1} total={imageArray.length} pageSize={perPageItems} onChange={paginationChange} showSizeChanger={false} />
                     </div>
                     <div className="w-72 p-2">
                         <OptionsSide />

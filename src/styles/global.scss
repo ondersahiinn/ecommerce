@@ -89,3 +89,31 @@ body {
 .ant-modal-content {
   @apply rounded-lg overflow-hidden;
 }
+.ant-pagination {
+  .ant-pagination-item {
+    @apply rounded border-[#9b9b9b];
+    &:not(&-active):hover {
+      @apply border-primary-base;
+      a {
+        @apply text-primary-base;
+      }
+    }
+    &-active {
+      @apply bg-primary-base text-white border-primary-base;
+      a {
+        @apply text-white;
+      }
+    }
+  }
+  .ant-pagination-item-link {
+    @apply rounded border-[#9b9b9b] flex items-center justify-center;
+    &:not(&[disabled]):hover {
+      @apply border-primary-base text-primary-base;
+    }
+  }
+  .ant-pagination-disabled {
+    .ant-pagination-item-link {
+      @apply border-[#dadada];
+    }
+  }
+}
