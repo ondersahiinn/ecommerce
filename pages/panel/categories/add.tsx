@@ -40,7 +40,6 @@ const CategoryAdd: React.FC = () => {
         onChange(info) {
             const { status } = info.file;
             if (status !== 'uploading') {
-                console.log(info.file, info.fileList);
             }
             if (status === 'done') {
                 message.success(`${info.file.name} file uploaded successfully.`);
@@ -50,10 +49,8 @@ const CategoryAdd: React.FC = () => {
             setFileList(info.fileList)
         },
         onDrop(e) {
-            console.log('Dropped files', e.dataTransfer.files);
         },
         onRemove(file) {
-            console.log(file)
         },
         onPreview(file) {
             handlePreview(file)
@@ -105,8 +102,6 @@ const CategoryAdd: React.FC = () => {
         })
         tempData.seoKeyword = tempData.seoKeyword?.toString();
         tempData.images = images;
-        console.log(tempData)
-        debugger
         const res = await axios.post('/api/categories/add',tempData);
     }
 
