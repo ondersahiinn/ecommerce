@@ -29,7 +29,6 @@ const FilesSide: React.FC<IFilesSide> = ({ maxShow, minShow }) => {
                     "outline outline-offset-2 outline-primary-darken": item.url === selectedImage
                 })}>
                     <Image
-                        quality={50}
                         src={item.url}
                         blurDataURL={item.url}
                         width={80}
