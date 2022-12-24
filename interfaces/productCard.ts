@@ -1,4 +1,5 @@
 export interface ProductItemProps {
+  type?: "default" | "small";
   id: string | number;
   name: string;
   image: string;
