@@ -17,26 +17,29 @@ const FilesSide: React.FC<IFilesSide> = ({ maxShow, minShow }) => {
     const dispatch = useDispatch();
     const files = useSelector((state: RootState) => state.fileManager.files)
 
-    // const [selectedImage, setSelectedImage] = useState('')
     const selectedImage = useSelector((state: RootState) => state.fileManager.selectedImage)
+    const [loadingImage, setLoadingImage] = useState(true)
 
 
     return (
-        <div className='flex flex-wrap items-center gap-3 '>
+        <div className='grid grid-cols-9 items-center gap-3 '>
             {files.slice(minShow, maxShow).map((item: IFiles,) =>
                 <div key={item.url} className={classNames({
-                    "flex items-center justify-center rounded overflow-hidden cursor-pointer shadow ": true,
-                    "outline outline-offset-2 outline-primary-darken": item.url === selectedImage
+                    "flex items-center justify-center rounded overflow-hidden cursor-pointer shadow w-full h-20 relative ": true,
+                    "outline outline-offset-2 outline-primary-darken ": item.url === selectedImage
                 })}>
                     <Image
                         src={item.url}
-                        blurDataURL={item.url}
-                        width={80}
-                        height={80}
+                        layout='fill'
                         loading='lazy'
                         objectFit='cover'
+                        className={classNames({
+                            "duration-700 ease-out": true,
+                            "grayscale blur-2xl scale-110": loadingImage,
+                            "grayscale-0 blur-0 scale-100": !loadingImage
+                        })}
+                        onLoadingComplete={() => setLoadingImage(false)}
                         onClick={(e) => {
-                            // setSelectedImage(item)
                             dispatch(setSelectedImage(item.url))
                         }
                         }

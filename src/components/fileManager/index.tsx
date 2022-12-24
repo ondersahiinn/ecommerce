@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Modal, Pagination, Upload, UploadProps, message, Select, Form, Input } from "antd";
+import { Modal, Pagination, Upload, Form, Input } from "antd";
 import {
     FolderAddFilled,
     FileImageFilled,
-    UploadOutlined,
-    InboxOutlined
 } from '@ant-design/icons';
 
 import HButton from '@components/HButton';
@@ -16,7 +14,8 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@redux/reducers';
 import { useDispatch } from 'react-redux';
 import { fetchFiles } from '@redux/slices/fileManager';
-const { Dragger } = Upload;
+import AddImageModal from './AddImageModal';
+import AddFolderModal from './AddFolderModal';
 interface FileManagerProps {
     open: boolean,
     setOpen: any
@@ -27,11 +26,11 @@ const FileManager: React.FC<FileManagerProps> = ({ open, setOpen }) => {
     const files = useSelector((state: RootState) => state.fileManager.files)
 
     const perPageItems = 50;
-    const [showNewFileModal, setShowNewFileModal] = useState(false);
     const [showNewFolderModal, setShowNewFolderModal] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [minShow, setMinShow] = useState(0);
     const [maxShow, setMaxShow] = useState(perPageItems);
+    const [showNewFileModal, setShowNewFileModal] = useState(false);
 
     const paginationChange = (page: number, pageSize?: number) => {
         setCurrentPage(page);
@@ -44,27 +43,7 @@ const FileManager: React.FC<FileManagerProps> = ({ open, setOpen }) => {
             dispatch(fetchFiles())
         }
     }, [dispatch, filesStatus])
-    const props: UploadProps = {
-        name: 'file',
-        multiple: true,
-        maxCount: 3,
-        listType: "picture-card",
-        className: "mb-3",
-        onChange(info) {
-            const { status } = info.file;
-            if (status !== 'uploading') {
-                console.log(info.file, info.fileList);
-            }
-            if (status === 'done') {
-                message.success(`${info.file.name} file uploaded successfully.`);
-            } else if (status === 'error') {
-                message.error(`${info.file.name} file upload failed.`);
-            }
-        },
-        onDrop(e) {
-            console.log('Dropped files', e.dataTransfer.files);
-        },
-    };
+
     return (
         <>
             <Modal title="Dosya Yöneticisi" className='rounded-md' bodyStyle={{
@@ -88,82 +67,8 @@ const FileManager: React.FC<FileManagerProps> = ({ open, setOpen }) => {
 
                 </div>
             </Modal>
-            <Modal title="Resim Yükle" centered className='rounded-md' open={showNewFileModal} onCancel={() => setShowNewFileModal(false)} footer={[
-
-                <div key={"addFileActions"} className="flex justify-end gap-2">
-                    <HButton theme='Danger' size='Small' onClick={() => setShowNewFileModal(false)}>İptal</HButton>
-                    <HButton theme='Success' size='Small' disabled onClick={() => setShowNewFileModal(false)}>Yükle</HButton>
-                </div>
-
-            ]}>
-                <Dragger {...props}>
-                    <p className="ant-upload-drag-icon">
-                        <InboxOutlined />
-                    </p>
-                    <p className="ant-upload-text">Tıkla yada sürükle bırak</p>
-                    <p className="ant-upload-hint">
-                        Buraya tıklayarak resim seçebilir yada sürükleyip bırakabilirsiniz
-                    </p>
-                </Dragger>
-
-            </Modal>
-            <Modal title="Dosya Ekle" centered className='rounded-md' open={showNewFolderModal} onCancel={() => setShowNewFolderModal(false)} footer={[
-
-                <div key={"addFileActions"} className="flex justify-end gap-2">
-                    <HButton theme='Danger' size='Small' onClick={() => setShowNewFolderModal(false)}>İptal</HButton>
-                    <HButton theme='Success' size='Small' disabled onClick={() => setShowNewFolderModal(false)}>Yükle</HButton>
-                </div>
-
-            ]}>
-                <Form labelWrap layout="vertical">
-                    <Form.Item label="Klasör Yeri" name="folderLocation" rules={[{ required: true, message: 'Klasör yeri boş bırakılamaz!' }]}>
-                        <Select
-                            defaultValue={"/"}
-                            showSearch
-                            size='large'
-                            className='w-full'
-                            placeholder="Eklemek İstediğin Dizini Seç"
-                            optionFilterProp="children"
-                            filterOption={(input, option) => (option?.label ?? '').includes(input)}
-                            filterSort={(optionA, optionB) =>
-                                (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
-                            }
-                            options={[
-                                {
-                                    value: '/',
-                                    label: 'Ana Dizin',
-                                },
-                                {
-                                    value: '2',
-                                    label: 'Resimlerim',
-                                },
-                                {
-                                    value: '3',
-                                    label: 'Ürünlerim',
-                                },
-                                {
-                                    value: '4',
-                                    label: 'Identified',
-                                },
-                                {
-                                    value: '5',
-                                    label: 'Resolved',
-                                },
-                                {
-                                    value: '6',
-                                    label: 'Cancelled',
-                                },
-                            ]}
-                        />
-                    </Form.Item>
-                    <Form.Item label="Klasör Adı" name="folderName" rules={[{ required: true, message: 'Klasör adı boş bırakılamaz!' }]}>
-                        <Input placeholder="Klasör Adı" size='large' className='rounded-md' />
-                    </Form.Item>
-
-                </Form>
-
-
-            </Modal>
+            <AddImageModal open={showNewFileModal} setOpen={setShowNewFileModal} />
+            <AddFolderModal open={showNewFolderModal} setOpen={setShowNewFolderModal} />
         </>
 
     )
