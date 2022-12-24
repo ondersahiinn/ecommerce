@@ -7,17 +7,44 @@ import styles from './styles.module.scss'
 import { Button } from '..'
 import HButton from '@components/HButton'
 import classNames from 'classnames'
+import Image from 'next/image'
 
 const ProductItem: React.FC<ProductItemProps> = (props) => {
     const { type = "default", name, brand, id, image, disabled, discount_percentage, price } = props
     const [showAddToCart, setShowAddToCart] = useState(false)
+    const [activeImage, setActiveImage] = useState(0)
+    const images = [
+        "https://productimages.hepsiburada.net/s/315/550/110000308343964.jpg",
+        "https://productimages.hepsiburada.net/s/168/550/110000131103936.jpg",
+        "https://productimages.hepsiburada.net/s/168/550/110000131103937.jpg",
+        "https://productimages.hepsiburada.net/s/168/550/110000131103938.jpg"
+    ]
     return (
-        <div className="py-3 flex flex-col gap-3 cursor-pointer border border-[#e5e5e5] rounded-lg overflow-hidden relative group hover:shadow-productCard hover:border-transparent" onMouseEnter={() => setShowAddToCart(true)} onMouseLeave={() => setShowAddToCart(false)}>
+        <div className="py-3 flex flex-col gap-3 cursor-pointer border border-[#e5e5e5] rounded-lg overflow-hidden relative group hover:shadow-productCard hover:border-transparent" onMouseEnter={() => setShowAddToCart(true)} onMouseLeave={() => {
+            setShowAddToCart(false)
+            setActiveImage(0)
+        }}>
             <div className={classNames({
-                "w-full h-80 bg-white  overflow-hidden": true,
+                "w-full h-80 bg-white relative overflow-hidden": true,
                 "order-2 h-48": type === "small"
             })}>
-                <img className='w-full h-full object-contain max-w-full' src={image} alt={name} />
+                <Image objectFit='cover' layout='fill' className='w-full h-full object-contain max-w-full' src={images[activeImage]} alt={name} />
+                {true && <div className='px-3 absolute w-full z-10 right-0 bottom-0 flex items-center justify-end gap-1'>
+                    {images.map((_, index) => <div key={index} className={classNames({
+                        "inline-block w-[5px] h-[5px] rounded-full bg-[#dadada]": true,
+                        "!bg-[#ff6000]": index === activeImage
+                    })}></div>)}
+                </div>}
+                <div className={`grid grid-cols-${images.length} w-full h-full`}>
+                    {images.map((_, index) => <div
+                        key={`${index}_sliderCols`}
+                        className={classNames({
+                            "bg-transparent h-full z-10": true,
+                        })}
+                        onMouseEnter={() => setActiveImage(index)}
+                    ></div>)}
+                </div>
+
             </div>
             <div className={classNames({
                 "text-[#484848] text-sm leading-4 line-clamp-2 min-h-[36px] px-3": true,

@@ -14,6 +14,6 @@ module.exports = {
         MEASUREMENT_ID: "G-XDQTX3VVGM",
     },
     images: {
-        domains: ['cdn.dsmcdn.com', 'picsum.photos', "firebasestorage.googleapis.com"],
+        domains: ['cdn.dsmcdn.com', 'picsum.photos', "firebasestorage.googleapis.com", "productimages.hepsiburada.net"],
     },
 }
