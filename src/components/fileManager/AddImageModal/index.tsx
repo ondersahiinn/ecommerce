@@ -32,7 +32,7 @@ const AddImageModal: React.FC<{ open: boolean, setOpen: Dispatch<SetStateAction<
 
             <div key={"addFileActions"} className="flex justify-end gap-2">
                 <HButton theme='GhostDefault' size='Small' onClick={() => setOpen(false)}>Vazgeç</HButton>
-                <HButton theme='Success' size='Small' disabled={formFields["deneme"].fileList.length === 0} onClick={() => setOpen(false)}>Yükle</HButton>
+                <HButton theme='Success' size='Small' disabled={formFields["deneme"]?.fileList?.length === 0} onClick={() => setOpen(false)}>Yükle</HButton>
             </div>]}>
             <Form
                 labelWrap

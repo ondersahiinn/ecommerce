@@ -24,7 +24,7 @@ const ProductItem: React.FC<ProductItemProps> = (props) => {
                 "w-full h-80 bg-white relative overflow-hidden": true,
                 "order-2 h-48": type === "small"
             })}>
-                <Image objectFit='cover' layout='fill' className='w-full h-full object-contain max-w-full' src={images[activeImage]} alt={name} />
+                <Image objectFit='cover' layout='fill' loading='lazy' className='w-full h-full object-contain max-w-full' src={images[activeImage]} alt={name} />
                 {showSliderDots ? <>
                     <div className='px-3 absolute w-full z-10 right-0 bottom-0 flex items-center justify-end gap-1'>
                         {images.map((_, index) => <div key={index} className={classNames({

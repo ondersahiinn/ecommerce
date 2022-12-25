@@ -1,33 +1,37 @@
 import HButton from '@components/HButton'
 import { RootState } from '@redux/reducers'
 import { Image, Modal } from 'antd'
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { ref, getDownloadURL } from "firebase/storage";
 import { storage } from '@utils/firebase';
 const ShowImageData = () => {
+    const downloadRef = useRef<HTMLAnchorElement>(null)
     const selectedImage = useSelector((state: RootState) => state.fileManager.selectedImage)
     const [visible, setVisible] = useState(false);
     const download = (url: string) => {
+        // download image directly via url
+        var xhr = new XMLHttpRequest();
+        xhr.responseType = 'blob';
+        xhr.onload = (event) => {
+            var blob = xhr.response;
+            //create a file from the returned blob
+            var file = new File([blob], "image name", { type: blob.type });
+            //grab the a tag
 
-        //Firebase storage image download local file
-        const storageRef = ref(storage, url);
-        getDownloadURL(storageRef).then((url) => {
-            const xhr = new XMLHttpRequest();
-            xhr.responseType = 'blob';
-            xhr.onload = (event) => {
-                const blob = xhr.response;
-            };
-            xhr.open('GET', url);
-            xhr.send();
-        }
-        ).catch((error) => {
-            // Handle any errors
-        }
-        );
+            //set the download attribute of the a tag to the name stored in the file
+            if (downloadRef.current) {
+                downloadRef.current.download = file.name;
+                //generate a temp url to host the image for download
+                downloadRef.current.href = URL.createObjectURL(file);
+                //trigger the click event of the a tag
+                downloadRef.current.click();
 
-
-
+            }
+            //generate a temp url to host the image for download
+        };
+        xhr.open('GET', url);
+        xhr.send();
 
 
     };
@@ -58,6 +62,7 @@ const ShowImageData = () => {
                     Resmi Sil
                 </HButton>
             </div>
+            <a id='downloadImage' ref={downloadRef}></a>
         </div>
     )
 }
