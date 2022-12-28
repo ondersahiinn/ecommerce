@@ -23,7 +23,7 @@ const FilesSide: React.FC<IFilesSide> = ({ maxShow, minShow }) => {
 
     return (
         <div className='grid grid-cols-9 items-center gap-3 '>
-            {files.slice(minShow, maxShow).map((item: IFiles,) =>
+            {files.map((item: IFiles,) =>
                 <div key={item.url} className={classNames({
                     "flex items-center justify-center rounded overflow-hidden cursor-pointer shadow w-full h-20 relative ": true,
                     "outline outline-offset-2 outline-primary-darken ": item.url === selectedImage
