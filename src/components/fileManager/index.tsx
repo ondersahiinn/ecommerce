@@ -62,36 +62,40 @@ const FileManager: React.FC<FileManagerProps> = ({ open, setOpen }) => {
                 paddingBottom: "0px"
             }} width={1200} open={open} onCancel={() => setOpen(false)} footer={null}>
                 <div className="flex flex-col gap-2 py-2 border-b border-gray-[#e8e8e8]">
+
+
                     <div className='flex items-center gap-2'>
                         <HButton theme="BorderedDefault" size="Tiny" icon={<FolderAddFilled style={{ fontSize: "18px" }} />} iconPosition="left" onClick={() => setShowNewFolderModal(true)}>Yeni Klasör</HButton>
                         <HButton theme="BorderedDefault" size="Tiny" icon={<FileImageFilled style={{ fontSize: "18px" }} />} iconPosition="left" onClick={() => setShowNewFileModal(true)}>Resim Yükle</HButton>
                     </div>
 
-                    <Breadcrumb>
-                        <Breadcrumb.Item className='cursor-pointer hover:text-[#6c84fa] transition-all' onClick={() => dispatch(setBreadcrumb([]))}>
-                            <HomeOutlined />
-                            {breadCrumbList.length === 0 && <span className="ant-breadcrumb-separator mx-2">/</span>}
-
-                        </Breadcrumb.Item>
-
-                        {breadCrumbList.map((item, index) => <Breadcrumb.Item
-                            key={item}
-                            className={classNames({
-                                " cursor-pointer hover:text-[#6c84fa] transition-all": index !== breadCrumbList.length - 1,
-                            })}
-                            onClick={() => handleBreadCrumbClick(item)}>
-                            <span>{item}</span>
-                        </Breadcrumb.Item>)}
-
-                    </Breadcrumb>
                 </div>
                 <div className="flex items-stretch gap-4">
 
-                    <div className="flex-1 py-2 border-r border-gray-[#e8e8e8]">
+                    <div className="flex-1 py-2 ">
+                        <Breadcrumb className='mb-2'>
+                            <Breadcrumb.Item className='cursor-pointer hover:text-[#6c84fa] transition-all' onClick={() => dispatch(setBreadcrumb([]))}>
+                                <HomeOutlined className='text-lg' />
+                                {breadCrumbList.length === 0 && <span className="ant-breadcrumb-separator mx-2">/</span>}
+
+                            </Breadcrumb.Item>
+
+                            {breadCrumbList.map((item, index) => <Breadcrumb.Item
+                                key={item}
+                                className={classNames({
+                                    "leading-7 capitalize text-sm": true,
+                                    "cursor-pointer hover:text-[#6c84fa] transition-all": index !== breadCrumbList.length - 1,
+                                    "font-semibold": index === breadCrumbList.length - 1
+                                })}
+                                onClick={() => handleBreadCrumbClick(item)}>
+                                <span>{item}</span>
+                            </Breadcrumb.Item>)}
+
+                        </Breadcrumb>
                         <FilesSide minShow={minShow} maxShow={maxShow} />
                         {/* <Pagination className="mt-4 peer/li:bg-red-300" defaultCurrent={1} total={files.length} pageSize={perPageItems} onChange={paginationChange} showSizeChanger={false} /> */}
                     </div>
-                    <div className="w-72 p-2">
+                    <div className="w-72 p-2 border-l border-gray-[#e8e8e8]">
                         <OptionsSide />
                     </div>
 

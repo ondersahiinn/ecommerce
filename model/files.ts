@@ -1,4 +1,4 @@
-import { IFiles } from 'interfaces/files';
+import { IFiles } from 'interfaces/fileManager';
 import { Schema, model, models } from 'mongoose';
 
 export const filesSchema = new Schema<IFiles>(

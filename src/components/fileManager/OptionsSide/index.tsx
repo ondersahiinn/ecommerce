@@ -11,9 +11,10 @@ const OptionsSide = () => {
     const [options, setOptions] = useState<string[]>(['Kaynak'])
 
     useEffect(() => {
-        if (selectedImage) {
+        if (!!selectedImage && !!selectedImage.url) {
             setOptions(['Kaynak', "Dosya"])
         } else {
+            setValue('Kaynak')
             setOptions(['Kaynak'])
         }
     }, [selectedImage])

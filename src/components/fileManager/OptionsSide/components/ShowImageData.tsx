@@ -1,13 +1,14 @@
+import React, { useRef, useState } from 'react'
 import HButton from '@components/HButton'
 import { RootState } from '@redux/reducers'
-import { Image, Modal } from 'antd'
-import React, { useRef, useState } from 'react'
+import { Image } from 'antd'
 import { useSelector } from 'react-redux'
-import { ref, getDownloadURL } from "firebase/storage";
-import { storage } from '@utils/firebase';
+import { formatBytes } from '@utils/functions/imageFormatSize'
+
 const ShowImageData = () => {
-    const downloadRef = useRef<HTMLAnchorElement>(null)
     const selectedImage = useSelector((state: RootState) => state.fileManager.selectedImage)
+
+    const downloadRef = useRef<HTMLAnchorElement>(null)
     const [visible, setVisible] = useState(false);
     const download = (url: string) => {
         // download image directly via url
@@ -38,7 +39,7 @@ const ShowImageData = () => {
     return (
         <div className='flex flex-col gap-4'>
             <div className='w-full flex items-center justify-center'>
-                <Image src={selectedImage} preview={{
+                <Image src={selectedImage?.url} preview={{
                     visible: visible,
                     onVisibleChange: (visible) => setVisible(visible),
                     mask: <div>Görüntüle</div>,
@@ -46,16 +47,21 @@ const ShowImageData = () => {
 
                 }} className="rounded object-cover shadow" width={150} height={150} loading='lazy' />
             </div>
-            <div className='flex items-center justify-center flex-col'>
-                <div className="font-bold">lorem-ipsum-dolar.jpg</div>
-                <div>20.77 KB</div>
-                <div>07-01-2019 15:19:04</div>
+            <div className='flex items-center justify-center flex-col gap-2'>
+                <div className="text-center font-bold">{selectedImage?.name}</div>
+                <div>
+                    {formatBytes(selectedImage?.size || 0)}
+                </div>
+                <div>
+                    {selectedImage?.createdAt && new Date(selectedImage?.createdAt).toLocaleDateString('tr-TR', { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' })}
+
+                </div>
             </div>
             <div className='flex flex-col gap-2 items-center justify-center'>
                 <HButton theme='Variant' size='Tiny' className="w-36" onClick={() => setVisible(true)}>
                     Resmi Görüntüle
                 </HButton>
-                <HButton theme='Variant' size='Tiny' className="w-36" onClick={() => download(selectedImage)}>
+                <HButton theme='Variant' size='Tiny' className="w-36" onClick={() => selectedImage && download(selectedImage?.url)}>
                     Resmi İndir
                 </HButton>
                 <HButton theme='Danger' size='Tiny' className="w-36">

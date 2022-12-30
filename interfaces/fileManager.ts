@@ -6,3 +6,10 @@ export interface IFiles {
   createdAt?: string;
   updatedAt?: string;
 }
+
+export interface IFileList {
+  url: string;
+  name: string;
+  size: number;
+  createdAt: string;
+}

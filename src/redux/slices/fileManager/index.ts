@@ -1,18 +1,18 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { ICities } from 'interfaces/cities';
-import { IFiles } from 'interfaces/files';
+import { IFileList, IFiles } from 'interfaces/fileManager';
 
 interface IFileManager {
-  selectedImage: string;
+  selectedImage: IFileList | null;
   breadCrumbs: string[];
-  filesList: string[]
+  filesList: IFileList[]
   folderList: string[]
   status: 'loading' | 'succeeded' | 'failed' | 'idle';
 }
 
 const initialState: IFileManager = {
-  selectedImage: '',
+  selectedImage: null,
   breadCrumbs: [],
   filesList: [],
   folderList: [],
@@ -42,7 +42,7 @@ const fileManagerSlice = createSlice({
       }
     },
     clearAllData(state) {
-      state.selectedImage = '';
+      state.selectedImage = null;
       state.filesList = [];
       state.folderList = [];
 

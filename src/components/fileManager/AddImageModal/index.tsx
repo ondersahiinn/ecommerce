@@ -49,54 +49,14 @@ const AddImageModal: React.FC<{ open: boolean, setOpen: Dispatch<SetStateAction<
                     console.log(fields);
                 }}
             >
-                <Form.Item label="Eklenicek Dizin" name="folderLocation" rules={[{ required: true, message: 'Dizin boş bırakılamaz!' }]}>
-                    <Select
-
-                        showSearch
-                        size='large'
-                        className='w-full'
-                        placeholder="Eklemek İstediğin Dizini Seç"
-                        optionFilterProp="children"
-                        filterOption={(input, option) => (option?.label ?? '').includes(input)}
-                        filterSort={(optionA, optionB) =>
-                            (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
-                        }
-                        options={[
-                            {
-                                value: '/',
-                                label: 'Ana Dizin',
-                            },
-                            {
-                                value: '2',
-                                label: 'Resimlerim',
-                            },
-                            {
-                                value: '3',
-                                label: 'Ürünlerim',
-                            },
-                            {
-                                value: '4',
-                                label: 'Identified',
-                            },
-                            {
-                                value: '5',
-                                label: 'Resolved',
-                            },
-                            {
-                                value: '6',
-                                label: 'Cancelled',
-                            },
-                        ]}
-                    />
-                </Form.Item>
-                <Form.Item label="Resim Ekle" name="deneme" valuePropName='images'>
+                <Form.Item name="deneme" valuePropName='images'>
                     <Dragger {...props}>
                         <p className="ant-upload-drag-icon">
                             <InboxOutlined />
                         </p>
                         <p className="ant-upload-text">Tıkla yada sürükle bırak</p>
                         <p className="ant-upload-hint">
-                            Buraya tıklayarak resim seçebilir yada sürükleyip bırakabilirsiniz
+                            Buraya tıklayarak <b>bulunduğun dizine</b> resim seçebilir yada sürükleyip bırakabilirsiniz
                         </p>
                     </Dragger>
                 </Form.Item>

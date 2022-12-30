@@ -12,7 +12,7 @@ const EditImageData = () => {
 
     useEffect(() => {
         form.setFieldsValue({
-            imageURL: selectedImage
+            imageURL: selectedImage?.url
         })
     }, [selectedImage])
     return (<>

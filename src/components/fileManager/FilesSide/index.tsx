@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux'
 import { clearAllData, setBreadcrumb, setFileList, setFolderList, setSelectedImage } from '@redux/slices/fileManager'
 import { useSelector } from 'react-redux'
 import { RootState } from '@redux/reducers'
-import { IFiles } from 'interfaces/files'
+import { IFileList, IFiles } from 'interfaces/fileManager'
 import { getDownloadURL, getMetadata, listAll, ref } from "firebase/storage";
 import { storage } from "@utils/firebase";
 import { FolderFilled } from '@ant-design/icons'
@@ -27,27 +27,37 @@ const FilesSide: React.FC<IFilesSide> = ({ maxShow, minShow }) => {
     const breadcrumbList = useSelector((state: RootState) => state.fileManager.breadCrumbs)
     const [loadingImage, setLoadingImage] = useState(true)
 
-    useEffect(() => {
+    const [deneme, setDeneme] = useState('')
 
-        console.log("breadcrumbList", breadcrumbList.join('/'));
-        const listRef = ref(storage, `${breadcrumbList.join('/')}`)
+    useEffect(() => {
+        const folderBreadcrumb = breadcrumbList.length === 0 ? '' : breadcrumbList.join('/') + '/';
+
+        const listRef = ref(storage, `${folderBreadcrumb}`)
         // Find all the prefixes and items.
         listAll(listRef)
             .then((res) => {
                 dispatch(clearAllData())
 
-                console.log("girdi", res)
                 if (res.prefixes.length > 0) {
                     res.prefixes.forEach((folderRef) => {
                         dispatch(setFolderList(folderRef.name))
-                        // return folderRef.name
                     })
                 }
                 res.items.forEach((item) => {
-                    // All the items under listRef.
-                    getDownloadURL(item).then(url => {
-                        dispatch(setFileList({ url }))
+                    getMetadata(item).then((metadata) => {
+                        if (metadata.contentType?.startsWith('image/')) {
+                            metadata.ref && getDownloadURL(metadata.ref).then(url => {
+                                dispatch(setFileList({
+                                    url: url,
+                                    name: metadata.name,
+                                    size: metadata.size,
+                                    createdAt: metadata.timeCreated,
+                                }))
+                            })
+                        }
+
                     })
+
                 })
             })
             .catch((error) => {
@@ -58,35 +68,48 @@ const FilesSide: React.FC<IFilesSide> = ({ maxShow, minShow }) => {
 
     }, [breadcrumbList])
 
+    const sortedFileList = [...fileList].sort((a, b) => new Date(b.createdAt).getMilliseconds() - new Date(a.createdAt).getMilliseconds())
 
     return (
         <>
-            {(folderList.length !== 0 || fileList.length !== 0) ? <div className='grid grid-cols-9 gap-3 items-center'>
-                {folderList.map((item: string) => <div key={item} onDoubleClick={() => dispatch(setBreadcrumb(item))} className="h-20 flex flex-col items-center justify-between cursor-pointer select-none rounded-md hover:bg-[#484848]/10 transition-all">
-                    <FolderFilled className='text-5xl' />
-                    <span>{item}</span>
-                </div>)}
-                {fileList.map((item: any) =>
-                    <div key={item.url} className={classNames({
-                        "flex items-center justify-center rounded overflow-hidden cursor-pointer shadow w-full h-20 relative ": true,
-                        "outline outline-offset-2 outline-primary-darken ": item.url === selectedImage
-                    })}>
-                        <Image
-                            src={item.url}
-                            layout='fill'
-                            loading='lazy'
-                            objectFit='cover'
-                            className={classNames({
-                                "duration-700 ease-out": true,
-                                "grayscale blur-2xl scale-110": loadingImage,
-                                "grayscale-0 blur-0 scale-100": !loadingImage
-                            })}
-                            onLoadingComplete={() => setLoadingImage(false)}
-                            onClick={(e) => {
-                                dispatch(setSelectedImage(item.url))
-                            }
-                            }
-                        />
+            {(folderList.length !== 0 || fileList.length !== 0) ? <div className='grid grid-cols-9 gap-1 items-center'>
+                {folderList.map((item: string) =>
+                    <div key={item}
+                        onDoubleClick={() => dispatch(setBreadcrumb(item))}
+                        onClick={() => setDeneme(item)}
+                        className={classNames({
+                            "w-full p-2  gap-2 cursor-pointer select-none rounded-md hover:bg-[#484848]/20 transition-all": true,
+                            "bg-[#484848]/20": item === deneme
+                        })}>
+                        <div className='h-20 flex flex-col items-center justify-between'>
+                            <FolderFilled className='flex text-6xl' />
+                            <div className='font-medium text-base'>{item}</div>
+                        </div>
+
+                    </div>)}
+                {sortedFileList.length > 0 && sortedFileList.map((item: IFileList) =>
+                    <div key={item.url}
+                        onClick={() => setDeneme(item.url)}
+
+                        className={classNames({
+                            "flex items-center justify-center rounded overflow-hidden cursor-pointer  w-full  hover:bg-[#484848]/20 transition-all p-2": true,
+                            "bg-[#484848]/20": item.url === deneme
+                        })}>
+                        <div className='w-full h-20 relative overflow-hidden'>
+                            <Image
+                                src={item.url}
+                                layout='fill'
+                                loading='lazy'
+                                objectFit='cover'
+                                className={classNames({
+                                    "duration-700 ease-out rounded": true,
+                                    "grayscale blur-2xl scale-110": loadingImage,
+                                    "grayscale-0 blur-0 scale-100": !loadingImage
+                                })}
+                                onLoadingComplete={() => setLoadingImage(false)}
+                                onClick={() => { dispatch(setSelectedImage(item)) }} />
+                        </div>
+
                     </div>
 
                 )}
