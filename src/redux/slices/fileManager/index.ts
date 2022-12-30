@@ -5,13 +5,17 @@ import { IFiles } from 'interfaces/files';
 
 interface IFileManager {
   selectedImage: string;
-  files: IFiles[]
+  breadCrumbs: string[];
+  filesList: string[]
+  folderList: string[]
   status: 'loading' | 'succeeded' | 'failed' | 'idle';
 }
 
 const initialState: IFileManager = {
   selectedImage: '',
-  files: [],
+  breadCrumbs: [],
+  filesList: [],
+  folderList: [],
   status: 'idle',
 };
 
@@ -22,20 +26,42 @@ const fileManagerSlice = createSlice({
     setSelectedImage(state, action) {
       state.selectedImage = action.payload;
     },
+    setFileList(state, action) {
+
+      state.filesList.push(action.payload);
+    },
+    setFolderList(state, action) {
+      state.folderList.push(action.payload);
+    },
+    setBreadcrumb(state, action) {
+      if (Array.isArray(action.payload)) {
+        state.breadCrumbs = action.payload;
+      } else {
+        state.breadCrumbs.push(action.payload);
+
+      }
+    },
+    clearAllData(state) {
+      state.selectedImage = '';
+      state.filesList = [];
+      state.folderList = [];
+
+    }
+
   },
-  extraReducers(builder) {
-    builder
-      .addCase(fetchFiles.pending, (state, action) => {
-        state.status = 'loading';
-      })
-      .addCase(fetchFiles.fulfilled, (state, action) => {
-        state.status = 'succeeded';
-        state.files = action.payload;
-      })
-      .addCase(fetchFiles.rejected, (state, action) => {
-        state.status = 'failed';
-      });
-  }
+  // extraReducers(builder) {
+  //   builder
+  //     .addCase(fetchFiles.pending, (state, action) => {
+  //       state.status = 'loading';
+  //     })
+  //     .addCase(fetchFiles.fulfilled, (state, action) => {
+  //       state.status = 'succeeded';
+  //       state.files = action.payload;
+  //     })
+  //     .addCase(fetchFiles.rejected, (state, action) => {
+  //       state.status = 'failed';
+  //     });
+  // }
 });
 
 export const fetchFiles: any = createAsyncThunk(
@@ -46,6 +72,6 @@ export const fetchFiles: any = createAsyncThunk(
   }
 );
 
-export const { setSelectedImage } = fileManagerSlice.actions;
+export const { setSelectedImage, setFileList, setFolderList, clearAllData, setBreadcrumb } = fileManagerSlice.actions;
 
 export default fileManagerSlice.reducer;

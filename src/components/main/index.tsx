@@ -40,7 +40,7 @@ export const Main: React.FC = () => {
       <div className='max-w-7xl mx-auto my-12 px-3 grid grid-cols-4 gap-4 items-start '>
         <ProductItem type='small' brand='Berkin' disabled={false} id={1} name="lorem ipsum" discount_percentage={24} images={images} price={22222} />
         <ProductItem type='small' brand='Berkin' disabled={false} id={1} name="lorem ipsum" discount_percentage={24} images={["https://productimages.hepsiburada.net/s/189/1100/110000155170656.jpg"]} price={22222} />
-        <ProductItem brand='Berkin' disabled={false} id={1} name="lorem ipsum" discount_percentage={24} images={["https://productimages.hepsiburada.net/s/189/1100/110000155170656.jpg"]} price={22222} />
+        <ProductItem brand='Berkin' disabled={false} id={1} name="lorem ipsum" discount_percentage={24} images={images} price={22222} />
         <ProductItem brand='Berkin' disabled={false} id={1} name="lorem ipsum" discount_percentage={24} images={["https://productimages.hepsiburada.net/s/189/1100/110000155170656.jpg"]} price={22222} />
         <ProductItem brand='Berkin' disabled={false} id={1} name="lorem ipsum" discount_percentage={24} images={["https://productimages.hepsiburada.net/s/189/1100/110000155170656.jpg"]} price={22222} />
         <ProductItem brand='Berkin' disabled={false} id={1} name="lorem ipsum" discount_percentage={24} images={["https://productimages.hepsiburada.net/s/189/1100/110000155170656.jpg"]} price={22222} />

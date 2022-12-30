@@ -15,10 +15,12 @@ import { fetchCategories } from "@redux/slices/categories"
 import { addProduct } from "@redux/slices/product"
 import { useDispatch, useSelector } from "react-redux"
 
+
 const CategoriesPage: React.FC = () => {
     const [openFileManager, setOpenFileManager] = useState(false)
     const status = useSelector((state: RootState) => state.categories.status)
     const dispatch = useDispatch()
+
 
 
     useEffect(() => {
@@ -26,6 +28,8 @@ const CategoriesPage: React.FC = () => {
             dispatch(fetchCategories())
         }
     }, [status, dispatch])
+
+
     return (
         <>
             <CategoryTable />
