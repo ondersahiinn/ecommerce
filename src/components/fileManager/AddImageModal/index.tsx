@@ -1,9 +1,15 @@
 import { InboxOutlined } from '@ant-design/icons';
 import HButton from '@components/HButton'
+import { RootState } from '@redux/reducers';
+import { storage } from '@utils/firebase';
 import { Form, Modal, Select, UploadProps, Upload, message } from 'antd'
+import { ref, uploadBytes } from 'firebase/storage';
 import React, { Dispatch, SetStateAction, useState } from 'react'
+import { useSelector } from 'react-redux';
 const { Dragger } = Upload;
 const AddImageModal: React.FC<{ open: boolean, setOpen: Dispatch<SetStateAction<boolean>> }> = ({ open, setOpen }) => {
+
+    const breadcrumbList = useSelector((state: RootState) => state.fileManager.breadCrumbs)
     const [formFields, setFormFields] = useState<any>({})
 
     const props: UploadProps = {
@@ -12,27 +18,33 @@ const AddImageModal: React.FC<{ open: boolean, setOpen: Dispatch<SetStateAction<
         maxCount: 3,
         listType: "picture-card",
         className: "mb-3",
-        onChange(info) {
-            const { status } = info.file;
-            if (status !== 'uploading') {
-                console.log(info.file, info.fileList);
-            }
-            if (status === 'done') {
-                message.success(`${info.file.name} file uploaded successfully.`);
-            } else if (status === 'error') {
-                message.error(`${info.file.name} file upload failed.`);
-            }
-        },
+
         onDrop(e) {
             console.log('Dropped files', e.dataTransfer.files);
         },
     };
+
+    const handleFirebaseUpload = () => {
+        console.log(formFields["images"])
+
+        const folderBreadcrumb = breadcrumbList.length === 0 ? '' : breadcrumbList.join('/') + '/';
+        formFields["images"].fileList.forEach((file: any) => {
+            const storageRef = ref(storage, `${folderBreadcrumb}${file.name}`)
+
+            uploadBytes(storageRef, file.originFileObj).then((snapshot) => {
+                message.success(`${file.name} isimli dosya başarıyla yüklendi.`);
+                setOpen(false)
+            }).catch((error) => {
+                message.error(`${file.name} isimli dosya yüklenirken bir sorun oluştu!`);
+            })
+        })
+    }
     return (
         <Modal title="Resim Yükle" centered className='rounded-md' open={open} onCancel={() => setOpen(false)} footer={[
 
             <div key={"addFileActions"} className="flex justify-end gap-2">
                 <HButton theme='GhostDefault' size='Small' onClick={() => setOpen(false)}>Vazgeç</HButton>
-                <HButton theme='Success' size='Small' disabled={formFields["deneme"]?.fileList?.length === 0} onClick={() => setOpen(false)}>Yükle</HButton>
+                <HButton type='submit' theme='Success' size='Small' disabled={formFields["images"]?.fileList?.length === 0} onClick={handleFirebaseUpload}>Yükle</HButton>
             </div>]}>
             <Form
                 labelWrap
@@ -40,16 +52,17 @@ const AddImageModal: React.FC<{ open: boolean, setOpen: Dispatch<SetStateAction<
                 initialValues={{
                     folderLocation: '/',
                 }}
+
                 onFieldsChange={(changedFields, allFields) => {
                     const fields: any = {};
                     allFields.forEach((field) => {
                         fields[field.name.toString()] = field.value;
                     })
                     setFormFields(fields);
-                    console.log(fields);
+
                 }}
             >
-                <Form.Item name="deneme" valuePropName='images'>
+                <Form.Item name="images" valuePropName='images'>
                     <Dragger {...props}>
                         <p className="ant-upload-drag-icon">
                             <InboxOutlined />

@@ -9,6 +9,7 @@ interface IFileManager {
   filesList: IFileList[]
   folderList: string[]
   status: 'loading' | 'succeeded' | 'failed' | 'idle';
+
 }
 
 const initialState: IFileManager = {
@@ -17,6 +18,7 @@ const initialState: IFileManager = {
   filesList: [],
   folderList: [],
   status: 'idle',
+
 };
 
 const fileManagerSlice = createSlice({
@@ -28,8 +30,13 @@ const fileManagerSlice = createSlice({
     },
     setFileList(state, action) {
 
-      state.filesList.push(action.payload);
+      if (Array.isArray(action.payload)) {
+        state.filesList = action.payload;
+      } else {
+        state.filesList.push(action.payload);
+      }
     },
+
     setFolderList(state, action) {
       state.folderList.push(action.payload);
     },
@@ -42,6 +49,7 @@ const fileManagerSlice = createSlice({
       }
     },
     clearAllData(state) {
+      state.status = 'idle';
       state.selectedImage = null;
       state.filesList = [];
       state.folderList = [];
