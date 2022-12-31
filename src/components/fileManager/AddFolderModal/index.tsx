@@ -2,12 +2,15 @@ import { InfoCircleOutlined } from '@ant-design/icons';
 import HButton from '@components/HButton'
 import { RootState } from '@redux/reducers';
 import { storage } from '@utils/firebase';
+import { fetchFileManagerData } from '@utils/functions/fetchFileManagerData';
 import { Form, Input, Modal } from 'antd'
 import { ref, uploadString } from 'firebase/storage';
 import React, { Dispatch, SetStateAction } from 'react'
+import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 
 const AddFolderModal: React.FC<{ open: boolean, setOpen: Dispatch<SetStateAction<boolean>> }> = ({ open, setOpen }) => {
+    const dispatch = useDispatch();
     const breadcrumbList = useSelector((state: RootState) => state.fileManager.breadCrumbs);
     const [formFields, setFormFields] = React.useState<any>({});
 
@@ -17,6 +20,8 @@ const AddFolderModal: React.FC<{ open: boolean, setOpen: Dispatch<SetStateAction
         const newFolder = ref(storage, `${folderBreadcrumb}${formFields?.folderName}/`);
         const ghostFile = ref(newFolder, '.ghostFile');
         await uploadString(ghostFile, '')
+        fetchFileManagerData(dispatch, breadcrumbList)
+
         setOpen(false);
 
     }

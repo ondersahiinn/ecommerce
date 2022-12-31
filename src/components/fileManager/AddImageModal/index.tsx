@@ -2,13 +2,15 @@ import { InboxOutlined } from '@ant-design/icons';
 import HButton from '@components/HButton'
 import { RootState } from '@redux/reducers';
 import { storage } from '@utils/firebase';
+import { fetchFileManagerData } from '@utils/functions/fetchFileManagerData';
 import { Form, Modal, Select, UploadProps, Upload, message } from 'antd'
 import { ref, uploadBytes } from 'firebase/storage';
 import React, { Dispatch, SetStateAction, useState } from 'react'
+import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 const { Dragger } = Upload;
 const AddImageModal: React.FC<{ open: boolean, setOpen: Dispatch<SetStateAction<boolean>> }> = ({ open, setOpen }) => {
-
+    const dispatch = useDispatch()
     const breadcrumbList = useSelector((state: RootState) => state.fileManager.breadCrumbs)
     const [formFields, setFormFields] = useState<any>({})
 
@@ -33,6 +35,7 @@ const AddImageModal: React.FC<{ open: boolean, setOpen: Dispatch<SetStateAction<
 
             uploadBytes(storageRef, file.originFileObj).then((snapshot) => {
                 message.success(`${file.name} isimli dosya başarıyla yüklendi.`);
+                fetchFileManagerData(dispatch, breadcrumbList)
                 setOpen(false)
             }).catch((error) => {
                 message.error(`${file.name} isimli dosya yüklenirken bir sorun oluştu!`);

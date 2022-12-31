@@ -12,6 +12,7 @@ import { storage } from "@utils/firebase";
 import { FolderFilled } from '@ant-design/icons'
 import { Empty } from 'antd'
 import HButton from '@components/HButton'
+import { fetchFileManagerData } from '@utils/functions/fetchFileManagerData'
 
 interface IFilesSide {
     minShow?: number
@@ -29,48 +30,7 @@ const FilesSide: React.FC<IFilesSide> = ({ maxShow, minShow }) => {
 
     useEffect(() => {
 
-        const items: IFileList[] = [];
-
-        const folderBreadcrumb = breadcrumbList.length === 0 ? '' : breadcrumbList.join('/') + '/';
-
-        const listRef = ref(storage, `${folderBreadcrumb}`)
-        // Find all the prefixes and items.
-        listAll(listRef)
-            .then((res) => {
-                dispatch(clearAllData())
-                if (res.prefixes.length > 0) {
-                    res.prefixes.forEach((folderRef) => {
-                        dispatch(setFolderList(folderRef.name))
-                    })
-                }
-                if (res.items.length > 0) {
-                    res.items.forEach((item) => {
-                        getMetadata(item).then((metadata) => {
-                            if (metadata.contentType?.startsWith('image/')) {
-                                metadata.ref && getDownloadURL(metadata.ref).then(url => {
-                                    items.push({
-                                        url: url,
-                                        name: metadata.name,
-                                        size: metadata.size,
-                                        createdAt: metadata.timeCreated,
-                                    })
-                                    const sortedItems = [...items].sort((a, b) => new Date(b.createdAt).getMilliseconds() - new Date(a.createdAt).getMilliseconds())
-
-                                    dispatch(setFileList(sortedItems))
-
-                                })
-                            }
-
-                        })
-                    })
-                }
-
-            })
-            .catch((error) => {
-                // Uh-oh, an error occurred!
-                console.log("error", error);
-            })
-
+        fetchFileManagerData(dispatch, breadcrumbList)
 
     }, [breadcrumbList])
 
