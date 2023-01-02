@@ -14,12 +14,16 @@ export function fetchFileManagerData(dispatch: Dispatch, breadcrumbList: string[
 
     const listRef = ref(storage, `${folderBreadcrumb}`)
     // Find all the prefixes and items.
+
     listAll(listRef)
         .then((res) => {
+
             dispatch(clearAllData())
             if (res.prefixes.length > 0) {
                 res.prefixes.forEach((folderRef) => {
+
                     dispatch(setFolderList(folderRef.name))
+
                 })
             }
             if (res.items.length > 0) {

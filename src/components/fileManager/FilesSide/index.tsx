@@ -38,18 +38,18 @@ const FilesSide: React.FC<IFilesSide> = ({ maxShow, minShow }) => {
 
     return (
         <>
-            {(folderList.length !== 0 || fileList.length !== 0) ? <div className='grid grid-cols-9 gap-1 items-center'>
+            {(folderList.length !== 0 || fileList.length !== 0) ? <div className='grid grid-cols-8 gap-1 items-center'>
                 {folderList.map((item: string) =>
                     <div key={item}
                         onDoubleClick={() => dispatch(setBreadcrumb(item))}
                         onClick={() => setSelectedItem(item)}
                         className={classNames({
-                            "w-full p-2  gap-2 cursor-pointer select-none rounded-md hover:bg-[#484848]/20 transition-all": true,
+                            "w-full p-2 gap-2 cursor-pointer select-none rounded-md hover:bg-[#484848]/20 transition-all": true,
                             "bg-[#484848]/20": item === selectedItem
                         })}>
                         <div className='h-20 flex flex-col items-center justify-between'>
                             <FolderFilled className='flex text-6xl' />
-                            <div className='font-medium text-base'>{item}</div>
+                            <div className='text-center font-medium  w-full block overflow-ellipsis overflow-hidden whitespace-nowrap'>{item}</div>
                         </div>
 
                     </div>)}
@@ -57,7 +57,7 @@ const FilesSide: React.FC<IFilesSide> = ({ maxShow, minShow }) => {
                     <div key={item.url}
                         onClick={() => setSelectedItem(item.url)}
                         className={classNames({
-                            "flex items-center justify-center rounded overflow-hidden cursor-pointer  w-full  hover:bg-[#484848]/20 transition-all p-2": true,
+                            "flex flex-col items-center justify-center rounded overflow-hidden cursor-pointer  w-full  hover:bg-[#484848]/20 transition-all p-2": true,
                             "bg-[#484848]/20": item.url === selectedItem
                         })}>
                         <div className='w-full h-20 relative overflow-hidden'>
@@ -74,7 +74,7 @@ const FilesSide: React.FC<IFilesSide> = ({ maxShow, minShow }) => {
                                 onLoadingComplete={() => setLoadingImage(false)}
                                 onClick={() => { dispatch(setSelectedImage(item)) }} />
                         </div>
-
+                        <div className='text-center font-medium w-full block overflow-ellipsis overflow-hidden whitespace-nowrap'>{item.name}</div>
                     </div>
 
                 )}

@@ -19,6 +19,7 @@ import { setBreadcrumb } from '@redux/slices/fileManager';
 import AddImageModal from './AddImageModal';
 import AddFolderModal from './AddFolderModal';
 import classNames from 'classnames';
+import { formatBytes } from '@utils/functions/imageFormatSize';
 
 interface FileManagerProps {
     open: boolean,
@@ -28,11 +29,15 @@ const FileManager: React.FC<FileManagerProps> = ({ open, setOpen }) => {
     const dispatch = useDispatch();
 
     const breadCrumbList = useSelector((state: RootState) => state.fileManager.breadCrumbs)
+    const filesList = useSelector((state: RootState) => state.fileManager.filesList)
 
     const [showNewFolderModal, setShowNewFolderModal] = useState(false);
     const [showNewFileModal, setShowNewFileModal] = useState(false);
 
-
+    const totalFilesSize = filesList.reduce((acc, item) => {
+        return acc + item.size
+    }
+        , 0)
 
     const handleBreadCrumbClick = (folderName: string) => {
         const index = breadCrumbList.indexOf(folderName)
@@ -58,7 +63,6 @@ const FileManager: React.FC<FileManagerProps> = ({ open, setOpen }) => {
 
                 </div>
                 <div className="flex items-stretch gap-4">
-
                     <div className="flex-1 py-2 ">
                         <Breadcrumb className='mb-2'>
                             <Breadcrumb.Item className='cursor-pointer hover:text-[#6c84fa] transition-all' onClick={() => dispatch(setBreadcrumb([]))}>
@@ -86,6 +90,9 @@ const FileManager: React.FC<FileManagerProps> = ({ open, setOpen }) => {
                         <OptionsSide />
                     </div>
 
+                </div>
+                <div className='py-2 flex items-center border-t border-gray-[#e8e8e8]'>
+                    {!!totalFilesSize && <span>Boyut: {formatBytes(totalFilesSize)}</span>}
                 </div>
             </Modal>
             <AddImageModal open={showNewFileModal} setOpen={setShowNewFileModal} />
