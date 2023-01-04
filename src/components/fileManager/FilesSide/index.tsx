@@ -29,11 +29,8 @@ const FilesSide: React.FC<IFilesSide> = ({ maxShow, minShow }) => {
     const [selectedItem, setSelectedItem] = useState('')
 
     useEffect(() => {
-
         fetchFileManagerData(dispatch, breadcrumbList)
-
     }, [breadcrumbList])
-
 
 
     return (

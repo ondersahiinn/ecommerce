@@ -1,9 +1,9 @@
 import HButton from '@components/HButton';
 import { RootState } from '@redux/reducers';
-import { Button, Col, Form, Input, InputNumber, Row, Select, Switch } from 'antd'
+import { Col, Form, Input, InputNumber, Row, Switch } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
-const { Option } = Select
+
 const EditImageData = () => {
     const [form] = Form.useForm()
     const [showAnchorForm, setShowAnchorForm] = useState(false)

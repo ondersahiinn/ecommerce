@@ -4,8 +4,6 @@ import { Dispatch } from "@reduxjs/toolkit";
 import { storage } from "@utils/firebase";
 import { getDownloadURL, getMetadata, listAll, ref } from "firebase/storage";
 import { IFileList } from "interfaces/fileManager";
-import { useSelector } from "react-redux";
-import { useDispatch } from 'react-redux';
 
 export function fetchFileManagerData(dispatch: Dispatch, breadcrumbList: string[]) {
     const items: IFileList[] = [];

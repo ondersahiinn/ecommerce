@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import EditImageData from './components/EditImageData';
 import ShowImageData from './components/ShowImageData';
 import styles from './styles.module.scss'
+
 const OptionsSide = () => {
     const selectedImage = useSelector((state: RootState) => state.fileManager.selectedImage)
     const [value, setValue] = useState<string | number>('Kaynak');

@@ -9,10 +9,12 @@ import { Button, Input, message, notification, Progress } from 'antd';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { v4 as uuidv4 } from 'uuid';
 import { storage } from '@utils/firebase';
+import FileManager from '@components/fileManager';
 
 const RinchTextEditor = ({ type }: any) => {
     const [isText, setIsText] = useState(false);
     const [api, contextHolder] = notification.useNotification();
+    const [fileMangerShow, setFileManagerShow] = useState<boolean>(false);
 
     const dispatch = useDispatch()
     const content = useSelector((state: RootState) => state.categories.content)
@@ -27,43 +29,10 @@ const RinchTextEditor = ({ type }: any) => {
     };
 
     const imageHandler = () => {
-        debugger
-        const editor = quillRef.current.getEditor();
-        const input: any = document.createElement("input");
-        input.setAttribute("type", "file");
-        input.setAttribute("accept", "image/*");
-        input.click();
-        input.onchange = async () => {
-            const file = input.files[0];
-            const uniqueImageName = file.name.split('.')[0] + uuidv4().slice(0, 10)
-            const imageRef = ref(storage, `${type}/${uniqueImageName}`);
-            const uploadImage = uploadBytesResumable(imageRef, file as Blob);
+        setFileManagerShow(true);
+        // const editor = quillRef.current.getEditor();
+        // editor.insertEmbed(editor.getSelection(), "image", 'tas');
 
-            uploadImage.on(
-                'state_changed',
-                (snapshot) => {
-                    const progressPercent = Math.round(
-                        (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-                    );
-                    openNotification(progressPercent)
-                },
-                (err) => {
-                    message.error('Resim yüklenemedi')
-                }, async () => {
-                    await getDownloadURL(uploadImage.snapshot.ref)
-                        .then((url) => {
-                            try {
-                                editor.insertEmbed(editor.getSelection(), "image", url);
-                            } catch (err) {
-                                message.error('Resim yüklenemedi')
-                            }
-                        })
-                        .catch((err) => {
-                            message.error('Resim yüklenemedi')
-                        });
-                });
-
-        };
     };
 
     const modules = useMemo(() => ({
@@ -105,7 +74,10 @@ const RinchTextEditor = ({ type }: any) => {
                     theme="snow" className='text-black mt-5' defaultValue=''
                 />
                 : <Input.TextArea className='mt-5' rows={10} value={content} onChange={(e) => dispatch(changeContent(e.target.value))} />}
-        </>);
+            <FileManager open={fileMangerShow} setOpen={setFileManagerShow} />
+        </>
+
+    );
 
 }
 

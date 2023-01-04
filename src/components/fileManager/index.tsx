@@ -1,17 +1,14 @@
-import React, { useEffect, useState } from 'react'
-import { Modal, Pagination, Upload, Form, Input, Breadcrumb, Spin } from "antd";
+import React, { useState } from 'react'
+import { Modal, Breadcrumb } from "antd";
 import {
     FolderAddFilled,
     FileImageFilled,
     HomeOutlined,
-    UserOutlined,
 } from '@ant-design/icons';
 
 import HButton from '@components/HButton';
-
 import FilesSide from './FilesSide';
 import OptionsSide from './OptionsSide';
-import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { RootState } from '@redux/reducers';
 import { useDispatch } from 'react-redux';
