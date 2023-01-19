@@ -12,22 +12,22 @@ import OptionsSide from './OptionsSide';
 import { useSelector } from 'react-redux';
 import { RootState } from '@redux/reducers';
 import { useDispatch } from 'react-redux';
-import { setBreadcrumb } from '@redux/slices/fileManager';
+import { hadnleFileManagerOpen, setBreadcrumb } from '@redux/slices/fileManager';
 import AddImageModal from './AddImageModal';
 import AddFolderModal from './AddFolderModal';
 import classNames from 'classnames';
 import { formatBytes } from '@utils/functions/imageFormatSize';
 
 interface FileManagerProps {
-    open: boolean,
-    setOpen: any
+    handleAddImage: () => void
 }
-const FileManager: React.FC<FileManagerProps> = ({ open, setOpen }) => {
+
+const FileManager: React.FC<FileManagerProps> = ({ handleAddImage }) => {
     const dispatch = useDispatch();
 
     const breadCrumbList = useSelector((state: RootState) => state.fileManager.breadCrumbs)
     const filesList = useSelector((state: RootState) => state.fileManager.filesList)
-
+    const open = useSelector((state: RootState) => state.fileManager.openStatus)
     const [showNewFolderModal, setShowNewFolderModal] = useState(false);
     const [showNewFileModal, setShowNewFileModal] = useState(false);
 
@@ -49,7 +49,7 @@ const FileManager: React.FC<FileManagerProps> = ({ open, setOpen }) => {
                 borderBottom: "1px solid #e8e8e8",
                 paddingTop: "0px",
                 paddingBottom: "0px"
-            }} width={1200} open={open} onCancel={() => setOpen(false)} footer={null}>
+            }} width={1200} open={open} onCancel={() => dispatch(hadnleFileManagerOpen())} footer={null}>
 
 
                 <div className="flex flex-col gap-2 py-2 border-b border-gray-[#e8e8e8]">
@@ -84,7 +84,7 @@ const FileManager: React.FC<FileManagerProps> = ({ open, setOpen }) => {
                         {/* <Pagination className="mt-4 peer/li:bg-red-300" defaultCurrent={1} total={files.length} pageSize={perPageItems} onChange={paginationChange} showSizeChanger={false} /> */}
                     </div>
                     <div className="w-72 p-2 border-l border-gray-[#e8e8e8]">
-                        <OptionsSide />
+                        <OptionsSide handleAddImage={handleAddImage} />
                     </div>
 
                 </div>

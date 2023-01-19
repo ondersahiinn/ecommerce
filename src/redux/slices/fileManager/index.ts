@@ -8,12 +8,14 @@ interface IFileManager {
   breadCrumbs: string[];
   filesList: IFileList[]
   folderList: string[]
+  openStatus: boolean;
   status: 'loading' | 'succeeded' | 'failed' | 'idle';
 
 }
 
 const initialState: IFileManager = {
   selectedImage: null,
+  openStatus: false,
   breadCrumbs: [],
   filesList: [],
   folderList: [],
@@ -36,7 +38,9 @@ const fileManagerSlice = createSlice({
         state.filesList.push(action.payload);
       }
     },
-
+    hadnleFileManagerOpen(state) {
+      state.openStatus = !state.openStatus
+    },
     setFolderList(state, action) {
       state.folderList.push(action.payload);
     },
@@ -80,6 +84,6 @@ export const fetchFiles: any = createAsyncThunk(
   }
 );
 
-export const { setSelectedImage, setFileList, setFolderList, clearAllData, setBreadcrumb } = fileManagerSlice.actions;
+export const { setSelectedImage, setFileList, hadnleFileManagerOpen, setFolderList, clearAllData, setBreadcrumb } = fileManagerSlice.actions;
 
 export default fileManagerSlice.reducer;

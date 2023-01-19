@@ -4,10 +4,17 @@ import { Col, Form, Input, InputNumber, Row, Switch } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 
-const EditImageData = () => {
+
+interface IProps {
+    handleAddImage: () => void
+}
+
+const EditImageData = ({ handleAddImage }: IProps) => {
     const [form] = Form.useForm()
     const [showAnchorForm, setShowAnchorForm] = useState(false)
     const selectedImage = useSelector((state: RootState) => state.fileManager.selectedImage)
+
+    console.log('selectedImage', selectedImage)
 
 
     useEffect(() => {
@@ -15,6 +22,7 @@ const EditImageData = () => {
             imageURL: selectedImage?.url
         })
     }, [selectedImage])
+
     return (<>
         <Form
             form={form}
@@ -64,7 +72,7 @@ const EditImageData = () => {
 
 
             <Form.Item>
-                <HButton type='submit' theme='Success' className="w-full">Resmi Ekle</HButton>
+                <HButton type='submit' onClick={handleAddImage} theme='Success' className="w-full">Resmi Ekle</HButton>
             </Form.Item>
         </Form>
 

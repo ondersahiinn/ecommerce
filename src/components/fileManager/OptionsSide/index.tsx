@@ -6,7 +6,11 @@ import EditImageData from './components/EditImageData';
 import ShowImageData from './components/ShowImageData';
 import styles from './styles.module.scss'
 
-const OptionsSide = () => {
+interface IProps {
+    handleAddImage: () => void
+}
+
+const OptionsSide = ({ handleAddImage }: IProps) => {
     const selectedImage = useSelector((state: RootState) => state.fileManager.selectedImage)
     const [value, setValue] = useState<string | number>('Kaynak');
     const [options, setOptions] = useState<string[]>(['Kaynak'])
@@ -22,7 +26,7 @@ const OptionsSide = () => {
     return (
         <div className='flex flex-col gap-6'>
             <Segmented block options={options} size="large" value={value} onChange={setValue} className={styles.customSegmented} />
-            {value === 'Kaynak' ? <EditImageData /> : <ShowImageData />}
+            {value === 'Kaynak' ? <EditImageData handleAddImage={handleAddImage} /> : <ShowImageData />}
         </div>
     )
 }
