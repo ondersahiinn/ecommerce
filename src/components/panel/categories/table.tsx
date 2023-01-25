@@ -46,15 +46,8 @@ const CategoryTable = () => {
     },
     {
       title: 'Kategori Adı',
-      dataIndex: 'categoryName',
-      key: 'categoryName',
-      align: 'center',
-
-    },
-    {
-      title: 'Kategori Açıklaması',
-      dataIndex: 'categoryDescription',
-      key: 'categoryDescription',
+      dataIndex: 'name',
+      key: 'name',
       align: 'center',
 
     },
@@ -90,7 +83,7 @@ const CategoryTable = () => {
       render: text => <div className='text-[#6b83fa] '>
         <Link href={"#"} >
           <a className="px-2 py-1 hover:underline">
-            {text}
+            0
           </a>
         </Link>
       </div>,
@@ -106,7 +99,7 @@ const CategoryTable = () => {
         'bg-[#36b23e]': text === 'aktif',
         'bg-[#fa0000]': text === 'pasif'
       })} key={text}>
-        {text.toLocaleUpperCase()}
+        {text?.toLocaleUpperCase()}
       </div>,
 
     },
@@ -166,7 +159,7 @@ const CategoryTable = () => {
     },
   ];
   return (
-    <Table columns={columns} dataSource={data} />)
+    <Table columns={columns} dataSource={(categories as DataType[])} />)
 }
 
 export default CategoryTable;
