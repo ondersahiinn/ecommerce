@@ -8,10 +8,6 @@ let instance = axios.create({
 })
 
 instance.interceptors.request.use((config) => {
-  const apiToken = localStorage.getItem('access_token')
-  config.headers = {
-    Authorization: `Bearer ${apiToken}`
-  }
   return config
 }, error => {
   return Promise.reject(error)
