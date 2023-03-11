@@ -75,14 +75,14 @@ const ImageSlider: React.FC<React.PropsWithChildren> = ({ children }) => {
 
     };
     return (
-        <div className='max-w-7xl mx-auto my-12 px-3'>
+        <>
 
             <Carousel {...settings} afterChange={onChange} appendDots={appendDots} customPaging={customPaging} className={styles.sliderContainer} responsive={responsive}>
                 {children}
 
             </Carousel>
 
-        </div>
+        </>
     )
 }
 

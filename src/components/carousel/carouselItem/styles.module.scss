@@ -1,0 +1,7 @@
+.carouselItem {
+  @apply flex flex-col;
+
+  .itemWrapper {
+    @apply flex flex-col flex-1;
+  }
+}

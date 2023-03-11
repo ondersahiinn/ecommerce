@@ -6,6 +6,8 @@ import '@styles/global.scss';
 import { Provider } from 'react-redux';
 import store from '@redux/store';
 import PanelLayout from '@components/layout';
+import { Header } from '@components/header';
+import { Footer } from '@components/footer';
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (
@@ -17,7 +19,12 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
           </Hydrated>
         </PanelLayout> :
         <Hydrated>
-          <Component {...pageProps} />
+          <Header />
+          <div className='flex-1'>
+            <Component {...pageProps} />
+          </div>
+
+          <Footer />
         </Hydrated>
       }
     </Provider>
@@ -32,7 +39,7 @@ const Hydrated = ({ children }: { children?: any }) => {
       setHydration(true);
     }
   }, []);
-  return hydration ? children : <p>Loading..</p>
+  return hydration ? <div className='flex flex-col h-screen'>{children}</div> : <p>Loading..</p>
 
 };
 export default MyApp;

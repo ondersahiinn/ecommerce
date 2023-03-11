@@ -8,16 +8,16 @@ module.exports = {
       sm: '576px',
       // => @media (min-width: 576px) { ... }
 
-      md: '768px',
+      md: '576px',
       // => @media (min-width: 768px) { ... }
 
-      lg: '992px',
+      lg: '769px',
       // => @media (min-width: 992px) { ... }
 
-      xl: '1200px',
+      xl: '992px',
       // => @media (min-width: 1200px) { ... }
 
-      '2xl': '1400px',
+      '2xl': '1200px',
       // => @media (min-width: 1400px) { ... }
     },
     extend: {

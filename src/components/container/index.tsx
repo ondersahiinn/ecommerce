@@ -5,5 +5,5 @@ interface Props {
   className?: string;
 }
 export const Container: FC<Props> = (props) => {
-  return <div {...props}>{props.children}</div>;
+  return <div {...props} className="container mx-auto px-3">{props.children}</div>;
 };

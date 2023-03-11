@@ -1,0 +1,49 @@
+.carouselContainer {
+  @apply w-full h-full flex flex-col;
+
+  .carouselWrapper {
+    @apply flex items-start gap-3 w-full h-full relative;
+    .arrows {
+      @apply absolute z-10 top-1/2 transform -translate-y-1/2 w-10 h-10 p-2 outline-none border-none cursor-pointer flex items-center justify-center bg-white shadow-lg rounded-full;
+      > svg {
+        @apply w-full h-full;
+      }
+      &.arrowLeft {
+        @apply left-2;
+        > svg {
+          @apply transform -rotate-180;
+        }
+      }
+      &.arrowRight {
+        @apply right-2;
+      }
+    }
+    .dots {
+      @apply flex flex-col items-center gap-2;
+
+      .dot {
+        @apply w-16 h-auto p-1 rounded-lg border border-gray-300 cursor-pointer;
+
+        &.active {
+          @apply border-[#484848];
+        }
+      }
+    }
+    .carouselContentWrapper {
+      @apply flex overflow-hidden w-full h-full relative;
+
+      .carouselContent {
+        @apply flex w-full h-full transition-all duration-700 ease-linear;
+        -ms-overflow-style: none; /* hide scrollbar in IE and Edge */
+        scrollbar-width: none; /* hide scrollbar in Firefox */
+
+        &::-webkit-scrollbar {
+          display: none; /* hide scrollbar in Chrome, Safari and Opera */
+        }
+        > * {
+          @apply flex-shrink-0 flex-grow w-full;
+        }
+      }
+    }
+  }
+}
